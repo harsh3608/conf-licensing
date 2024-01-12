@@ -29,6 +29,7 @@ import {
   MsalModule,
   MsalInterceptor,
 } from '@azure/msal-angular';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
 
@@ -80,7 +81,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   };
 }
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, SidebarComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
