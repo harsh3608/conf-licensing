@@ -1,8 +1,11 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
   IPublicClientApplication,
@@ -24,9 +27,6 @@ import {
   MsalModule,
   MsalInterceptor,
 } from '@azure/msal-angular';
-import { CommonModule } from '@angular/common';
-import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
 
@@ -41,7 +41,7 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
-      clientId: '9e4b8d04-0d49-40df-8aa6-71e7a87dee4e',
+      clientId: 'cd226c4e-43c2-432a-a790-a451945aa9b4',
       authority: 'https://login.microsoftonline.com/a353c19d-2a45-4b70-a946-4ade8421a354',
       redirectUri: 'http://localhost:4200/',
     },
@@ -51,7 +51,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     },
     system: {
       loggerOptions: {
-        loggerCallback,
+        //loggerCallback,
         logLevel: LogLevel.Info,
         piiLoggingEnabled: false,
       },
@@ -77,19 +77,12 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     },
   };
 }
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProfileComponent,
-    HomeComponent
-  ],
+  declarations: [AppComponent, HomeComponent, ProfileComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    CommonModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     HttpClientModule,
     MsalModule,
   ],
@@ -115,6 +108,6 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MsalGuard,
     MsalBroadcastService,
   ],
-  bootstrap: [AppComponent, MsalRedirectComponent]
+  bootstrap: [AppComponent, MsalRedirectComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -21,7 +21,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener;
-    debugger;
     this.msalBroadcastService.inProgress$
       .pipe(
         filter((status: InteractionStatus) => status === InteractionStatus.None),
