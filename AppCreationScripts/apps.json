@@ -1,0 +1,53 @@
+{
+    "Sample": {
+      "Title": "A simple Angular single page application calling the Microsoft Graph using MSAL Angular v2 (Azure AD V2 endpoint)",
+      "Level": 100,
+      "Client": "SinglePageApplication"
+    },
+    "AppRegistrations": [
+      {
+        "x-ms-id": "AngularSpa",
+        "x-ms-name": "ms-identity-javascript-angular-spa",
+        "x-ms-version": "2.0",
+        "replyUrlsWithType": [
+          {
+            "url": "http://localhost:4200/",
+            "type": "Spa"
+          }
+        ],
+        "requiredResourceAccess": [
+          {
+            "x-ms-resourceAppName": "Microsoft Graph",
+            "resourceAppId": "00000003-0000-0000-c000-000000000000",
+            "resourceAccess": [
+              {
+                "id": "9e4b8d04-0d49-40df-8aa6-71e7a87dee4e",
+                "type": "Scope",
+                "x-ms-name": "angular3-scope1.read"
+              }
+            ]
+          }
+        ],
+        "codeConfigurations": [
+          {
+            "settingFile": "/src/app/app.module.ts",
+            "replaceTokens":
+              {
+              "appId": "9e4b8d04-0d49-40df-8aa6-71e7a87dee4e",
+              "tenantId": "a353c19d-2a45-4b70-a946-4ade8421a354",
+              "authorityEndpointHost": "https://login.microsoftonline.com",
+              "redirectUri": "https://login.microsoftonline.com/a353c19d-2a45-4b70-a946-4ade8421a354/saml2",
+              "msgraphEndpointHost": "https://graph.microsoft.com"
+            }
+          },
+          {
+            "settingFile": "/src/app/profile/profile.component.ts",
+            "replaceTokens":
+              {
+              "msgraphEndpointHost": "https://graph.microsoft.com"
+              }
+            }
+        ]
+      }
+    ]
+  }
