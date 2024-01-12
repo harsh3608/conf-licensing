@@ -25,6 +25,8 @@ import {
   MsalInterceptor,
 } from '@azure/msal-angular';
 import { CommonModule } from '@angular/common';
+import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './home/home.component';
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
 
@@ -79,7 +81,9 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
