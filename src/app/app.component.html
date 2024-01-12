@@ -1,9 +1,12 @@
-<div class="p-5">
+<div class="p-2">
   @if (!isUserLoggedIn) {
-  <button class="btn btn-primary"  (click)="login()">Sign In</button>
+  <button pButton pRipple class="p-button-info p-button-rounded" label="Sign In" (click)="login()"></button>
   }
-  @else {<button class="btn btn-warning" (click)="logout()">Sign Out</button>}
+  @else {
+  <button pButton pRipple class="btn btn-warning" (click)="logout()">Sign Out</button>
+  }
 
+  <hr>
 
 </div>
 
