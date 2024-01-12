@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { AuthenticationResult, InteractionStatus, InteractionType, PopupRequest, RedirectRequest } from '@azure/msal-browser';
+import { MenuItem } from 'primeng/api';
 import { Subject, filter, takeUntil } from 'rxjs';
 
 @Component({
@@ -8,10 +9,11 @@ import { Subject, filter, takeUntil } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   isIframe = false;
   isUserLoggedIn = false;
   private readonly _destroying$ = new Subject<void>();
+  sidebarVisible:boolean = false;
 
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
@@ -29,6 +31,8 @@ export class AppComponent implements OnInit{
       .subscribe(() => {
         this.setLoginDisplay();
       });
+
+    
   }
 
   setLoginDisplay() {

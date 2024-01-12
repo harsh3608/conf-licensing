@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { LicenseRequestComponent } from './license-request.component';
+
+describe('LicenseRequestComponent', () => {
+  let component: LicenseRequestComponent;
+  let fixture: ComponentFixture<LicenseRequestComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [LicenseRequestComponent]
+    })
+    .compileComponents();
+    
+    fixture = TestBed.createComponent(LicenseRequestComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

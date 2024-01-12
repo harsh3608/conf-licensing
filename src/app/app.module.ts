@@ -5,7 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+
+
+
+import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
+import { RippleModule } from 'primeng/ripple';
+import { InputTextModule } from 'primeng/inputtext';
+import { SidebarModule } from 'primeng/sidebar';
+import { BadgeModule } from 'primeng/badge';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { TooltipModule } from 'primeng/tooltip';
+import { MenubarModule } from 'primeng/menubar';
+import { AvatarModule } from 'primeng/avatar';
 
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -29,7 +44,9 @@ import {
   MsalModule,
   MsalInterceptor,
 } from '@azure/msal-angular';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { LicenseListComponent } from './license-list/license-list.component';
+import { LicenseRequestComponent } from './license-request/license-request.component';
+
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
 
@@ -81,7 +98,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   };
 }
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, SidebarComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, SidebarComponent, LicenseListComponent, LicenseRequestComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -89,10 +106,19 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     HttpClientModule,
     MsalModule,
 
+    StyleClassModule,
+    InputTextModule,
+    SidebarModule,
+    BadgeModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    TooltipModule,
+    RippleModule,
+    RouterModule,
     ButtonModule,
+    MenubarModule,
+    AvatarModule,
 
-
-    
   ],
   providers: [
     {
@@ -118,4 +144,4 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
 })
-export class AppModule {}
+export class AppModule { }
