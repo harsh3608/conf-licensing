@@ -10,7 +10,6 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
@@ -21,6 +20,15 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { TooltipModule } from 'primeng/tooltip';
 import { MenubarModule } from 'primeng/menubar';
 import { AvatarModule } from 'primeng/avatar';
+import { TableModule } from 'primeng/table';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { CalendarModule } from 'primeng/calendar';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
+
+
 
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -46,6 +54,7 @@ import {
 } from '@azure/msal-angular';
 import { LicenseListComponent } from './license-list/license-list.component';
 import { LicenseRequestComponent } from './license-request/license-request.component';
+import { ReceivedRequestComponent } from './received-request/received-request.component';
 
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
@@ -98,7 +107,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   };
 }
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, SidebarComponent, LicenseListComponent, LicenseRequestComponent],
+  declarations: [AppComponent, HomeComponent, ProfileComponent, LicenseListComponent, LicenseRequestComponent, ReceivedRequestComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -118,6 +127,14 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     ButtonModule,
     MenubarModule,
     AvatarModule,
+    TableModule,
+    ProgressBarModule,
+    CalendarModule,
+    MultiSelectModule,
+    DropdownModule,
+    InputTextareaModule,
+
+
 
   ],
   providers: [

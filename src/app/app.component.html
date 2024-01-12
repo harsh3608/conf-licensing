@@ -1,7 +1,12 @@
 <div class="p-2">
   <div class="flex flex-row justify-content-between">
     <div></div>
-    <div><p-button (click)="sidebarVisible = true" icon="pi pi-arrow-right"></p-button></div>
+    <div>
+      @if (isUserLoggedIn) {
+      <p-button (click)="sidebarVisible = true" icon="pi pi-arrow-right"></p-button>
+      }
+
+    </div>
     <div></div>
     <div>
       @if (!isUserLoggedIn) {
@@ -66,7 +71,7 @@
           <span class="font-semibold text-2xl text-primary">Your Logo</span>
         </span>
         <span>
-          
+
         </span>
       </div>
       <div class="overflow-y-auto">
@@ -80,25 +85,25 @@
             </div>
             <ul class="list-none p-0 m-0 overflow-hidden">
               <li>
-                <a pRipple
+                <a pRipple [routerLink]="['/licenses-list']"
                   class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                   <i class="pi pi-credit-card mr-2"></i>
-                  <span class="font-medium">Active Licenses</span>
+                  <span class="font-medium">Licenses</span>
                 </a>
               </li>
               <li>
-                <a pRipple
+                <a pRipple [routerLink]="['/add-license-request']"
                   class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                  <i class="pi pi-bookmark mr-2"></i>
-                  <span class="font-medium">Bookmarks</span>
+                  <i class="pi pi-plus mr-2"></i>
+                  <span class="font-medium">Add New License Request</span>
                 </a>
               </li>
-              
+
               <li>
-                <a pRipple
+                <a pRipple [routerLink]="['/fill-received-request']"
                   class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                  <i class="pi pi-calendar mr-2"></i>
-                  <span class="font-medium">Calendar</span>
+                  <i class="pi pi-envelope mr-2"></i>
+                  <span class="font-medium">Fill Received Request</span>
                 </a>
               </li>
               <li>
@@ -111,9 +116,9 @@
             </ul>
           </li>
         </ul>
-        
+
       </div>
-      
+
     </div>
   </ng-template>
 </p-sidebar>
