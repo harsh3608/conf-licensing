@@ -4,9 +4,6 @@ import { MsalGuard } from '@azure/msal-angular';
 import { BrowserUtils } from '@azure/msal-browser';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
-import { LicenseRequestComponent } from './license-request/license-request.component';
-import { LicenseListComponent } from './license-list/license-list.component';
-import { ReceivedRequestComponent } from './received-request/received-request.component';
 
 const routes: Routes = [
   {
@@ -14,20 +11,10 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [MsalGuard],
   },
+
   {
-    path: 'licenses-list',
-    component: LicenseListComponent,
-    canActivate: [MsalGuard],
-  },
-  {
-    path: 'add-license-request',
-    component: LicenseRequestComponent,
-    canActivate: [MsalGuard],
-  },
-  {
-    path: 'fill-received-request',
-    component: ReceivedRequestComponent,
-    canActivate: [MsalGuard],
+    path: 'license',
+    loadChildren: () => import('./license/license.module').then(m => m.LicenseModule)
   },
   {
     path: '',
@@ -52,5 +39,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
 

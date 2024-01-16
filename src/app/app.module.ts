@@ -5,12 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { RouterModule } from '@angular/router';
 
 
 import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
-import { RouterModule } from '@angular/router';
+
 import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
@@ -52,9 +52,7 @@ import {
   MsalModule,
   MsalInterceptor,
 } from '@azure/msal-angular';
-import { LicenseListComponent } from './license-list/license-list.component';
-import { LicenseRequestComponent } from './license-request/license-request.component';
-import { ReceivedRequestComponent } from './received-request/received-request.component';
+import { LicenseListComponent } from './license/license-list/license-list.component';
 
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
@@ -107,7 +105,12 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   };
 }
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, LicenseListComponent, LicenseRequestComponent, ReceivedRequestComponent],
+  declarations: [
+    AppComponent, 
+    HomeComponent, 
+    ProfileComponent, 
+    LicenseListComponent, 
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
