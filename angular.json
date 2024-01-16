@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "azure-sisu-2": {
+    "licensing-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/azure-sisu-2",
+            "outputPath": "dist/licensing-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "azure-sisu-2:build:production"
+              "buildTarget": "licensing-app:build:production"
             },
             "development": {
-              "buildTarget": "azure-sisu-2:build:development"
+              "buildTarget": "licensing-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "azure-sisu-2:build"
+            "buildTarget": "licensing-app:build"
           }
         },
         "test": {
