@@ -14,3 +14,11 @@
 @import '../node_modules/primeflex/primeflex.css';
 
 @import '../node_modules/primeicons/primeicons.css';
+
+
+.p-sidebar-left {
+    top: 49px ;
+    left: 0;
+    width: 20rem;
+    height: 100%;
+}
