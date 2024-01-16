@@ -1,8 +1,8 @@
 export interface LicenseManualRequest {
     artifactId: number;
     productGUID: string;
-    requestCreatedOn: string;
-    requestGeneratedByArtifactId: string;
+    requestCreatedOn: any;
+    requestGeneratedByArtifactId: number;
     requestGeneratedByName: string;
     requestGeneratedByEmail: string;
     organizationArtifactId: number;

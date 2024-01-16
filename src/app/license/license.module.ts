@@ -22,6 +22,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -53,8 +55,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DropdownModule,
     InputTextareaModule,
     DynamicDialogModule,
-
-
+    InputNumberModule,
+    DialogModule
 
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LicenseManualRequest } from '../shared/models/license-models';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-manual-license-request',
@@ -12,24 +13,72 @@ export class ManualLicenseRequestComponent implements OnInit {
   licenseManualRequest!: LicenseManualRequest;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dynamicDialogRef: DynamicDialogRef,
   ) { }
 
   ngOnInit(): void {
 
 
     this.ManualRequestForm = this.fb.group({
-      productGUID: new FormControl(),
-      requestCreatedOn: new FormControl(),
-      requestGeneratedByArtifactId: new FormControl(),
-      requestGeneratedByName: new FormControl(),
-      requestGeneratedByEmail: new FormControl(),
-      organizationArtifactId: new FormControl(),
-      workspaceArtifactId: new FormControl(),
-      workspaceGUID: new FormControl(),
-      relativityInstanceGUID: new FormControl(),
-      isCompleted: new FormControl(),
+      productGUID: new FormControl('', [Validators.required]),
+      requestGeneratedByArtifactId: new FormControl(0, [Validators.required]),
+      requestGeneratedByName: new FormControl('', [Validators.required]),
+      requestGeneratedByEmail: new FormControl('', [Validators.required]),
+      organizationArtifactId: new FormControl(0, [Validators.required]),
+      workspaceArtifactId: new FormControl(0, [Validators.required]),
+      workspaceGUID: new FormControl('', [Validators.required]),
+      relativityInstanceGUID: new FormControl('', [Validators.required]),
     });
   }
+
+
+
+
+
+
+
+  onSubmit() {
+
+  }
+
+  onCancel() {
+    this.dynamicDialogRef.close();
+  }
+
+
+
+  get productGUID(): FormControl {
+    return this.ManualRequestForm.get('productGUID') as FormControl;
+  }
+
+  get requestGeneratedByArtifactId(): FormControl {
+    return this.ManualRequestForm.get('requestGeneratedByArtifactId') as FormControl;
+  }
+
+  get requestGeneratedByName(): FormControl {
+    return this.ManualRequestForm.get('requestGeneratedByName') as FormControl;
+  }
+
+  get requestGeneratedByEmail(): FormControl {
+    return this.ManualRequestForm.get('requestGeneratedByEmail') as FormControl;
+  }
+
+  get organizationArtifactId(): FormControl {
+    return this.ManualRequestForm.get('organizationArtifactId') as FormControl;
+  }
+
+  get workspaceArtifactId(): FormControl {
+    return this.ManualRequestForm.get('workspaceArtifactId') as FormControl;
+  }
+
+  get workspaceGUID(): FormControl {
+    return this.ManualRequestForm.get('workspaceGUID') as FormControl;
+  }
+
+  get relativityInstanceGUID(): FormControl {
+    return this.ManualRequestForm.get('relativityInstanceGUID') as FormControl;
+  }
+
 
 }
