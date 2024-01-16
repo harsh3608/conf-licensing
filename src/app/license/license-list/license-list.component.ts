@@ -1,11 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
+import { ManualLicenseRequestComponent } from '../manual-license-request/manual-license-request.component';
+import { AutomatedLicenseRequestComponent } from '../automated-license-request/automated-license-request.component';
 
 @Component({
   selector: 'app-license-list',
   templateUrl: './license-list.component.html',
-  styleUrl: './license-list.component.css'
+  styleUrl: './license-list.component.css',
+  providers: [DialogService, DynamicDialogRef]
 })
 export class LicenseListComponent {
   customers: any[] = [];
@@ -19,8 +23,13 @@ export class LicenseListComponent {
   loading: boolean = true;
 
   @ViewChild('dt') table!: Table;
+  ref: DynamicDialogRef | undefined;
 
-  constructor(private primengConfig: PrimeNGConfig) { }
+  constructor(
+    private primengConfig: PrimeNGConfig,
+    public dialogService: DialogService,
+
+    ) { }
 
   ngOnInit() {
 
@@ -62,4 +71,27 @@ export class LicenseListComponent {
   onRepresentativeChange(event: any) {
     this.table.filter(event.value, 'representative', 'in')
   }
+
+  AddManualLicenseRequest() {
+    this.ref = this.dialogService.open(ManualLicenseRequestComponent, {
+      header: 'Add new license (Manual Request)',
+      width: '60%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      
+    });
+  }
+
+  AddAutomatedLicenseRequest() {
+    this.ref = this.dialogService.open(AutomatedLicenseRequestComponent, {
+      header: 'Add new license (Automated Request)',
+      width: '60%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      
+    });
+  }
+
 }

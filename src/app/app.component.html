@@ -2,18 +2,15 @@
 
   <div class="ml-2">
     @if (isUserLoggedIn) {
-
     @if (sidebarVisible) {
-    <p-button (click)="sidebarVisible = true" icon="pi pi-times" severity="secondary">
+    <p-button (click)="sidebarVisible = false" icon="pi pi-times" severity="secondary">
     </p-button>
     }
     @else {
     <p-button (click)="sidebarVisible = true" icon="pi pi-bars" severity="secondary">
     </p-button>
     }
-
     }
-
   </div>
   <div></div>
   <div class="mr-2">
@@ -25,7 +22,6 @@
     }
   </div>
 </div>
-
 
 
 <p-sidebar [(visible)]="sidebarVisible">
@@ -90,38 +86,21 @@
               <i class="pi pi-chevron-down"></i>
             </div>
             <ul class="list-none p-0 m-0 overflow-hidden">
-              <li>
+              <li (click)="sidebarVisible = false">
                 <a pRipple [routerLink]="['/license/list']"
                   class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                   <i class="pi pi-credit-card mr-2"></i>
                   <span class="font-medium">Licenses</span>
                 </a>
               </li>
-              <!-- <li>
-                <a pRipple [routerLink]="['/license/manual-license-request']"
-                  class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                  <i class="pi pi-plus mr-2"></i>
-                  <span class="font-medium">Add New License Request</span>
-                </a>
-              </li>
-
-              <li>
-                <a pRipple [routerLink]="['/license/automated-license-request']"
-                  class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                  <i class="pi pi-envelope mr-2"></i>
-                  <span class="font-medium">Fill Received Request</span>
-                </a>
-              </li> -->
-
-              <li>
+              <li (click)="sidebarVisible = false">
                 <a pRipple [routerLink]="['/profile']"
                   class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                   <i class="pi pi-user mr-2"></i>
                   <span class="font-medium">Profile</span>
                 </a>
               </li>
-
-              <li>
+              <li (click)="sidebarVisible = false">
                 <a pRipple
                   class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                   <i class="pi pi-cog mr-2"></i>
@@ -131,9 +110,7 @@
             </ul>
           </li>
         </ul>
-
       </div>
-
     </div>
   </ng-template>
 </p-sidebar>

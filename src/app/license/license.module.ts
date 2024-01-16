@@ -20,6 +20,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   imports: [
     CommonModule,
     LicenseRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+
     StyleClassModule,
     ButtonModule,
     RippleModule,
@@ -46,6 +52,14 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     MultiSelectModule,
     DropdownModule,
     InputTextareaModule,
+    DynamicDialogModule,
+
+
+
+
+
+
+
   ]
 })
 export class LicenseModule { }
