@@ -22,11 +22,11 @@ export class ManualLicenseRequestComponent implements OnInit {
 
     this.ManualRequestForm = this.fb.group({
       productGUID: new FormControl('', [Validators.required]),
-      requestGeneratedByArtifactId: new FormControl(0, [Validators.required]),
+      requestGeneratedByArtifactId: new FormControl('', [Validators.required]),
       requestGeneratedByName: new FormControl('', [Validators.required]),
       requestGeneratedByEmail: new FormControl('', [Validators.required]),
-      organizationArtifactId: new FormControl(0, [Validators.required]),
-      workspaceArtifactId: new FormControl(0, [Validators.required]),
+      organizationArtifactId: new FormControl('', [Validators.required]),
+      workspaceArtifactId: new FormControl('', [Validators.required]),
       workspaceGUID: new FormControl('', [Validators.required]),
       relativityInstanceGUID: new FormControl('', [Validators.required]),
     });
@@ -39,6 +39,10 @@ export class ManualLicenseRequestComponent implements OnInit {
 
 
   onSubmit() {
+    this.ManualRequestForm.markAllAsTouched();
+
+
+
 
   }
 

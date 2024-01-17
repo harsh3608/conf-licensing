@@ -46,3 +46,35 @@
     margin-bottom: 0px;
 }
 
+.input_number_custom{
+
+}
+
+.input_number_custom .p-inputnumber.p-inputnumber-buttons-stacked{
+    position: relative;
+}
+
+.input_number_custom .p-inputnumber-buttons-stacked .p-button.p-inputnumber-button-down {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0;
+}
+
+
+.input_number_custom .p-inputnumber-buttons-stacked .p-button.p-inputnumber-button-up {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 0;
+}
+
+.input_number_custom .p-fluid .p-button-icon-only {
+    width: 3rem;
+}
+
+.input_number_custom .p-inputnumber-button-group {
+    position: absolute;
+    right: 0;
+    height: 3rem;
+}
