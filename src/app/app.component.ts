@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
   }
 
   login() {
-    debugger;
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       if (this.msalGuardConfig.authRequest) {
         this.authService.loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LicenseManualRequest } from '../shared/models/license-models';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-manual-license-request',
@@ -11,10 +12,33 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 export class ManualLicenseRequestComponent implements OnInit {
   ManualRequestForm!: FormGroup;
   licenseManualRequest!: LicenseManualRequest;
+  organizations: any[] = [
+    {
+      organizationArtifactId: 1234567,
+      name: 'Unilever'
+    },
+    {
+      organizationArtifactId: 1232475,
+      name: 'TATA'
+    },
+    {
+      organizationArtifactId: 6584534,
+      name: 'Godrej'
+    },
+    {
+      organizationArtifactId: 4568512,
+      name: 'Reliance'
+    },
+    {
+      organizationArtifactId: 8569472,
+      name: 'Bharti Airtel'
+    }
+  ];
 
   constructor(
     private fb: FormBuilder,
     public dynamicDialogRef: DynamicDialogRef,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -33,17 +57,17 @@ export class ManualLicenseRequestComponent implements OnInit {
   }
 
 
-
-
-
-
-
   onSubmit() {
     this.ManualRequestForm.markAllAsTouched();
+    if (this.ManualRequestForm.valid) {
+      this.licenseManualRequest = this.ManualRequestForm.value;
+      this.licenseManualRequest.artifactId = 0
+      this.licenseManualRequest.isCompleted = false;
+      console.log('licenseManualRequest', this.licenseManualRequest);
 
-
-
-
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License requested successfully!' });
+      this.dynamicDialogRef.close(true);
+    };
   }
 
   onCancel() {

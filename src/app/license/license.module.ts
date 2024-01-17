@@ -20,10 +20,12 @@ import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -56,12 +58,19 @@ import { DialogModule } from 'primeng/dialog';
     InputTextareaModule,
     DynamicDialogModule,
     InputNumberModule,
-    DialogModule
+    DialogModule,
+    ToastModule,
+    
 
 
 
 
-
+  ],
+  providers:[
+    MessageService,
+    DialogService, 
+    DynamicDialogRef,
+    
   ]
 })
 export class LicenseModule { }

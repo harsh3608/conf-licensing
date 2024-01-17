@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { ManualLicenseRequestComponent } from '../manual-license-request/manual-license-request.component';
@@ -9,7 +9,7 @@ import { AutomatedLicenseRequestComponent } from '../automated-license-request/a
   selector: 'app-license-list',
   templateUrl: './license-list.component.html',
   styleUrl: './license-list.component.css',
-  providers: [DialogService, DynamicDialogRef]
+  //providers: [DialogService, DynamicDialogRef]
 })
 export class LicenseListComponent {
   customers: any[] = [];
@@ -28,8 +28,9 @@ export class LicenseListComponent {
   constructor(
     private primengConfig: PrimeNGConfig,
     public dialogService: DialogService,
+    private messageService: MessageService
 
-    ) { }
+  ) { }
 
   ngOnInit() {
 
@@ -79,8 +80,13 @@ export class LicenseListComponent {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
-      
+
     });
+    this.ref.onClose.subscribe((res: any) => {
+      if (res) {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License requested successfully!' });
+      }
+    })
   }
 
   AddAutomatedLicenseRequest() {
@@ -90,7 +96,7 @@ export class LicenseListComponent {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
-      
+
     });
   }
 
