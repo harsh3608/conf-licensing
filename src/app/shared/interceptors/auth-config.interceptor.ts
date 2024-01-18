@@ -1,15 +1,27 @@
-import { HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+// auth-config.interceptor.ts
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Constants } from '../Constants';
 
 @Injectable()
 export class AuthConfigInterceptor implements HttpInterceptor {
-  
-  constructor(
+  constructor() {}
 
-  ) {}
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    debugger;
+    const accessToken = Constants.accessToken;
 
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
-    return next.handle(request);
-  } 
+    if (accessToken) {
+      const cloned = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
+      return next.handle(cloned);
+    }
+
+    return next.handle(req);
+  }
 }

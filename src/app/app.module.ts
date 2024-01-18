@@ -30,8 +30,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 
 
 
-
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   IPublicClientApplication,
   PublicClientApplication,
@@ -53,6 +52,7 @@ import {
   MsalInterceptor,
 } from '@azure/msal-angular';
 import { LicenseListComponent } from './license/license-list/license-list.component';
+import { AuthConfigInterceptor } from './shared/interceptors/auth-config.interceptor';
 
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
@@ -68,8 +68,8 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
-      clientId: 'cd226c4e-43c2-432a-a790-a451945aa9b4',
-      authority: 'https://login.microsoftonline.com/a353c19d-2a45-4b70-a946-4ade8421a354',
+      clientId: 'f4b2cc27-c70a-40c5-b7a3-a499f12241ae',
+      authority: 'https://login.microsoftonline.com/49eab8ca-0599-4af2-8e2b-5446d1d5843d',
       redirectUri: 'http://localhost:4200/',
     },
     cache: {
@@ -106,10 +106,10 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
 }
 @NgModule({
   declarations: [
-    AppComponent, 
-    HomeComponent, 
-    ProfileComponent, 
-    LicenseListComponent, 
+    AppComponent,
+    HomeComponent,
+    ProfileComponent,
+    LicenseListComponent,
   ],
   imports: [
     BrowserModule,
@@ -147,6 +147,11 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
       multi: true,
     },
     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthConfigInterceptor,
+      multi: true,
+    },
+    {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory,
     },
@@ -161,7 +166,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MsalService,
     MsalGuard,
     MsalBroadcastService,
-    
+
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
 })

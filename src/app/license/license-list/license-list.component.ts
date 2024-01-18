@@ -4,6 +4,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { ManualLicenseRequestComponent } from '../manual-license-request/manual-license-request.component';
 import { AutomatedLicenseRequestComponent } from '../automated-license-request/automated-license-request.component';
+import { LicenseService } from '../shared/services/license.service';
 
 @Component({
   selector: 'app-license-list',
@@ -28,15 +29,18 @@ export class LicenseListComponent {
   constructor(
     private primengConfig: PrimeNGConfig,
     public dialogService: DialogService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private licenseService: LicenseService,
+
 
   ) { }
 
   ngOnInit() {
-
     this.primengConfig.ripple = true;
+    this.loading = false;
+    this.getAllLicenseRequests();
 
-    this.loading = false
+
   }
 
   onActivityChange(event: any) {
@@ -97,6 +101,14 @@ export class LicenseListComponent {
       baseZIndex: 10000,
       maximizable: true,
 
+    });
+  }
+
+  getAllLicenseRequests() {
+    this.licenseService.getAllLicenseRequests().subscribe((res) => {
+      if (res) {
+        console.log(res);
+      };
     });
   }
 

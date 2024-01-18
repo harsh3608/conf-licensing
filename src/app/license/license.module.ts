@@ -60,17 +60,16 @@ import { MessageService } from 'primeng/api';
     InputNumberModule,
     DialogModule,
     ToastModule,
-    
+
 
 
 
 
   ],
-  providers:[
+  providers: [
     MessageService,
-    DialogService, 
+    DialogService,
     DynamicDialogRef,
-    
   ]
 })
 export class LicenseModule { }

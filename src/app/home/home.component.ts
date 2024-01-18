@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { AuthenticationResult, EventMessage, EventType } from '@azure/msal-browser';
 import { Subscription, filter } from 'rxjs';
+import { Constants } from '../shared/Constants';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,9 @@ export class HomeComponent implements OnInit {
       )
       .subscribe((result: EventMessage) => {
         debugger;
+        
         const payload = result.payload as AuthenticationResult;
+        Constants.accessToken = payload.accessToken;
         this.authService.instance.setActiveAccount(payload.account);
         this.setLoginDisplay();
       });
