@@ -10,6 +10,6 @@ export class AuthConfigInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     return next.handle(request);
-  }
+  } 
 
 }
