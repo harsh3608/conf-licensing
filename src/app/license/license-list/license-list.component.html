@@ -1,4 +1,4 @@
-<p-table #dt [value]="customers" [(selection)]="selectedCustomers" dataKey="id" styleClass="p-datatable-customers"
+<p-table #dt [value]="licenseRequests"  dataKey="id" styleClass="p-datatable-customers"
     [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
     [globalFilterFields]="['name','country.name','representative.name','status']">
@@ -6,7 +6,7 @@
     <ng-template pTemplate="caption">
         <div class="table-header flex flex-row justify-content-between">
             <div>
-                <h2>Licenses</h2>
+                <h2>License Requests</h2>
             </div>
 
             <div class="flex flex-row justify-content-between">
@@ -28,8 +28,8 @@
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 3rem"></th>
-            <th pSortableColumn="name">ArtifactId <p-sortIcon field="name"></p-sortIcon></th>
-            <th pSortableColumn="country.name">Relativity Instance Name <p-sortIcon field="country.name"></p-sortIcon>
+            <th pSortableColumn="name">Product Guid <p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="country.name">Request Generator Name <p-sortIcon field="country.name"></p-sortIcon>
             </th>
             <th pSortableColumn="representative.name">Activation Status <p-sortIcon
                     field="representative.name"></p-sortIcon></th>
@@ -82,38 +82,29 @@
             <th></th>
         </tr> -->
     </ng-template>
-    <ng-template pTemplate="body" let-customer>
+    <ng-template pTemplate="body" let-licenseRequest>
         <tr class="p-selectable-row">
+            <td></td>
             <td>
-                <p-tableCheckbox [value]="customer"></p-tableCheckbox>
-            </td>
-            <td>
-                <span class="p-column-title">Name</span>
-                {{customer.name}}
+                {{licenseRequest.productGUID}}
             </td>
             <td>
-                <span class="p-column-title">Relativity Instance Name</span>
-                <span class="image-text">{{customer.country.name}}</span>
+                {{licenseRequest.requestGeneratedByName}}
             </td>
             <td>
-                <span class="p-column-title">Activation Status</span>
-                <span class="image-text">{{customer.representative.name}}</span>
+                {{licenseRequest.date}}
             </td>
             <td>
-                <span class="p-column-title">Date</span>
-                {{customer.date}}
+                {{licenseRequest.date}}
             </td>
             <td>
-                <span class="p-column-title">Status</span>
-                <span [class]="'customer-badge status-' + customer.status">{{customer.status}}</span>
+                {{licenseRequest.date}}
             </td>
             <td>
-                <span class="p-column-title">Activity</span>
-                <p-progressBar [value]="customer.activity" [showValue]="false"></p-progressBar>
+                {{licenseRequest.date}}
             </td>
-            <td style="text-align: center">
-                <button pButton type="button" class="p-button-secondary" icon="pi pi-cog"></button>
-            </td>
+            <td></td>
+            
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">

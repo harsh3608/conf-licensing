@@ -11,3 +11,31 @@ export interface LicenseManualRequest {
     relativityInstanceGUID: string;
     isCompleted: boolean;
 }
+
+export interface AllLicensesResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: LicenseManualRequest[]
+    message: string
+    exceptionMessage: string
+}
+  
+export interface SingleLicenseResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: LicenseManualRequest
+    message: string
+    exceptionMessage: string
+}
+
+export interface CreateLicenseResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: string
+    message: string
+    exceptionMessage: string
+  }
+
+
+
+

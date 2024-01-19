@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Constants } from '../../../shared/Constants';
+import { AllLicensesResponse, CreateLicenseResponse, SingleLicenseResponse } from '../models/license-models';
 
 
 @Injectable({
@@ -12,7 +13,16 @@ export class LicenseService {
 
   constructor(private http: HttpClient) { }
 
-  getAllLicenseRequests(): Observable<any> {
-    return this.http.get<any>(Constants.baseServerUrl + 'LicenseRequest/GetAllLicenseRequests', { headers: this.headers });
+  getAllLicenseRequests(): Observable<AllLicensesResponse> {
+    return this.http.get<AllLicensesResponse>(Constants.baseServerUrl + `LicenseRequest/GetAllLicenseRequests`, { headers: this.headers });
   }
+
+  getLicenseRequest(artifactId:number): Observable<SingleLicenseResponse>{
+    return this.http.get<SingleLicenseResponse>(Constants.baseServerUrl + `LicenseRequest/GetLicenseRequest?artifactId=${artifactId}`, { headers: this.headers });
+  }
+  
+  CreateLicenseRequest(encryptedString:string): Observable<CreateLicenseResponse>{
+    return this.http.post<CreateLicenseResponse>(Constants.baseServerUrl + `LicenseRequest/CreateLicenseRequest`,encryptedString, { headers: this.headers });
+  }
+
 }

@@ -9,7 +9,6 @@ export class AuthConfigInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    debugger;
     const accessToken = Constants.accessToken;
 
     if (accessToken) {

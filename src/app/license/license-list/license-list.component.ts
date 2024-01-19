@@ -5,6 +5,7 @@ import { Table } from 'primeng/table';
 import { ManualLicenseRequestComponent } from '../manual-license-request/manual-license-request.component';
 import { AutomatedLicenseRequestComponent } from '../automated-license-request/automated-license-request.component';
 import { LicenseService } from '../shared/services/license.service';
+import { LicenseManualRequest } from '../shared/models/license-models';
 
 @Component({
   selector: 'app-license-list',
@@ -13,9 +14,7 @@ import { LicenseService } from '../shared/services/license.service';
   //providers: [DialogService, DynamicDialogRef]
 })
 export class LicenseListComponent {
-  customers: any[] = [];
-
-  selectedCustomers: any[] = [];
+  licenseRequests:LicenseManualRequest[]=[];
 
   representatives: any[] = [];
 
@@ -108,6 +107,7 @@ export class LicenseListComponent {
     this.licenseService.getAllLicenseRequests().subscribe((res) => {
       if (res) {
         console.log(res);
+        this.licenseRequests = res.response;
       };
     });
   }
