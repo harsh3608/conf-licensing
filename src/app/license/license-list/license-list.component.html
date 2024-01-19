@@ -28,15 +28,15 @@
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 3rem"></th>
-            <th pSortableColumn="name">Product Guid <p-sortIcon field="name"></p-sortIcon></th>
-            <th pSortableColumn="country.name">Request Generator Name <p-sortIcon field="country.name"></p-sortIcon>
+            <th pSortableColumn="productGUID">Product Guid <p-sortIcon field="productGUID"></p-sortIcon></th>
+            <th pSortableColumn="requestGeneratedByName">Request Generator Name <p-sortIcon field="requestGeneratedByName"></p-sortIcon>
             </th>
-            <th pSortableColumn="representative.name">Activation Status <p-sortIcon
-                    field="representative.name"></p-sortIcon></th>
-            <th pSortableColumn="date">Start Date <p-sortIcon field="date"></p-sortIcon></th>
-            <th pSortableColumn="date">End Date <p-sortIcon field="date"></p-sortIcon></th>
-            <th pSortableColumn="date">Expiration Date <p-sortIcon field="date"></p-sortIcon></th>
-
+            <th pSortableColumn="requestGeneratedByEmail">Request Generator Email <p-sortIcon field="requestGeneratedByEmail"></p-sortIcon></th>
+            <th pSortableColumn="requestCreatedOn">Request Creation Date<p-sortIcon field="requestCreatedOn"></p-sortIcon></th>
+            <th pSortableColumn="organizationArtifactId">Organization<p-sortIcon field="organizationArtifactId"></p-sortIcon></th>
+            <th pSortableColumn="workspaceGUID">workspace<p-sortIcon field="workspaceGUID"></p-sortIcon></th>
+            <th pSortableColumn="relativityInstanceGUID">Relativity Instance <p-sortIcon field="relativityInstanceGUID"></p-sortIcon>
+            </th>
             <th style="width: 8rem"></th>
         </tr>
         <!-- <tr>
@@ -92,16 +92,19 @@
                 {{licenseRequest.requestGeneratedByName}}
             </td>
             <td>
-                {{licenseRequest.date}}
+                {{licenseRequest.requestGeneratedByEmail}}
             </td>
             <td>
-                {{licenseRequest.date}}
+                {{licenseRequest.requestCreatedOn}}
             </td>
             <td>
-                {{licenseRequest.date}}
+                {{licenseRequest.organizationArtifactId}}
             </td>
             <td>
-                {{licenseRequest.date}}
+                {{licenseRequest.workspaceGUID}}
+            </td>
+            <td>
+                {{licenseRequest.relativityInstanceGUID}}
             </td>
             <td></td>
             

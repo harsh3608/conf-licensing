@@ -71,6 +71,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
       clientId: 'f4b2cc27-c70a-40c5-b7a3-a499f12241ae',
       authority: 'https://login.microsoftonline.com/49eab8ca-0599-4af2-8e2b-5446d1d5843d',
       redirectUri: 'http://localhost:4200/',
+      
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
@@ -83,6 +84,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
         piiLoggingEnabled: false,
       },
     },
+    
   });
 }
 

@@ -9,7 +9,7 @@ export class AuthConfigInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const accessToken = Constants.accessToken;
+    const accessToken = sessionStorage.getItem('access-token');
 
     if (accessToken) {
       const cloned = req.clone({

@@ -28,10 +28,8 @@ export class HomeComponent implements OnInit {
         filter((msg: EventMessage) => msg.eventType === EventType.LOGIN_SUCCESS),
       )
       .subscribe((result: EventMessage) => {
-        debugger;
-        
         const payload = result.payload as AuthenticationResult;
-        Constants.accessToken = payload.accessToken;
+        sessionStorage.setItem('access-token',payload.accessToken)
         this.authService.instance.setActiveAccount(payload.account);
         this.setLoginDisplay();
       });
