@@ -14,7 +14,7 @@ import { LicenseManualRequest } from '../shared/models/license-models';
   //providers: [DialogService, DynamicDialogRef]
 })
 export class LicenseListComponent {
-  licenseRequests:LicenseManualRequest[]=[];
+  licenseRequests: LicenseManualRequest[] = [];
 
   representatives: any[] = [];
 
@@ -89,7 +89,7 @@ export class LicenseListComponent {
       if (res) {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License requested successfully!' });
       }
-    })
+    });
   }
 
   AddAutomatedLicenseRequest() {
@@ -101,12 +101,19 @@ export class LicenseListComponent {
       maximizable: true,
 
     });
+    this.ref.onClose.subscribe((res: any) => {
+      debugger;
+      if (res.isSuccess) {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License requested successfully!' });
+        this.getAllLicenseRequests();
+      };
+    });
   }
 
   getAllLicenseRequests() {
     this.licenseService.getAllLicenseRequests().subscribe((res) => {
       if (res) {
-        console.log(res);
+        // console.log(res);
         this.licenseRequests = res.response;
       };
     });

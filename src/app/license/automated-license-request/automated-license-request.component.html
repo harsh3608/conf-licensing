@@ -1,9 +1,21 @@
+<p-toast></p-toast>
 <div class="card flex flex-column justify-content-center p-3 m-2">
-    <label>Enter Encrypted Text:</label>
-    <textarea rows="5" cols="180" pInputTextarea></textarea>
+    <form [formGroup]="automatedRequestForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-column">
+            <label class="mb-1">Enter Encrypted Text:</label>
+            <textarea  pInputTextarea style="height: 200px;"
+            [class]="encryptedString.errors?.['required'] && (encryptedString.touched || encryptedString.dirty) ? 'ng-dirty ng-invalid ':''"
+            formControlName="encryptedString"></textarea>
+            <div class="text-red-500"
+                *ngIf="encryptedString.errors?.['required'] && (encryptedString.touched || encryptedString.dirty)">
+                Relativity Instance GUID is required!
+            </div>
+        </div>
 
-    <div class="mt-2">
-        <p-button label="Submit"></p-button>
-    </div>
+        <div class="mt-2">
+            <p-button label="Submit" type="Submit"></p-button>
+        </div>
+    </form>
+
 
 </div>

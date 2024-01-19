@@ -6,6 +6,7 @@ export interface LicenseManualRequest {
     requestGeneratedByName: string;
     requestGeneratedByEmail: string;
     organizationArtifactId: number;
+    organization:string;
     workspaceArtifactId: number;
     workspaceGUID: string;
     relativityInstanceGUID: string;

@@ -21,8 +21,8 @@ export class LicenseService {
     return this.http.get<SingleLicenseResponse>(Constants.baseServerUrl + `LicenseRequest/GetLicenseRequest?artifactId=${artifactId}`, { headers: this.headers });
   }
   
-  CreateLicenseRequest(encryptedString:string): Observable<CreateLicenseResponse>{
-    return this.http.post<CreateLicenseResponse>(Constants.baseServerUrl + `LicenseRequest/CreateLicenseRequest`,encryptedString, { headers: this.headers });
+  CreateLicenseRequest(request:any): Observable<CreateLicenseResponse>{
+    return this.http.post<CreateLicenseResponse>(Constants.baseServerUrl + `LicenseRequest/CreateLicenseRequest`,request, { headers: this.headers });
   }
 
 }

@@ -1,45 +1,54 @@
-<p-table #dt [value]="licenseRequests"  dataKey="id" styleClass="p-datatable-customers"
-    [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
-    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
-    [globalFilterFields]="['name','country.name','representative.name','status']">
+<div>
+    <p-toast></p-toast>
 
-    <ng-template pTemplate="caption">
-        <div class="table-header flex flex-row justify-content-between">
-            <div>
-                <h2>License Requests</h2>
-            </div>
+    <p-table #dt [value]="licenseRequests" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="10"
+        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+        [globalFilterFields]="['name','country.name','representative.name','status']">
 
-            <div class="flex flex-row justify-content-between">
-                <div class="mr-2">
-                    <p-button icon="pi pi-plus" (onClick)="AddAutomatedLicenseRequest()"
-                        label="Automated License Request">
-                    </p-button>
-                </div>
+        <ng-template pTemplate="caption">
+            <div class="table-header flex flex-row justify-content-between">
                 <div>
-                    <p-button icon="pi pi-plus" (onClick)="AddManualLicenseRequest()" label="Manual License Request">
-                    </p-button>
+                    <h2>License Requests</h2>
+                </div>
+
+                <div class="flex flex-row justify-content-between">
+                    <div class="mr-2">
+                        <p-button icon="pi pi-plus" (onClick)="AddAutomatedLicenseRequest()"
+                            label="Automated License Request">
+                        </p-button>
+                    </div>
+                    <div>
+                        <p-button icon="pi pi-plus" (onClick)="AddManualLicenseRequest()"
+                            label="Manual License Request">
+                        </p-button>
+                    </div>
+
                 </div>
 
             </div>
+        </ng-template>
 
-        </div>
-    </ng-template>
-
-    <ng-template pTemplate="header">
-        <tr>
-            <th style="width: 3rem"></th>
-            <th pSortableColumn="productGUID">Product Guid <p-sortIcon field="productGUID"></p-sortIcon></th>
-            <th pSortableColumn="requestGeneratedByName">Request Generator Name <p-sortIcon field="requestGeneratedByName"></p-sortIcon>
-            </th>
-            <th pSortableColumn="requestGeneratedByEmail">Request Generator Email <p-sortIcon field="requestGeneratedByEmail"></p-sortIcon></th>
-            <th pSortableColumn="requestCreatedOn">Request Creation Date<p-sortIcon field="requestCreatedOn"></p-sortIcon></th>
-            <th pSortableColumn="organizationArtifactId">Organization<p-sortIcon field="organizationArtifactId"></p-sortIcon></th>
-            <th pSortableColumn="workspaceGUID">workspace<p-sortIcon field="workspaceGUID"></p-sortIcon></th>
-            <th pSortableColumn="relativityInstanceGUID">Relativity Instance <p-sortIcon field="relativityInstanceGUID"></p-sortIcon>
-            </th>
-            <th style="width: 8rem"></th>
-        </tr>
-        <!-- <tr>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem"></th>
+                <th pSortableColumn="productGUID">Product Guid <p-sortIcon field="productGUID"></p-sortIcon></th>
+                <th pSortableColumn="requestGeneratedByName">Request Generator Name <p-sortIcon
+                        field="requestGeneratedByName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="requestGeneratedByEmail">Request Generator Email <p-sortIcon
+                        field="requestGeneratedByEmail"></p-sortIcon></th>
+                <th pSortableColumn="requestCreatedOn">Request Creation Date<p-sortIcon
+                        field="requestCreatedOn"></p-sortIcon></th>
+                <th pSortableColumn="organizationArtifactId">Organization<p-sortIcon
+                        field="organizationArtifactId"></p-sortIcon></th>
+                <th pSortableColumn="workspaceGUID">workspace<p-sortIcon field="workspaceGUID"></p-sortIcon></th>
+                <th pSortableColumn="relativityInstanceGUID">Relativity Instance <p-sortIcon
+                        field="relativityInstanceGUID"></p-sortIcon>
+                </th>
+                <th style="width: 8rem"></th>
+            </tr>
+            <!-- <tr>
             <th>
                 <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
@@ -81,42 +90,45 @@
             </th>
             <th></th>
         </tr> -->
-    </ng-template>
-    <ng-template pTemplate="body" let-licenseRequest>
-        <tr class="p-selectable-row">
-            <td></td>
-            <td>
-                {{licenseRequest.productGUID}}
-            </td>
-            <td>
-                {{licenseRequest.requestGeneratedByName}}
-            </td>
-            <td>
-                {{licenseRequest.requestGeneratedByEmail}}
-            </td>
-            <td>
-                {{licenseRequest.requestCreatedOn}}
-            </td>
-            <td>
-                {{licenseRequest.organizationArtifactId}}
-            </td>
-            <td>
-                {{licenseRequest.workspaceGUID}}
-            </td>
-            <td>
-                {{licenseRequest.relativityInstanceGUID}}
-            </td>
-            <td></td>
-            
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-        <tr class="">
-            <td colspan="8">
-                <div class="flex justify-content-center">
-                    No licenses found.
-                </div>
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+        </ng-template>
+        <ng-template pTemplate="body" let-licenseRequest>
+            <tr class="p-selectable-row">
+                <td></td>
+                <td>
+                    {{licenseRequest.productGUID}}
+                </td>
+                <td>
+                    {{licenseRequest.requestGeneratedByName}}
+                </td>
+                <td>
+                    {{licenseRequest.requestGeneratedByEmail}}
+                </td>
+                <td>
+                    {{licenseRequest.requestCreatedOn | date:'MM/dd/yyyy'}}
+                </td>
+                <td>
+                    {{licenseRequest.organization}}
+                </td>
+                <td>
+                    {{licenseRequest.workspaceGUID}}
+                </td>
+                <td>
+                    {{licenseRequest.relativityInstanceGUID}}
+                </td>
+                <td>
+                    <p-button label="Generate License"></p-button>
+                </td>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr class="">
+                <td colspan="8">
+                    <div class="flex justify-content-center">
+                        No licenses found.
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
