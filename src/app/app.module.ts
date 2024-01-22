@@ -28,8 +28,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 
-
-
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   IPublicClientApplication,
@@ -53,6 +51,8 @@ import {
 } from '@azure/msal-angular';
 
 import { AuthConfigInterceptor } from './shared/interceptors/auth-config.interceptor';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
@@ -71,7 +71,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
       clientId: 'edbf5f6e-919f-4706-8d0c-3f7ce8d9577a',
       authority: 'https://login.microsoftonline.com/49eab8ca-0599-4af2-8e2b-5446d1d5843d',
       redirectUri: 'http://localhost:4200/',
-      
+
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
@@ -84,25 +84,17 @@ export function MSALInstanceFactory(): IPublicClientApplication {
         piiLoggingEnabled: false,
       },
     },
-    
+
   });
 }
 
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   const protectedResourceMap = new Map<string, Array<string>>();
-  protectedResourceMap.set(GRAPH_ENDPOINT, ['user.read']);
-  //protectedResourceMap.set('https://devlicenseingapi.azurewebsites.net', ['api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae/License.Read']);
-  //protectedResourceMap.set('https://devlicenseingapi.azurewebsites.net', ['api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae/License.Write']);
+  protectedResourceMap.set('api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae', ['f4b2cc27-c70a-40c5-b7a3-a499f12241ae/default'])
 
   return {
     interactionType: InteractionType.Redirect,
     protectedResourceMap
-    // protectedResourceMap:new Map(
-    //   [
-    //     [GRAPH_ENDPOINT, ['user.read']],
-    //     ['https://devlicenseingapi.azurewebsites.net',['api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae/License.Read']]
-    //   ]
-    // ),
   };
 }
 
@@ -110,7 +102,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   return {
     interactionType: InteractionType.Redirect,
     authRequest: {
-      scopes: ['user.read'],
+      scopes: ['api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae/License.Read', 'api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae/License.Write'],
     },
   };
 }
@@ -145,7 +137,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MultiSelectModule,
     DropdownModule,
     InputTextareaModule,
-
+    ToastModule,
 
 
   ],
@@ -175,8 +167,11 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MsalService,
     MsalGuard,
     MsalBroadcastService,
-
+    MessageService
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
 })
 export class AppModule { }
+
+
+

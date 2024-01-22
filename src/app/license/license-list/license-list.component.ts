@@ -112,8 +112,7 @@ export class LicenseListComponent {
 
   getAllLicenseRequests() {
     this.licenseService.getAllLicenseRequests().subscribe((res) => {
-      if (res) {
-        // console.log(res);
+      if (res.isSuccess) {
         this.licenseRequests = res.response;
       };
     });

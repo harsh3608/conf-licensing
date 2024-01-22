@@ -1,26 +1,61 @@
-// auth-config.interceptor.ts
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Constants } from '../Constants';
+import { Observable, catchError, throwError } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class AuthConfigInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private messageService: MessageService,) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    debugger;
     const accessToken = sessionStorage.getItem('access-token');
 
     if (accessToken) {
-      const cloned = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      if (this.isTokenExpired()) {
+        window.alert('Current session has been expired. Please,Sign Out and Sign In again.');
+        this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Current session has been expired. Please, Sign In again.' });
+      } else {
+        const cloned = req.clone({
+          setHeaders: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
 
-      return next.handle(cloned);
+        return next.handle(cloned).pipe(
+          catchError((error) => {
+            if (error.status === 401) {
+              window.alert('Current session has been expired. Please,Sign Out and Sign In again.');
+              this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Current session has been expired. Please, Sign In again.' });
+            }
+            return throwError(error);
+          })
+        );
+      }
     }
 
     return next.handle(req);
+  }
+
+
+
+  private isTokenExpired(): boolean {
+    const accessToken = sessionStorage.getItem('access-token');
+
+    if (accessToken) {
+      try {
+        const payload = JSON.parse(atob(accessToken.split('.')[1]));
+        const expirationDate = new Date(payload.exp * 1000);
+        const currentDate = new Date();
+
+        return expirationDate <= currentDate;
+      } catch (error) {
+        // Handle parsing error (invalid token format)
+        console.error('Error parsing token:', error);
+        return true;
+      }
+    }
+
+    return true; // Token is considered expired if not present
   }
 }
