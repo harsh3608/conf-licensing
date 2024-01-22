@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { LicenseManualRequest } from '../shared/models/license-models';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { OrganizationService } from '../shared/services/organization.service';
 
 @Component({
   selector: 'app-manual-license-request',
@@ -12,37 +13,17 @@ import { MessageService } from 'primeng/api';
 export class ManualLicenseRequestComponent implements OnInit {
   ManualRequestForm!: FormGroup;
   licenseManualRequest!: LicenseManualRequest;
-  organizations: any[] = [
-    {
-      organizationArtifactId: 1234567,
-      name: 'Unilever'
-    },
-    {
-      organizationArtifactId: 1232475,
-      name: 'TATA'
-    },
-    {
-      organizationArtifactId: 6584534,
-      name: 'Godrej'
-    },
-    {
-      organizationArtifactId: 4568512,
-      name: 'Reliance'
-    },
-    {
-      organizationArtifactId: 8569472,
-      name: 'Bharti Airtel'
-    }
-  ];
+  organizations: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     public dynamicDialogRef: DynamicDialogRef,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private organizationService: OrganizationService
   ) { }
 
   ngOnInit(): void {
-
+this.getAllOrganizations();
 
     this.ManualRequestForm = this.fb.group({
       productGUID: new FormControl('', [Validators.required]),
@@ -74,7 +55,13 @@ export class ManualLicenseRequestComponent implements OnInit {
     this.dynamicDialogRef.close();
   }
 
-
+  getAllOrganizations() {
+    this.organizationService.getAllOrganizations().subscribe((res)=> {
+      if(res.isSuccess) {
+        this.organizations = res.response
+      };
+    })
+  }
 
   get productGUID(): FormControl {
     return this.ManualRequestForm.get('productGUID') as FormControl;
