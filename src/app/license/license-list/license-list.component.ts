@@ -103,10 +103,14 @@ export class LicenseListComponent {
     });
     this.ref.onClose.subscribe((res: any) => {
       debugger;
-      if (res.isSuccess) {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License requested successfully!' });
-        this.getAllLicenseRequests();
-      };
+      if (res !== undefined) {
+        if (res.isSuccess) {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License requested successfully!' });
+          this.getAllLicenseRequests();
+        } else if (!res.isSuccess) {
+          this.messageService.add({ severity: 'warn', summary: 'Warn', detail: res?.message });
+        };
+      }
     });
   }
 
@@ -114,6 +118,11 @@ export class LicenseListComponent {
     this.licenseService.getAllLicenseRequests().subscribe((res) => {
       if (res.isSuccess) {
         this.licenseRequests = res.response;
+        console.log(this.licenseRequests);
+        this.licenseRequests.map(request => {
+          request.requestCreatedOn = new Date(request.requestCreatedOn);
+        });
+        console.log('date modified',this.licenseRequests);
       };
     });
   }

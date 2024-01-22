@@ -8,7 +8,6 @@ export class AuthConfigInterceptor implements HttpInterceptor {
   constructor(private messageService: MessageService,) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    debugger;
     const accessToken = sessionStorage.getItem('access-token');
 
     if (accessToken) {

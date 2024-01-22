@@ -30,10 +30,10 @@ export class AutomatedLicenseRequestComponent implements OnInit {
     let encryptedString = this.automatedRequestForm.get('encryptedString')?.value;
     this.automatedRequestForm.markAllAsTouched();
     if (this.automatedRequestForm.valid) {
-      let request = {
+      let requestModel = {
         request: encryptedString
       }
-      this.licenseService.CreateLicenseRequest(request).subscribe(
+      this.licenseService.CreateLicenseRequest(requestModel).subscribe(
         (res) => {
           if (res.isSuccess) {
             this.dynamicDialogRef.close(res);
