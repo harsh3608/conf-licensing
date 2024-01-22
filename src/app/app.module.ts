@@ -91,6 +91,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   const protectedResourceMap = new Map<string, Array<string>>();
   protectedResourceMap.set(GRAPH_ENDPOINT, ['user.read']);
+  //protectedResourceMap.set('https://devlicenseingapi.azurewebsites.net', ['api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae/License.Read']);
+  //protectedResourceMap.set('https://devlicenseingapi.azurewebsites.net', ['api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae/License.Write']);
 
   return {
     interactionType: InteractionType.Redirect,
