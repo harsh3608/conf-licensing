@@ -76,14 +76,16 @@ export class LicenseListComponent {
     this.table.filter(event.value, 'representative', 'in')
   }
 
-  AddManualLicenseRequest() {
+  AddManualLicenseRequest(licenseArtifactId: number) {
     this.ref = this.dialogService.open(ManualLicenseRequestComponent, {
-      header: 'Add new license (Manual Request)',
+      header: 'Generate License',
       width: '60%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
-
+      data: {
+        licenseArtifactId:licenseArtifactId
+      },
     });
     this.ref.onClose.subscribe((res: any) => {
       if (res) {
@@ -94,7 +96,7 @@ export class LicenseListComponent {
 
   AddAutomatedLicenseRequest() {
     this.ref = this.dialogService.open(AutomatedLicenseRequestComponent, {
-      header: 'Add new license (Automated Request)',
+      header: 'Add new license Request',
       width: '60%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -120,9 +122,9 @@ export class LicenseListComponent {
         this.licenseRequests = res.response;
         console.log(this.licenseRequests);
         this.licenseRequests.map(request => {
-          request.requestCreatedOn = new Date(request.requestCreatedOn);
+          request.generatedOnUtc = new Date(request.generatedOnUtc);
         });
-        console.log('date modified',this.licenseRequests);
+        console.log('date modified', this.licenseRequests);
       };
     });
   }

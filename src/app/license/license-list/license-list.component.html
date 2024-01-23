@@ -15,7 +15,7 @@
                 <div class="flex flex-row justify-content-between">
                     <div class="mr-2">
                         <p-button icon="pi pi-plus" (onClick)="AddAutomatedLicenseRequest()"
-                            label="Automated License Request">
+                            label="License Request">
                         </p-button>
                     </div>
                     <!-- <div>
@@ -32,74 +32,80 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem"></th>
-                <th pSortableColumn="productGUID">Product Guid <p-sortIcon field="productGUID"></p-sortIcon></th>
-                <th pSortableColumn="requestGeneratedByName">Request Generator Name <p-sortIcon
-                        field="requestGeneratedByName"></p-sortIcon>
+                <th pSortableColumn="instanceName">Instance Name<p-sortIcon field="instanceName"></p-sortIcon></th>
+                <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
+                        field="instanceNameFriendly"></p-sortIcon></th>
+                <th pSortableColumn="instanceURL">Instance URL<p-sortIcon field="instanceURL"></p-sortIcon>
                 </th>
-                <th pSortableColumn="requestGeneratedByEmail">Request Generator Email <p-sortIcon
-                        field="requestGeneratedByEmail"></p-sortIcon></th>
-                <th pSortableColumn="requestCreatedOn">Request Creation Date<p-sortIcon
-                        field="requestCreatedOn"></p-sortIcon></th>
-                <th pSortableColumn="organization">Organization<p-sortIcon
-                        field="organization"></p-sortIcon></th>
-                <th pSortableColumn="workspaceGUID">workspace<p-sortIcon field="workspaceGUID"></p-sortIcon></th>
-                <th pSortableColumn="relativityInstanceGUID">Relativity Instance <p-sortIcon
-                        field="relativityInstanceGUID"></p-sortIcon>
+                <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
+                <th pSortableColumn="generatedByName">Request Generator Name <p-sortIcon
+                        field="generatedByName"></p-sortIcon>
                 </th>
+                <th pSortableColumn="generatedByEmail">Request Generator Email <p-sortIcon
+                        field="generatedByEmail"></p-sortIcon></th>
+                <th pSortableColumn="generatedOnUtc">Request Creation Date<p-sortIcon
+                        field="generatedOnUtc"></p-sortIcon></th>
+                <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
                 <th style="width: 8rem"></th>
             </tr>
             <tr>
-                <th ></th>
+                <th></th>
                 <th>
-                    <p-columnFilter type="text" field="productGUID"></p-columnFilter>
+                    <p-columnFilter type="text" field="instanceName"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="requestGeneratedByName"></p-columnFilter>
+                    <p-columnFilter type="text" field="instanceNameFriendly"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="requestGeneratedByEmail"></p-columnFilter>
+                    <p-columnFilter type="text" field="instanceURL"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="date" field="requestCreatedOn"></p-columnFilter>
+                    <p-columnFilter type="text" field="productName"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="generatedByName"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="generatedByEmail"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="date" field="generatedOnUtc"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="text" field="organization"></p-columnFilter>
                 </th>
-                <th>
-                    <p-columnFilter type="text" field="workspaceGUID"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="relativityInstanceGUID"></p-columnFilter>
-                </th>
-                <th ></th>
+                <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-licenseRequest>
             <tr class="p-selectable-row">
                 <td></td>
                 <td>
-                    {{licenseRequest.productGUID}}
+                    {{licenseRequest.instanceName}}
                 </td>
                 <td>
-                    {{licenseRequest.requestGeneratedByName}}
+                    {{licenseRequest.instanceNameFriendly}}
                 </td>
                 <td>
-                    {{licenseRequest.requestGeneratedByEmail}}
+                    {{licenseRequest.instanceURL}}
                 </td>
                 <td>
-                    {{licenseRequest.requestCreatedOn | date:'MM/dd/yyyy'}}
+                    {{licenseRequest.productName}}
+                </td>
+                <td>
+                    {{licenseRequest.generatedByName}}
+                </td>
+                <td>
+                    {{licenseRequest.generatedByEmail}}
+                </td>
+                <td>
+                    {{licenseRequest.generatedOnUtc | date:'MM/dd/yyyy'}}
                 </td>
                 <td>
                     {{licenseRequest.organization}}
                 </td>
                 <td>
-                    {{licenseRequest.workspaceGUID}}
-                </td>
-                <td>
-                    {{licenseRequest.relativityInstanceGUID}}
-                </td>
-                <td>
-                    <p-button label="Generate License"></p-button>
+                    <p-button label="Generate License" (onClick)="AddManualLicenseRequest(licenseRequest.artifactId)"></p-button>
                 </td>
 
             </tr>
