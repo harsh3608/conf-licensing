@@ -34,14 +34,16 @@ export class ManualLicenseRequestComponent implements OnInit {
     this.getAllOrganizations();
 
     this.ManualRequestForm = this.fb.group({
-      instanceName: new FormControl('', [Validators.required]),
-      instanceNameFriendly: new FormControl('', [Validators.required]),
-      instanceURL: new FormControl('', [Validators.required]),
-      productName: new FormControl('', [Validators.required]),
-      generatedByName: new FormControl('', [Validators.required]),
-      generatedByEmail: new FormControl('', [Validators.required]),
-      generatedOnUtc: new FormControl('', [Validators.required]),
-      organization: new FormControl('', [Validators.required]),
+      instanceName: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      instanceNameFriendly: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      instanceURL: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      productName: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      generatedByName: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      generatedByEmail: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      generatedOnUtc: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      organization: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      startDate: new FormControl('', [Validators.required]),
+      endDate: new FormControl('', [Validators.required]),
     });
   }
 
@@ -53,6 +55,7 @@ export class ManualLicenseRequestComponent implements OnInit {
         this.ManualRequestForm.patchValue(this.licenseManualRequest);
         //converting date string to date, afterthat assigning it to the form control
         this.ManualRequestForm.get('generatedOnUtc')?.setValue(new Date(this.licenseManualRequest.generatedOnUtc));
+        this.ManualRequestForm.get('organization')?.setValue(this.licenseManualRequest.organizationArtifactId);
       };
     });
   }
@@ -65,7 +68,17 @@ export class ManualLicenseRequestComponent implements OnInit {
       this.licenseManualRequest.artifactId = 0
       this.licenseManualRequest.isCompleted = false;
       console.log('licenseManualRequest', this.licenseManualRequest);
-
+      this.approveLicense = {
+        artifactId :0,
+        licenseKey: '',
+        startDate: (this.ManualRequestForm.value.startDate),
+        endDate: (this.ManualRequestForm.value.endDate),
+        licenseGeneratedBy: '',
+        licenseUpdatedBy: '',
+        status: 2,
+        ...this.ManualRequestForm.value,
+        
+      };
       console.log('approveLicense', this.approveLicense);
       this.dynamicDialogRef.close(true);
     };
@@ -115,5 +128,12 @@ export class ManualLicenseRequestComponent implements OnInit {
     return this.ManualRequestForm.get('organization') as FormControl;
   }
 
+  get startDate(): FormControl {
+    return this.ManualRequestForm.get('startDate') as FormControl;
+  }
+
+  get endDate(): FormControl {
+    return this.ManualRequestForm.get('endDate') as FormControl;
+  }
 
 }

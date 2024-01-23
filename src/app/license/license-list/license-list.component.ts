@@ -89,7 +89,7 @@ export class LicenseListComponent {
     });
     this.ref.onClose.subscribe((res: any) => {
       if (res) {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License requested successfully!' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License generated successfully!' });
       }
     });
   }

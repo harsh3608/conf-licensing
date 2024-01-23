@@ -102,6 +102,29 @@
                 </div>
             </div>
 
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">License Start Date:</label>
+                <div class="col-12 md:col-8">
+                    <p-calendar formControlName="startDate" [showIcon]="true"
+                        [class]="startDate.errors?.['required'] && (startDate.touched || startDate.dirty) ? 'ng-dirty ng-invalid':''"></p-calendar>
+                    <div class="text-red-500"
+                        *ngIf="startDate.errors?.['required'] && (startDate.touched || startDate.dirty)">
+                        License Start Date is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">License End Date:</label>
+                <div class="col-12 md:col-8">
+                    <p-calendar formControlName="endDate" [showIcon]="true"
+                        [class]="endDate.errors?.['required'] && (endDate.touched || endDate.dirty) ? 'ng-dirty ng-invalid':''"></p-calendar>
+                    <div class="text-red-500"
+                        *ngIf="endDate.errors?.['required'] && (endDate.touched || endDate.dirty)">
+                        License End Date is required!
+                    </div>
+                </div>
+            </div>
 
         </div>
         <div class="field col-12 md:col-12 logic_buttons dialog_footer_buttons">

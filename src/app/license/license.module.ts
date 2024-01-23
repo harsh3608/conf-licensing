@@ -27,13 +27,15 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { LicenseListComponent } from './license-list/license-list.component';
+import { ApprovedLicenseListComponent } from './approved-license-list/approved-license-list.component';
 
 
 @NgModule({
   declarations: [
     ManualLicenseRequestComponent,
     AutomatedLicenseRequestComponent,
-    LicenseListComponent
+    LicenseListComponent,
+    ApprovedLicenseListComponent
   ],
   imports: [
     CommonModule,
