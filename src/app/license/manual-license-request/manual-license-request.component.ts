@@ -6,18 +6,23 @@ import { MessageService } from 'primeng/api';
 import { OrganizationService } from '../shared/services/organization.service';
 import { LicenseService } from '../shared/services/license.service';
 import { Organization } from '../shared/models/organization-models';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-manual-license-request',
   templateUrl: './manual-license-request.component.html',
-  styleUrl: './manual-license-request.component.css'
+  styleUrl: './manual-license-request.component.css',
+  providers: [DatePipe]
 })
 export class ManualLicenseRequestComponent implements OnInit {
   ManualRequestForm!: FormGroup;
   licenseManualRequest!: LicenseManualRequest;
+  licenseManualRequest2!: LicenseManualRequest;
   organizations: Organization[] = [];
   licenseArtifactId: number = this.config.data.licenseArtifactId;
   approveLicense!: ApproveLicenseModel;
+  minStartDate: Date = new Date();
+  minEndDate: Date = new Date();
 
 
   constructor(
@@ -26,8 +31,11 @@ export class ManualLicenseRequestComponent implements OnInit {
     private messageService: MessageService,
     private organizationService: OrganizationService,
     public config: DynamicDialogConfig,
-    private licenseService: LicenseService
-  ) { }
+    private licenseService: LicenseService,
+    private datePipe: DatePipe,
+  ) {
+    this.minStartDate.setDate(this.minStartDate.getDate() + 1);
+  }
 
   ngOnInit(): void {
     this.getLicenseDetails();
@@ -51,6 +59,7 @@ export class ManualLicenseRequestComponent implements OnInit {
     this.licenseService.getLicenseRequest(this.licenseArtifactId).subscribe((res) => {
       if (res.isSuccess) {
         this.licenseManualRequest = res.response;
+        this.licenseManualRequest2 = res.response;
         //patches all values at once
         this.ManualRequestForm.patchValue(this.licenseManualRequest);
         //converting date string to date, afterthat assigning it to the form control
@@ -69,15 +78,20 @@ export class ManualLicenseRequestComponent implements OnInit {
       this.licenseManualRequest.isCompleted = false;
       console.log('licenseManualRequest', this.licenseManualRequest);
       this.approveLicense = {
-        artifactId :0,
         licenseKey: '',
-        startDate: (this.ManualRequestForm.value.startDate),
-        endDate: (this.ManualRequestForm.value.endDate),
+        startDate: this.datePipe.transform(
+          (this.ManualRequestForm.value.startDate),
+          'yyyy-MM-dd HH:mm'
+        ) || '',
+        endDate: this.datePipe.transform(
+          (this.ManualRequestForm.value.endDate),
+          'yyyy-MM-dd HH:mm'
+        ) || '',
         licenseGeneratedBy: '',
         licenseUpdatedBy: '',
         status: 2,
-        ...this.ManualRequestForm.value,
-        
+        ...this.licenseManualRequest2,
+
       };
       console.log('approveLicense', this.approveLicense);
       this.dynamicDialogRef.close(true);
@@ -95,6 +109,17 @@ export class ManualLicenseRequestComponent implements OnInit {
       };
     })
   }
+
+  setMinEndDate(event: any) {
+    this.minEndDate.setDate(event.getDate() + 1);
+  }
+
+
+
+
+
+
+
 
   get instanceName(): FormControl {
     return this.ManualRequestForm.get('instanceName') as FormControl;
