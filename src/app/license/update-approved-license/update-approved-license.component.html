@@ -1,1 +1,141 @@
-<p>update-approved-license works!</p>
+<div>
+    <p-toast></p-toast>
+    <form [formGroup]="ManualRequestForm" (ngSubmit)="onSubmit()">
+        <div class="card p-fluid dialog_scrollable_content">
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">Instance Name:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="instanceName"
+                        [class]="instanceName.errors?.['required'] && (instanceName.touched || instanceName.dirty) ? 'ng-dirty ng-invalid ':''" />
+                    <div class="text-red-500"
+                        *ngIf="instanceName.errors?.['required'] && (instanceName.touched || instanceName.dirty)">
+                        Instance Name is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">Friendly Instance Name:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="instanceNameFriendly"
+                        [class]="instanceNameFriendly.errors?.['required'] && (instanceNameFriendly.touched || instanceNameFriendly.dirty) ? 'ng-dirty ng-invalid ':''" />
+                    <div class="text-red-500"
+                        *ngIf="instanceNameFriendly.errors?.['required'] && (instanceNameFriendly.touched || instanceNameFriendly.dirty)">
+                        Friendly Instance Name is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">Instance URL:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="instanceURL"
+                        [class]="instanceURL.errors?.['required'] && (instanceURL.touched || instanceURL.dirty) ? 'ng-dirty ng-invalid':''" />
+                    <div class="text-red-500"
+                        *ngIf="instanceURL.errors?.['required'] && (instanceURL.touched || instanceURL.dirty)">
+                        Instance URL is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">Product Name:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="productName"
+                        [class]="productName.errors?.['required'] && (productName.touched || productName.dirty) ? 'ng-dirty ng-invalid':''" />
+                    <div class="text-red-500"
+                        *ngIf="productName.errors?.['required'] && (productName.touched || productName.dirty)">
+                        Product Name is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">License Generator Name:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="generatedByName"
+                        [class]="generatedByName.errors?.['required'] && (generatedByName.touched || generatedByName.dirty) ? 'ng-dirty ng-invalid':''" />
+                    <div class="text-red-500"
+                        *ngIf="generatedByName.errors?.['required'] && (generatedByName.touched || generatedByName.dirty)">
+                        License Generator Name is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4 ">License Generator Email:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="generatedByEmail"
+                        [class]="generatedByEmail.errors?.['required'] && (generatedByEmail.touched || generatedByEmail.dirty) ? 'ng-dirty ng-invalid':''" />
+                    <div class="text-red-500"
+                        *ngIf="generatedByEmail.errors?.['required'] && (generatedByEmail.touched || generatedByEmail.dirty)">
+                        License Generator Email is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">License Generation Date:</label>
+                <div class="col-12 md:col-8">
+                    <p-calendar formControlName="generatedOnUtc" [showIcon]="true"
+                        [class]="generatedOnUtc.errors?.['required'] && (generatedOnUtc.touched || generatedOnUtc.dirty) ? 'ng-dirty ng-invalid':''"></p-calendar>
+                    <div class="text-red-500"
+                        *ngIf="generatedOnUtc.errors?.['required'] && (generatedOnUtc.touched || generatedOnUtc.dirty)">
+                        License Generation Date is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">Organization:</label>
+                <div class="col-12 md:col-8">
+                    <p-dropdown placeholder="select organization" [options]="organizations"
+                        optionValue="artifactId" optionLabel="name" formControlName="organization"
+                        appendTo="body"
+                        [class]="organization.errors?.['required'] && (organization.touched || organization.dirty) ? 'ng-dirty ng-invalid':''">
+                    </p-dropdown>
+                    <div class="text-red-500"
+                        *ngIf="organization.errors?.['required'] && (organization.touched || organization.dirty)">
+                        Organization is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">License Start Date:</label>
+                <div class="col-12 md:col-8">
+                    <p-calendar formControlName="startDate" [showIcon]="true" [minDate]="minStartDate" (ngModelChange)="setMinEndDate($event)"
+                        [class]="startDate.errors?.['required'] && (startDate.touched || startDate.dirty) ? 'ng-dirty ng-invalid':''"></p-calendar>
+                    <div class="text-red-500"
+                        *ngIf="startDate.errors?.['required'] && (startDate.touched || startDate.dirty)">
+                        License Start Date is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">License End Date:</label>
+                <div class="col-12 md:col-8">
+                    <p-calendar formControlName="endDate" [showIcon]="true" [minDate]="(minStartDate > minEndDate) ? minStartDate : minEndDate"
+                        [class]="endDate.errors?.['required'] && (endDate.touched || endDate.dirty) ? 'ng-dirty ng-invalid':''"></p-calendar>
+                    <div class="text-red-500"
+                        *ngIf="endDate.errors?.['required'] && (endDate.touched || endDate.dirty)">
+                        License End Date is required!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="field col-12 md:col-12 logic_buttons dialog_footer_buttons">
+            <div class="flex justify-content-end">
+                <div class="field mr-2 mb-0">
+                    <button pButton pRipple label="Save" icon="pi pi-check" type="submit"></button>
+                </div>
+                <div class="field mb-0">
+                    <p-button label="Cancel" icon="pi pi-times" (onClick)="onCancel()"></p-button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

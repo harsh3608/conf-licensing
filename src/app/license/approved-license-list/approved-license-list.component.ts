@@ -4,6 +4,7 @@ import { Table } from 'primeng/table';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { LicenseService } from '../shared/services/license.service';
+import { UpdateApprovedLicenseComponent } from '../update-approved-license/update-approved-license.component';
 
 @Component({
   selector: 'app-approved-license-list',
@@ -31,6 +32,23 @@ export class ApprovedLicenseListComponent implements OnInit {
 
   }
 
+  updateApprovedLicense(licenseArtifactId: number) {
+    this.ref = this.dialogService.open(UpdateApprovedLicenseComponent, {
+      header: 'Update Approved License',
+      width: '60%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      data: {
+        licenseArtifactId:licenseArtifactId
+      },
+    });
+    this.ref.onClose.subscribe((res: any) => {
+      if (res) {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License generated successfully!' });
+      }
+    });
+  }
 
   getAllApprovedLicenses() {
     this.licenseService.getAllApprovedLicenses().subscribe((res) => {
