@@ -69,3 +69,60 @@ export interface ApproveLicenseModel {
     status: number
 }
 
+export interface AllApprovedLicensesResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: ApproveLicenseModel[]
+    message: string
+    exceptionMessage: string
+}
+
+export interface UpdateLicenseRequest {
+    artifactId: number
+    instanceGuid: string
+    instanceName: string
+    instanceNameFriendly: string
+    instanceURL: string
+    workspaceArtifactID: number
+    workspaceGuid: string
+    productGuid: string
+    productName: string
+    productVersion: string
+    productSchemaVersion: string
+    generatedByArtifactID: string
+    generatedByName: string
+    generatedByEmail: string
+    generatedOnUtc: string
+    organizationArtifactId: number
+    isCompleted: boolean
+    organization: string
+  }
+
+export interface UpdateLicenseResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: any
+    message: string
+    exceptionMessage: string
+}
+
+export interface GenerateLicenseResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: string
+    message: string
+    exceptionMessage: string
+}
+
+export interface SingleApprovedLicenseResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: ApproveLicenseModel
+    message: string
+    exceptionMessage: string
+}
+
+
+
+
+

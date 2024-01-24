@@ -1,1 +1,108 @@
-<p>approved-license-list works!</p>
+<div>
+    <p-toast></p-toast>
+
+    <p-table #dt [value]="approvedLicenses" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="10"
+        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+        [globalFilterFields]="['name','country.name','representative.name','status']">
+
+        <ng-template pTemplate="caption">
+            <div class="table-header flex flex-row justify-content-between">
+                <div>
+                    <h2>Approved Licenses</h2>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem"></th>
+                <th pSortableColumn="instanceName">Instance Name<p-sortIcon field="instanceName"></p-sortIcon></th>
+                <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
+                        field="instanceNameFriendly"></p-sortIcon></th>
+                <th pSortableColumn="instanceURL">Instance URL<p-sortIcon field="instanceURL"></p-sortIcon>
+                </th>
+                <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
+                <th pSortableColumn="generatedByName">Request Generator Name <p-sortIcon
+                        field="generatedByName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="generatedByEmail">Request Generator Email <p-sortIcon
+                        field="generatedByEmail"></p-sortIcon></th>
+                <th pSortableColumn="generatedOnUtc">Request Creation Date<p-sortIcon
+                        field="generatedOnUtc"></p-sortIcon></th>
+                <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
+                <th style="width: 8rem"></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
+                    <p-columnFilter type="text" field="instanceName"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="instanceNameFriendly"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="instanceURL"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="productName"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="generatedByName"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="generatedByEmail"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="date" field="generatedOnUtc"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="organization"></p-columnFilter>
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-licenseRequest>
+            <tr class="p-selectable-row">
+                <td></td>
+                <td>
+                    {{licenseRequest.instanceName}}
+                </td>
+                <td>
+                    {{licenseRequest.instanceNameFriendly}}
+                </td>
+                <td>
+                    {{licenseRequest.instanceURL}}
+                </td>
+                <td>
+                    {{licenseRequest.productName}}
+                </td>
+                <td>
+                    {{licenseRequest.generatedByName}}
+                </td>
+                <td>
+                    {{licenseRequest.generatedByEmail}}
+                </td>
+                <td>
+                    {{licenseRequest.generatedOnUtc | date:'MM/dd/yyyy'}}
+                </td>
+                <td>
+                    {{licenseRequest.organization}}
+                </td>
+                <td>
+                    <p-button label="Edit" icon="pi pi-pencil"></p-button>
+                </td>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr class="">
+                <td colspan="12">
+                    <div class="flex justify-content-center">
+                        No licenses found.
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

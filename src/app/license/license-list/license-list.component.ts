@@ -15,13 +15,7 @@ import { LicenseManualRequest } from '../shared/models/license-models';
 })
 export class LicenseListComponent {
   licenseRequests: LicenseManualRequest[] = [];
-
-  representatives: any[] = [];
-
-  statuses: any[] = [];
-
   loading: boolean = true;
-
   @ViewChild('dt') table!: Table;
   ref: DynamicDialogRef | undefined;
 
@@ -125,6 +119,7 @@ export class LicenseListComponent {
           request.generatedOnUtc = new Date(request.generatedOnUtc);
         });
         console.log('date modified', this.licenseRequests);
+        this.loading = false;
       };
     });
   }
