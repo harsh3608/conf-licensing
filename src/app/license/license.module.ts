@@ -28,6 +28,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { LicenseListComponent } from './license-list/license-list.component';
 import { ApprovedLicenseListComponent } from './approved-license-list/approved-license-list.component';
+import { UpdateApprovedLicenseComponent } from './update-approved-license/update-approved-license.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ApprovedLicenseListComponent } from './approved-license-list/approved-l
     ManualLicenseRequestComponent,
     AutomatedLicenseRequestComponent,
     LicenseListComponent,
-    ApprovedLicenseListComponent
+    ApprovedLicenseListComponent,
+    UpdateApprovedLicenseComponent
   ],
   imports: [
     CommonModule,
