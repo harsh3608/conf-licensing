@@ -37,7 +37,7 @@
                 <th pSortableColumn="instanceURL">Instance URL<p-sortIcon field="instanceURL"></p-sortIcon>
                 </th>
                 <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
-                <th pSortableColumn="generatedByName">Request Generator Name <p-sortIcon
+                <th pSortableColumn="generatedByName">Request By <p-sortIcon
                         field="generatedByName"></p-sortIcon>
                 </th>
                 <th pSortableColumn="generatedByEmail">Request Generator Email <p-sortIcon
@@ -45,7 +45,7 @@
                 <th pSortableColumn="generatedOnUtc">Request Creation Date<p-sortIcon
                         field="generatedOnUtc"></p-sortIcon></th>
                 <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
-                <th>Is Completed</th>
+                <th>Status</th>
                 <th style="width: 8rem"></th>
             </tr>
             <tr>
@@ -108,10 +108,10 @@
                     {{licenseRequest.organization}}
                 </td>
                 <td>
-                    <div class="{{licenseRequest.isCompleted ? 'pi pi-check':'pi pi-clock'}}"></div>
+                    <div class="{{licenseRequest.isCompleted ? 'pi pi-check':'pi pi-houglass'}}"></div>
                 </td>
                 <td>
-                    <p-button label="Generate License"
+                    <p-button label="Generate License" [disabled]="licenseRequest.isCompleted? true:false"
                         (onClick)="AddManualLicenseRequest(licenseRequest.artifactId)"></p-button>
                 </td>
 
