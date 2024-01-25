@@ -29,6 +29,7 @@ import { MessageService } from 'primeng/api';
 import { LicenseListComponent } from './license-list/license-list.component';
 import { ApprovedLicenseListComponent } from './approved-license-list/approved-license-list.component';
 import { UpdateApprovedLicenseComponent } from './update-approved-license/update-approved-license.component';
+import { AddOrganizationComponent } from './add-organization/add-organization.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { UpdateApprovedLicenseComponent } from './update-approved-license/update
     AutomatedLicenseRequestComponent,
     LicenseListComponent,
     ApprovedLicenseListComponent,
-    UpdateApprovedLicenseComponent
+    UpdateApprovedLicenseComponent,
+    AddOrganizationComponent
   ],
   imports: [
     CommonModule,
