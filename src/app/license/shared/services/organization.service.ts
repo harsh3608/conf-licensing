@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { OrganizationsResponse } from '../models/organization-models';
+import { CreateOrganizationResponse, Organization, OrganizationsResponse } from '../models/organization-models';
 import { Observable } from 'rxjs';
 import { Constants } from '../../../shared/Constants';
 
@@ -14,5 +14,9 @@ export class OrganizationService {
 
   getAllOrganizations(): Observable<OrganizationsResponse> {
     return this.http.get<OrganizationsResponse>(Constants.baseServerUrl + `Organization/GetAllOrganizations`, { headers: this.headers });
+  }
+
+  createOrganization(addRequest:Organization): Observable<CreateOrganizationResponse> {
+    return this.http.post<OrganizationsResponse>(Constants.baseServerUrl + `Organization/CreateOrganization`,addRequest, { headers: this.headers });
   }
 }

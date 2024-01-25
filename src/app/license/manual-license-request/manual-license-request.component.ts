@@ -49,7 +49,7 @@ export class ManualLicenseRequestComponent implements OnInit {
       generatedByName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       generatedByEmail: new FormControl({ value: '', disabled: true }, [Validators.required]),
       generatedOnUtc: new FormControl({ value: '', disabled: true }, [Validators.required]),
-      organization: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      organization: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
     });

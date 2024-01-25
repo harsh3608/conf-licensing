@@ -19,3 +19,11 @@ export interface SingleOrganizationResponse {
     message: string
     exceptionMessage: string
 }
+
+export interface CreateOrganizationResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: Organization[]
+    message: string
+    exceptionMessage: string
+}

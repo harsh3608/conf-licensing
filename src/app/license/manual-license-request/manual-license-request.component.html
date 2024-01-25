@@ -90,11 +90,14 @@
             <div class="field grid col-12">
                 <label class="col-12  md:col-4">Organization:</label>
                 <div class="col-12 md:col-8">
-                    <p-dropdown placeholder="select organization" [options]="organizations"
-                        optionValue="artifactId" optionLabel="name" formControlName="organization"
-                        appendTo="body"
-                        [class]="organization.errors?.['required'] && (organization.touched || organization.dirty) ? 'ng-dirty ng-invalid':''">
-                    </p-dropdown>
+                    <div class="flex">
+                        <p-dropdown placeholder="select organization" [options]="organizations" optionValue="artifactId"
+                            optionLabel="name" formControlName="organization" appendTo="body" 
+                            [class]="organization.errors?.['required'] && (organization.touched || organization.dirty) ? 'ng-dirty ng-invalid org_dropdown':'org_dropdown'">
+                        </p-dropdown>
+                        <p-button icon="pi pi-plus"></p-button>
+                    </div>
+
                     <div class="text-red-500"
                         *ngIf="organization.errors?.['required'] && (organization.touched || organization.dirty)">
                         Organization is required!
@@ -105,7 +108,8 @@
             <div class="field grid col-12">
                 <label class="col-12  md:col-4">License Start Date:</label>
                 <div class="col-12 md:col-8">
-                    <p-calendar formControlName="startDate" [showIcon]="true" [minDate]="minStartDate" (ngModelChange)="setMinEndDate($event)"
+                    <p-calendar formControlName="startDate" [showIcon]="true" [minDate]="minStartDate"
+                        (ngModelChange)="setMinEndDate($event)"
                         [class]="startDate.errors?.['required'] && (startDate.touched || startDate.dirty) ? 'ng-dirty ng-invalid':''"></p-calendar>
                     <div class="text-red-500"
                         *ngIf="startDate.errors?.['required'] && (startDate.touched || startDate.dirty)">
@@ -117,7 +121,8 @@
             <div class="field grid col-12">
                 <label class="col-12  md:col-4">License End Date:</label>
                 <div class="col-12 md:col-8">
-                    <p-calendar formControlName="endDate" [showIcon]="true" [minDate]="(minStartDate > minEndDate) ? minStartDate : minEndDate"
+                    <p-calendar formControlName="endDate" [showIcon]="true"
+                        [minDate]="(minStartDate > minEndDate) ? minStartDate : minEndDate"
                         [class]="endDate.errors?.['required'] && (endDate.touched || endDate.dirty) ? 'ng-dirty ng-invalid':''"></p-calendar>
                     <div class="text-red-500"
                         *ngIf="endDate.errors?.['required'] && (endDate.touched || endDate.dirty)">
