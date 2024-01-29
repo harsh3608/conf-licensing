@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApproveLicenseModel, LicenseManualRequest } from '../shared/models/license-models';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { OrganizationService } from '../shared/services/organization.service';
 import { LicenseService } from '../shared/services/license.service';
 import { Organization } from '../shared/models/organization-models';
 import { DatePipe } from '@angular/common';
+import { AddOrganizationComponent } from '../add-organization/add-organization.component';
 
 @Component({
   selector: 'app-manual-license-request',
@@ -23,6 +24,7 @@ export class ManualLicenseRequestComponent implements OnInit {
   approveLicense!: ApproveLicenseModel;
   minStartDate: Date = new Date();
   minEndDate: Date = new Date();
+  ref: DynamicDialogRef | undefined;
 
 
   constructor(
@@ -33,6 +35,7 @@ export class ManualLicenseRequestComponent implements OnInit {
     public config: DynamicDialogConfig,
     private licenseService: LicenseService,
     private datePipe: DatePipe,
+    public dialogService: DialogService,
   ) {
     this.minStartDate.setDate(this.minStartDate.getDate() + 1);
   }
@@ -105,16 +108,36 @@ export class ManualLicenseRequestComponent implements OnInit {
   getAllOrganizations() {
     this.organizationService.getAllOrganizations().subscribe((res) => {
       if (res.isSuccess) {
-        this.organizations = res.response
+        this.organizations = res.response;
       };
-    })
+    });
   }
 
   setMinEndDate(event: any) {
     this.minEndDate.setDate(event.getDate() + 1);
   }
 
-
+  AddOrganization() {
+    this.ref = this.dialogService.open(AddOrganizationComponent, {
+      header: 'Add Organization',
+      width: '40%',
+      height: '50%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      
+    });
+    this.ref.onClose.subscribe((res: any) => {
+      if (res.isSuccess) {
+        this.organizationService.getAllOrganizations().subscribe((res) => {
+          if (res.isSuccess) {
+            this.organizations = res.response;
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New Organization added successfully!' });
+          };
+        })
+      }
+    });
+  }
 
 
 

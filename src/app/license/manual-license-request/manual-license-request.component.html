@@ -95,7 +95,7 @@
                             optionLabel="name" formControlName="organization" appendTo="body" 
                             [class]="organization.errors?.['required'] && (organization.touched || organization.dirty) ? 'ng-dirty ng-invalid org_dropdown':'org_dropdown'">
                         </p-dropdown>
-                        <p-button icon="pi pi-plus"></p-button>
+                        <p-button icon="pi pi-plus" (onClick)="AddOrganization()"></p-button>
                     </div>
 
                     <div class="text-red-500"
