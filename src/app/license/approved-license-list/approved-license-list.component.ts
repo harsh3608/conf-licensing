@@ -44,8 +44,8 @@ export class ApprovedLicenseListComponent implements OnInit {
       },
     });
     this.ref.onClose.subscribe((res: any) => {
-      if (res) {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License generated successfully!' });
+      if (res.isSuccess) {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
       }
     });
   }

@@ -16,8 +16,8 @@ import { DatePipe } from '@angular/common';
 })
 export class UpdateApprovedLicenseComponent implements OnInit {
   ManualRequestForm!: FormGroup;
-  licenseManualRequest!: LicenseManualRequest;
-  licenseManualRequest2!: LicenseManualRequest;
+  licenseManualRequest!: ApproveLicenseModel;
+  licenseManualRequest2!: ApproveLicenseModel;
   organizations: Organization[] = [];
   licenseArtifactId: number = this.config.data.licenseArtifactId;
   approveLicense!: ApproveLicenseModel;
@@ -56,7 +56,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
   }
 
   getLicenseDetails() {
-    this.licenseService.getLicenseRequest(this.licenseArtifactId).subscribe((res) => {
+    this.licenseService.getApprovedLicense(this.licenseArtifactId).subscribe((res) => {
       if (res.isSuccess) {
         this.licenseManualRequest = res.response;
         this.licenseManualRequest2 = res.response;
@@ -73,28 +73,25 @@ export class UpdateApprovedLicenseComponent implements OnInit {
     this.ManualRequestForm.markAllAsTouched();
     debugger;
     if (this.ManualRequestForm.valid) {
-      this.licenseManualRequest = this.ManualRequestForm.value;
-      this.licenseManualRequest.artifactId = 0
-      this.licenseManualRequest.isCompleted = false;
-      console.log('licenseManualRequest', this.licenseManualRequest);
-      this.approveLicense = {
-        licenseKey: '',
-        startDate: this.datePipe.transform(
-          (this.ManualRequestForm.value.startDate),
-          'yyyy-MM-dd HH:mm'
-        ) || '',
-        endDate: this.datePipe.transform(
-          (this.ManualRequestForm.value.endDate),
-          'yyyy-MM-dd HH:mm'
-        ) || '',
-        licenseGeneratedBy: '',
-        licenseUpdatedBy: '',
-        status: 2,
-        ...this.licenseManualRequest2,
+      this.licenseManualRequest.instanceName = this.ManualRequestForm.value.instanceName;
+      this.licenseManualRequest.instanceNameFriendly = this.ManualRequestForm.value.instanceNameFriendly;
+      this.licenseManualRequest.instanceURL = this.ManualRequestForm.value.instanceURL;
+      this.licenseManualRequest.productName = this.ManualRequestForm.value.productName;
+      this.licenseManualRequest.generatedByName = this.ManualRequestForm.value.generatedByName;
+      this.licenseManualRequest.generatedByEmail = this.ManualRequestForm.value.generatedByEmail;
+      this.licenseManualRequest.generatedOnUtc = this.datePipe.transform((this.ManualRequestForm.value.generatedOnUtc), 'yyyy-MM-dd HH:mm') || '';
+      this.licenseManualRequest.organizationArtifactId = this.ManualRequestForm.value.organization;
+      this.licenseManualRequest.startDate = this.datePipe.transform((this.ManualRequestForm.value.startDate), 'yyyy-MM-dd HH:mm') || '';
+      this.licenseManualRequest.endDate = this.datePipe.transform((this.ManualRequestForm.value.endDate), 'yyyy-MM-dd HH:mm') || '';
 
-      };
-      console.log('approveLicense', this.approveLicense);
-      this.dynamicDialogRef.close(true);
+      console.log('licenseManualRequest', this.licenseManualRequest);
+      this.licenseService.updateApprovedLicense(this.licenseManualRequest).subscribe(
+        (res) => {
+          if (res.isSuccess) {
+            this.dynamicDialogRef.close(res);
+          }
+        }
+      );
     };
   }
 
@@ -111,6 +108,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
   }
 
   setMinEndDate(event: any) {
+    debugger;
     this.minEndDate.setDate(event.getDate() + 1);
   }
 

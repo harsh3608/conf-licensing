@@ -105,7 +105,7 @@
             <div class="field grid col-12">
                 <label class="col-12  md:col-4">License Start Date:</label>
                 <div class="col-12 md:col-8">
-                    <p-calendar formControlName="startDate" [showIcon]="true" [minDate]="minStartDate" (ngModelChange)="setMinEndDate($event)"
+                    <p-calendar formControlName="startDate" [showIcon]="true" [minDate]="minStartDate" (onChange)="setMinEndDate($event)"
                         [class]="startDate.errors?.['required'] && (startDate.touched || startDate.dirty) ? 'ng-dirty ng-invalid':''"></p-calendar>
                     <div class="text-red-500"
                         *ngIf="startDate.errors?.['required'] && (startDate.touched || startDate.dirty)">
