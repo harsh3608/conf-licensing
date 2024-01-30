@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { MSAL_GUARD_CONFIG, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
+import { InteractionType } from '@azure/msal-browser';
 
 @Injectable()
 export class AuthConfigInterceptor implements HttpInterceptor {
-  constructor(private messageService: MessageService,) { }
+  constructor(
+    private messageService: MessageService,
+  ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = sessionStorage.getItem('access-token');
@@ -13,7 +17,8 @@ export class AuthConfigInterceptor implements HttpInterceptor {
     if (accessToken) {
       if (this.isTokenExpired()) {
         window.alert('Current session has been expired. Please,Sign Out and Sign In again.');
-        this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Current session has been expired. Please, Sign In again.' });
+
+        //this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Current session has been expired. Please, Sign In again.' });
       } else {
         const cloned = req.clone({
           setHeaders: {

@@ -79,7 +79,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
       this.licenseManualRequest.productName = this.ManualRequestForm.value.productName;
       this.licenseManualRequest.generatedByName = this.ManualRequestForm.value.generatedByName;
       this.licenseManualRequest.generatedByEmail = this.ManualRequestForm.value.generatedByEmail;
-      this.licenseManualRequest.generatedOnUtc = this.datePipe.transform((this.ManualRequestForm.value.generatedOnUtc), 'yyyy-MM-dd HH:mm') || '';
+      this.licenseManualRequest.generatedOnUtc = "2024-01-30T04:40:10.254Z" // this.datePipe.transform((this.ManualRequestForm.value.generatedOnUtc), 'yyyy-MM-dd HH:mm') || '';
       this.licenseManualRequest.organizationArtifactId = this.ManualRequestForm.value.organization;
       this.licenseManualRequest.startDate = this.datePipe.transform((this.ManualRequestForm.value.startDate), 'yyyy-MM-dd HH:mm') || '';
       this.licenseManualRequest.endDate = this.datePipe.transform((this.ManualRequestForm.value.endDate), 'yyyy-MM-dd HH:mm') || '';
