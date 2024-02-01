@@ -108,7 +108,7 @@
                     {{licenseRequest.organization}}
                 </td>
                 <td>
-                    <div class="{{licenseRequest.isCompleted ? 'pi pi-check':'pi pi-hourglass'}}"></div>
+                    <div class="{{licenseRequest.isCompleted ? 'pi pi-check':'pi pi-hourglass'}}"  pTooltip="{{licenseRequest.isCompleted ? 'Completed':'Pending'}}" tooltipPosition="bottom"></div>
                 </td>
                 <td>
                     <p-button label="Generate License" [disabled]="licenseRequest.isCompleted? true:false"

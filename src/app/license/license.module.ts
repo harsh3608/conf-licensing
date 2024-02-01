@@ -32,6 +32,7 @@ import { UpdateApprovedLicenseComponent } from './update-approved-license/update
 import { AddOrganizationComponent } from './add-organization/add-organization.component';
 
 
+
 @NgModule({
   declarations: [
     ManualLicenseRequestComponent,
