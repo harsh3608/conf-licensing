@@ -74,11 +74,11 @@ export class ManualLicenseRequestComponent implements OnInit {
 
   onSubmit() {
     this.ManualRequestForm.markAllAsTouched();
-    debugger;
     if (this.ManualRequestForm.valid) {
 
       this.licenseManualRequest2.organizationArtifactId = this.ManualRequestForm.value.organization;
       this.licenseManualRequest2.isCompleted = true;
+      this.licenseManualRequest2.organization = 'string'
       console.log('licenseManualRequest', this.licenseManualRequest2);
 
       this.approveLicense = {
@@ -97,20 +97,21 @@ export class ManualLicenseRequestComponent implements OnInit {
         ...this.licenseManualRequest2,
 
       };
+      this.approveLicense.artifactId=0;
       console.log('approveLicense', this.approveLicense);
       //this.dynamicDialogRef.close(true);
 
       this.licenseService.updateLicenseRequest(this.licenseManualRequest2).subscribe((res) => {
         if (res.isSuccess) {
-
+          this.licenseService.generateLicense(this.approveLicense).subscribe((res) => {
+            if (res.isSuccess) {
+              this.dynamicDialogRef.close(res);
+    
+            }
+          });
         };
       });
-      this.licenseService.generateLicense(this.approveLicense).subscribe((res) => {
-        if (res.isSuccess) {
-          this.dynamicDialogRef.close();
-          
-        }
-      });
+      
 
 
     };

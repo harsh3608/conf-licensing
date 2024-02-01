@@ -18,6 +18,8 @@ export class LicenseListComponent {
   loading: boolean = true;
   @ViewChild('dt') table!: Table;
   ref: DynamicDialogRef | undefined;
+  visible: boolean = false;
+  encryptedString: string = '';
 
   constructor(
     private primengConfig: PrimeNGConfig,
@@ -36,38 +38,18 @@ export class LicenseListComponent {
 
   }
 
-  onActivityChange(event: any) {
-    const value = event.target.value;
-    if (value && value.trim().length) {
-      const activity = parseInt(value);
-
-      if (!isNaN(activity)) {
-        this.table.filter(activity, 'activity', 'gte');
-      }
-    }
+  onCancel() {
+    this.visible = false;
   }
 
-  onDateSelect(value: any) {
-    this.table.filter(this.formatDate(value), 'date', 'equals')
-  }
-
-  formatDate(date: any) {
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-
-    if (month < 10) {
-      month = '0' + month;
-    }
-
-    if (day < 10) {
-      day = '0' + day;
-    }
-
-    return date.getFullYear() + '-' + month + '-' + day;
-  }
-
-  onRepresentativeChange(event: any) {
-    this.table.filter(event.value, 'representative', 'in')
+  CopyToClipboard() {
+    const textArea = document.createElement('textarea');
+    textArea.value = this.encryptedString;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License Details copied to clipboard successfully!' });
   }
 
   AddManualLicenseRequest(licenseArtifactId: number) {
@@ -78,13 +60,15 @@ export class LicenseListComponent {
       baseZIndex: 10000,
       maximizable: true,
       data: {
-        licenseArtifactId:licenseArtifactId
+        licenseArtifactId: licenseArtifactId
       },
     });
     this.ref.onClose.subscribe((res: any) => {
       if (res.isSuccess) {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License generated successfully!' });
         this.getAllLicenseRequests();
+        this.encryptedString = res.response;
+        this.visible = true;
       }
     });
   }
@@ -114,11 +98,11 @@ export class LicenseListComponent {
     this.licenseService.getAllLicenseRequests().subscribe((res) => {
       if (res.isSuccess) {
         this.licenseRequests = res.response;
-        console.log(this.licenseRequests);
+        //console.log(this.licenseRequests);
         this.licenseRequests.map(request => {
           request.generatedOnUtc = new Date(request.generatedOnUtc);
         });
-        console.log('date modified', this.licenseRequests);
+        //console.log('date modified', this.licenseRequests);
         this.loading = false;
       };
     });

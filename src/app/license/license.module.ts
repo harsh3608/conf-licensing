@@ -30,7 +30,6 @@ import { LicenseListComponent } from './license-list/license-list.component';
 import { ApprovedLicenseListComponent } from './approved-license-list/approved-license-list.component';
 import { UpdateApprovedLicenseComponent } from './update-approved-license/update-approved-license.component';
 import { AddOrganizationComponent } from './add-organization/add-organization.component';
-import { ShowGeneratedLicenseComponent } from './show-generated-license/show-generated-license.component';
 
 
 @NgModule({
@@ -40,8 +39,7 @@ import { ShowGeneratedLicenseComponent } from './show-generated-license/show-gen
     LicenseListComponent,
     ApprovedLicenseListComponent,
     UpdateApprovedLicenseComponent,
-    AddOrganizationComponent,
-    ShowGeneratedLicenseComponent
+    AddOrganizationComponent
   ],
   imports: [
     CommonModule,
