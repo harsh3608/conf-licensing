@@ -76,19 +76,20 @@ export class ManualLicenseRequestComponent implements OnInit {
     this.ManualRequestForm.markAllAsTouched();
     debugger;
     if (this.ManualRequestForm.valid) {
-      this.licenseManualRequest = this.ManualRequestForm.value;
-      this.licenseManualRequest.artifactId = 0
-      this.licenseManualRequest.isCompleted = false;
-      console.log('licenseManualRequest', this.licenseManualRequest);
+
+      this.licenseManualRequest2.organizationArtifactId = this.ManualRequestForm.value.organization;
+      this.licenseManualRequest2.isCompleted = true;
+      console.log('licenseManualRequest', this.licenseManualRequest2);
+
       this.approveLicense = {
         licenseKey: '',
         startDate: this.datePipe.transform(
           (this.ManualRequestForm.value.startDate),
-          'yyyy-MM-dd HH:mm'
+          'yyyy-MM-dd'
         ) || '',
         endDate: this.datePipe.transform(
           (this.ManualRequestForm.value.endDate),
-          'yyyy-MM-dd HH:mm'
+          'yyyy-MM-dd'
         ) || '',
         licenseGeneratedBy: '',
         licenseUpdatedBy: '',
@@ -97,7 +98,21 @@ export class ManualLicenseRequestComponent implements OnInit {
 
       };
       console.log('approveLicense', this.approveLicense);
-      this.dynamicDialogRef.close(true);
+      //this.dynamicDialogRef.close(true);
+
+      this.licenseService.updateLicenseRequest(this.licenseManualRequest2).subscribe((res) => {
+        if (res.isSuccess) {
+
+        };
+      });
+      this.licenseService.generateLicense(this.approveLicense).subscribe((res) => {
+        if (res.isSuccess) {
+          this.dynamicDialogRef.close();
+          
+        }
+      });
+
+
     };
   }
 
@@ -125,12 +140,12 @@ export class ManualLicenseRequestComponent implements OnInit {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
-      
+
     });
     this.ref.onClose.subscribe((res: any) => {
-      if (res.isSuccess) {
+      if (res?.isSuccess) {
         this.organizationService.getAllOrganizations().subscribe((res) => {
-          if (res.isSuccess) {
+          if (res?.isSuccess) {
             this.organizations = res.response;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New Organization added successfully!' });
           };

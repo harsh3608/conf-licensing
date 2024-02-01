@@ -89,7 +89,7 @@ export interface UpdateLicenseRequest {
     productName: string
     productVersion: string
     productSchemaVersion: string
-    generatedByArtifactID: string
+    generatedByArtifactID: number
     generatedByName: string
     generatedByEmail: string
     generatedOnUtc: string
