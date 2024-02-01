@@ -40,23 +40,23 @@ export class ApprovedLicenseListComponent implements OnInit {
       baseZIndex: 10000,
       maximizable: true,
       data: {
-        licenseArtifactId:licenseArtifactId
+        licenseArtifactId: licenseArtifactId
       },
     });
     this.ref.onClose.subscribe((res: any) => {
-      if (res.isSuccess) {
+      if (res?.isSuccess) {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
-      }
+        this.getAllApprovedLicenses();
+      };
     });
   }
 
   getAllApprovedLicenses() {
     this.licenseService.getAllApprovedLicenses().subscribe((res) => {
-      if (res.isSuccess) {
+      if (res?.isSuccess) {
         this.approvedLicenses = res.response;
-        
       };
-      
+
     });
     this.loading = false;
   }

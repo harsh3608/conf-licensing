@@ -15,7 +15,7 @@
             </div>
 
             <div class="field grid col-12">
-                <label class="col-12  md:col-4">Is Organization Active:</label>
+                <label class="col-12  md:col-4">Active:</label>
                 <div class="col-12 md:col-8">
                     <p-inputSwitch formControlName="isActive"></p-inputSwitch>
                     <div class="text-red-500" *ngIf="isActive.errors?.['required'] && (isActive.touched || isActive.dirty)">

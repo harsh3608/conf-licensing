@@ -98,7 +98,6 @@ export class LicenseListComponent {
 
     });
     this.ref.onClose.subscribe((res: any) => {
-      debugger;
       if (res !== undefined) {
         if (res.isSuccess) {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License requested successfully!' });

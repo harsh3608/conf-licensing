@@ -48,7 +48,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
       productName: new FormControl('', [Validators.required]),
       generatedByName: new FormControl('', [Validators.required]),
       generatedByEmail: new FormControl('', [Validators.required]),
-      generatedOnUtc: new FormControl('', [Validators.required]),
+      // generatedOnUtc: new FormControl({ value: '', disabled: true }, [Validators.required]),
       organization: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
@@ -60,18 +60,21 @@ export class UpdateApprovedLicenseComponent implements OnInit {
       if (res.isSuccess) {
         this.licenseManualRequest = res.response;
         this.licenseManualRequest2 = res.response;
+        console.log('fetched license', res.response);
         //patches all values at once
         this.ManualRequestForm.patchValue(this.licenseManualRequest);
-        //converting date string to date, afterthat assigning it to the form control
-        this.ManualRequestForm.get('generatedOnUtc')?.setValue(new Date(this.licenseManualRequest.generatedOnUtc));
+        // //converting date string to date, afterthat assigning it to the form control
+        // this.ManualRequestForm.get('generatedOnUtc')?.setValue(new Date(this.licenseManualRequest.generatedOnUtc));
         this.ManualRequestForm.get('organization')?.setValue(this.licenseManualRequest.organizationArtifactId);
+        this.ManualRequestForm.get('startDate')?.setValue(new Date(this.licenseManualRequest.startDate));
+        this.ManualRequestForm.get('endDate')?.setValue(new Date(this.licenseManualRequest.endDate));
       };
     });
   }
 
   onSubmit() {
     this.ManualRequestForm.markAllAsTouched();
-    debugger;
+    
     if (this.ManualRequestForm.valid) {
       this.licenseManualRequest.instanceName = this.ManualRequestForm.value.instanceName;
       this.licenseManualRequest.instanceNameFriendly = this.ManualRequestForm.value.instanceNameFriendly;
@@ -79,16 +82,18 @@ export class UpdateApprovedLicenseComponent implements OnInit {
       this.licenseManualRequest.productName = this.ManualRequestForm.value.productName;
       this.licenseManualRequest.generatedByName = this.ManualRequestForm.value.generatedByName;
       this.licenseManualRequest.generatedByEmail = this.ManualRequestForm.value.generatedByEmail;
-      this.licenseManualRequest.generatedOnUtc = "2024-01-30T04:40:10.254Z" // this.datePipe.transform((this.ManualRequestForm.value.generatedOnUtc), 'yyyy-MM-dd HH:mm') || '';
+      //this.licenseManualRequest.generatedOnUtc = this.datePipe.transform((this.ManualRequestForm.value.generatedOnUtc), 'yyyy-MM-dd HH:mm') || '';
       this.licenseManualRequest.organizationArtifactId = this.ManualRequestForm.value.organization;
-      this.licenseManualRequest.startDate = this.datePipe.transform((this.ManualRequestForm.value.startDate), 'yyyy-MM-dd HH:mm') || '';
-      this.licenseManualRequest.endDate = this.datePipe.transform((this.ManualRequestForm.value.endDate), 'yyyy-MM-dd HH:mm') || '';
+      this.licenseManualRequest.startDate = this.datePipe.transform((this.ManualRequestForm.value.startDate), 'yyyy-MM-dd') || '';
+      this.licenseManualRequest.endDate = this.datePipe.transform((this.ManualRequestForm.value.endDate), 'yyyy-MM-dd') || '';
 
       console.log('licenseManualRequest', this.licenseManualRequest);
       this.licenseService.updateApprovedLicense(this.licenseManualRequest).subscribe(
         (res) => {
           if (res.isSuccess) {
             this.dynamicDialogRef.close(res);
+          } else {
+            this.messageService.add({ severity: 'warn', summary: 'Warn', detail: res.message });
           }
         }
       );
@@ -108,7 +113,6 @@ export class UpdateApprovedLicenseComponent implements OnInit {
   }
 
   setMinEndDate(event: any) {
-    debugger;
     this.minEndDate.setDate(event.getDate() + 1);
   }
 
