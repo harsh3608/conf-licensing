@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
     server: '', 
-    apiUrl: 'api',
+    apiUrl: 'https://devlicenseingapi.azurewebsites.net/',
 };
