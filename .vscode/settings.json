@@ -1,0 +1,9 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/d86a6d2f-3178-4206-8f6f-78fe7394aa02/resourceGroups/licensehub_group/providers/Microsoft.Web/sites/licensehub",
+    
+    "appService.showBuildDuringDeployPrompt": false
+}
