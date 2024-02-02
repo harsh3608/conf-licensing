@@ -16,6 +16,8 @@ export class ApprovedLicenseListComponent implements OnInit {
   loading: boolean = true;
   @ViewChild('dt') table!: Table;
   ref: DynamicDialogRef | undefined;
+  visible: boolean = false;
+  encryptedString: string = '';
 
   constructor(
     private primengConfig: PrimeNGConfig,
@@ -61,6 +63,24 @@ export class ApprovedLicenseListComponent implements OnInit {
     this.loading = false;
   }
 
+  onCancel() {
+    this.visible = false;
+  }
 
+  CopyToClipboard() {
+    const textArea = document.createElement('textarea');
+    textArea.value = this.encryptedString;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License Key copied to clipboard successfully!' });
+  }
+
+  showLicenseKey(key: string) {
+    debugger;
+    this.visible = true;
+    this.encryptedString = key;
+  }
 
 }

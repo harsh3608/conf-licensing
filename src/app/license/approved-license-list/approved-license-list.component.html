@@ -1,10 +1,10 @@
 <div>
     <p-toast></p-toast>
 
-    <p-table #dt [value]="approvedLicenses" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="10"
-        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
-        [globalFilterFields]="['name','country.name','representative.name','status']">
+    <p-table #dt [value]="approvedLicenses" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']">
 
         <ng-template pTemplate="caption">
             <div class="table-header flex flex-row justify-content-between">
@@ -31,8 +31,9 @@
                 <th pSortableColumn="generatedOnUtc">Request Creation Date<p-sortIcon
                         field="generatedOnUtc"></p-sortIcon></th>
                 <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
-                <th pSortableColumn="endDate">Expiration Date<p-sortIcon
-                    field="endDate"></p-sortIcon></th>
+                <th pSortableColumn="endDate">Expiration Date<p-sortIcon field="endDate"></p-sortIcon>
+                </th>
+                <th>License</th>
                 <th style="width: 8rem"></th>
             </tr>
             <tr>
@@ -64,6 +65,7 @@
                 <th>
                     <p-columnFilter type="date" field="endDate"></p-columnFilter>
                 </th>
+                <th></th>
                 <th></th>
             </tr>
         </ng-template>
@@ -97,11 +99,15 @@
                 <td>
                     {{licenseRequest.endDate | date:'MM/dd/yyyy'}}
                 </td>
-                <!-- <td>
-                    {{licenseRequest.status}}
-                </td> -->
                 <td>
-                    <p-button label="Edit" icon="pi pi-pencil" (onClick)="updateApprovedLicense(licenseRequest.artifactId)"></p-button>
+                    <!-- <div class="pi pi-key" style="scale: 1.5;"></div> -->
+                    <p-button icon="pi pi-key" [rounded]="true" [text]="true" [raised]="true" severity="info "
+                        (onClick)="showLicenseKey(licenseRequest.licenseKey)">
+                    </p-button>
+                </td>
+                <td>
+                    <p-button label="Edit" icon="pi pi-pencil"
+                        (onClick)="updateApprovedLicense(licenseRequest.artifactId)"></p-button>
                 </td>
 
             </tr>
@@ -117,3 +123,21 @@
         </ng-template>
     </p-table>
 </div>
+
+
+<p-dialog header="License Key" [modal]="true" [(visible)]="visible" [style]="{width: '50vw'}">
+    <div class="flex justify-content-center">
+        <textarea pInputTextarea cols="100" rows="10" [autoResize]="false" [readonly]="true" [value]="encryptedString">
+        </textarea>
+    </div>
+    <div class="field col-12 md:col-12 logic_buttons dialog_footer_buttons">
+        <div class="flex justify-content-end">
+            <div class="field mr-2 mb-0">
+                <button pButton pRipple label="Copy" icon="pi pi-copy" (click)="CopyToClipboard()"></button>
+            </div>
+            <div class="field mb-0">
+                <p-button label="Cancel" icon="pi pi-times" (onClick)="onCancel()"></p-button>
+            </div>
+        </div>
+    </div>
+</p-dialog>
