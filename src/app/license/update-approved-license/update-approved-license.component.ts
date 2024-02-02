@@ -42,12 +42,12 @@ export class UpdateApprovedLicenseComponent implements OnInit {
     this.getAllOrganizations();
 
     this.ManualRequestForm = this.fb.group({
-      instanceName: new FormControl('', [Validators.required]),
-      instanceNameFriendly: new FormControl('', [Validators.required]),
-      instanceURL: new FormControl('', [Validators.required]),
-      productName: new FormControl('', [Validators.required]),
-      generatedByName: new FormControl('', [Validators.required]),
-      generatedByEmail: new FormControl('', [Validators.required]),
+      instanceName: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      instanceNameFriendly: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      instanceURL: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      productName: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      generatedByName: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      generatedByEmail: new FormControl({ value: '', disabled: true }, [Validators.required]),
       // generatedOnUtc: new FormControl({ value: '', disabled: true }, [Validators.required]),
       organization: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
@@ -76,12 +76,12 @@ export class UpdateApprovedLicenseComponent implements OnInit {
     this.ManualRequestForm.markAllAsTouched();
     
     if (this.ManualRequestForm.valid) {
-      this.licenseManualRequest.instanceName = this.ManualRequestForm.value.instanceName;
-      this.licenseManualRequest.instanceNameFriendly = this.ManualRequestForm.value.instanceNameFriendly;
-      this.licenseManualRequest.instanceURL = this.ManualRequestForm.value.instanceURL;
-      this.licenseManualRequest.productName = this.ManualRequestForm.value.productName;
-      this.licenseManualRequest.generatedByName = this.ManualRequestForm.value.generatedByName;
-      this.licenseManualRequest.generatedByEmail = this.ManualRequestForm.value.generatedByEmail;
+      // this.licenseManualRequest.instanceName = this.ManualRequestForm.value.instanceName;
+      // this.licenseManualRequest.instanceNameFriendly = this.ManualRequestForm.value.instanceNameFriendly;
+      // this.licenseManualRequest.instanceURL = this.ManualRequestForm.value.instanceURL;
+      // this.licenseManualRequest.productName = this.ManualRequestForm.value.productName;
+      // this.licenseManualRequest.generatedByName = this.ManualRequestForm.value.generatedByName;
+      // this.licenseManualRequest.generatedByEmail = this.ManualRequestForm.value.generatedByEmail;
       //this.licenseManualRequest.generatedOnUtc = this.datePipe.transform((this.ManualRequestForm.value.generatedOnUtc), 'yyyy-MM-dd HH:mm') || '';
       this.licenseManualRequest.organizationArtifactId = this.ManualRequestForm.value.organization;
       this.licenseManualRequest.startDate = this.datePipe.transform((this.ManualRequestForm.value.startDate), 'yyyy-MM-dd') || '';

@@ -31,6 +31,8 @@
                 <th pSortableColumn="generatedOnUtc">Request Creation Date<p-sortIcon
                         field="generatedOnUtc"></p-sortIcon></th>
                 <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
+                <th pSortableColumn="endDate">Expiration Date<p-sortIcon
+                    field="endDate"></p-sortIcon></th>
                 <th style="width: 8rem"></th>
             </tr>
             <tr>
@@ -58,6 +60,9 @@
                 </th>
                 <th>
                     <p-columnFilter type="text" field="organization"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="date" field="endDate"></p-columnFilter>
                 </th>
                 <th></th>
             </tr>
@@ -89,6 +94,12 @@
                 <td>
                     {{licenseRequest.organization}}
                 </td>
+                <td>
+                    {{licenseRequest.endDate | date:'MM/dd/yyyy'}}
+                </td>
+                <!-- <td>
+                    {{licenseRequest.status}}
+                </td> -->
                 <td>
                     <p-button label="Edit" icon="pi pi-pencil" (onClick)="updateApprovedLicense(licenseRequest.artifactId)"></p-button>
                 </td>
