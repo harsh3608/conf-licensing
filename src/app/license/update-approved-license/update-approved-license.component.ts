@@ -7,6 +7,7 @@ import { OrganizationService } from '../shared/services/organization.service';
 import { LicenseService } from '../shared/services/license.service';
 import { Organization } from '../shared/models/organization-models';
 import { DatePipe } from '@angular/common';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-update-approved-license',
@@ -33,6 +34,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
     public config: DynamicDialogConfig,
     private licenseService: LicenseService,
     private datePipe: DatePipe,
+    private userService: UserService,
   ) {
     this.minStartDate.setDate(this.minStartDate.getDate() + 1);
   }
@@ -76,16 +78,11 @@ export class UpdateApprovedLicenseComponent implements OnInit {
     this.ManualRequestForm.markAllAsTouched();
     
     if (this.ManualRequestForm.valid) {
-      // this.licenseManualRequest.instanceName = this.ManualRequestForm.value.instanceName;
-      // this.licenseManualRequest.instanceNameFriendly = this.ManualRequestForm.value.instanceNameFriendly;
-      // this.licenseManualRequest.instanceURL = this.ManualRequestForm.value.instanceURL;
-      // this.licenseManualRequest.productName = this.ManualRequestForm.value.productName;
-      // this.licenseManualRequest.generatedByName = this.ManualRequestForm.value.generatedByName;
-      // this.licenseManualRequest.generatedByEmail = this.ManualRequestForm.value.generatedByEmail;
-      //this.licenseManualRequest.generatedOnUtc = this.datePipe.transform((this.ManualRequestForm.value.generatedOnUtc), 'yyyy-MM-dd HH:mm') || '';
       this.licenseManualRequest.organizationArtifactId = this.ManualRequestForm.value.organization;
       this.licenseManualRequest.startDate = this.datePipe.transform((this.ManualRequestForm.value.startDate), 'yyyy-MM-dd') || '';
       this.licenseManualRequest.endDate = this.datePipe.transform((this.ManualRequestForm.value.endDate), 'yyyy-MM-dd') || '';
+      this.licenseManualRequest.licenseGeneratedBy= this.userService.getLoggedInUserName(),
+      this.licenseManualRequest.licenseUpdatedBy= this.userService.getLoggedInUserName(),
 
       console.log('licenseManualRequest', this.licenseManualRequest);
       this.licenseService.updateApprovedLicense(this.licenseManualRequest).subscribe(

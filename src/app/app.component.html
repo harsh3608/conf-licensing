@@ -18,7 +18,10 @@
     <button pButton pRipple class="p-button-info p-button-rounded" label="Sign In" (click)="login()"></button>
     }
     @else {
-    <button pButton pRipple class="p-button-warning p-button-rounded" (click)="logout()">Sign Out</button>
+    <div class="flex">
+      <h4 class="name_tag">Hello {{userName}} </h4>
+      <button pButton pRipple class="p-button-warning p-button-rounded" (click)="logout()">Sign Out</button>
+    </div>
     }
   </div>
 </div>

@@ -3,26 +3,30 @@ import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalSe
 import { AuthenticationResult, InteractionStatus, InteractionType, PopupRequest, RedirectRequest } from '@azure/msal-browser';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Subject, filter, takeUntil } from 'rxjs';
+import { UserService } from './shared/services/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers:[MessageService]
+  providers: [MessageService]
 })
 export class AppComponent implements OnInit {
   isIframe = false;
   isUserLoggedIn = false;
   private readonly _destroying$ = new Subject<void>();
-  sidebarVisible:boolean = false;
+  sidebarVisible: boolean = false;
+  userName: string = "";
 
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
+    private msalBroadcastService: MsalBroadcastService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
+    this.userName = this.userService.getLoggedInUserName();
     this.isIframe = window !== window.parent && !window.opener;
     this.msalBroadcastService.inProgress$
       .pipe(
@@ -33,7 +37,7 @@ export class AppComponent implements OnInit {
         this.setLoginDisplay();
       });
 
-    
+
   }
 
   setLoginDisplay() {

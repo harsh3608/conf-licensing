@@ -8,6 +8,7 @@ import { LicenseService } from '../shared/services/license.service';
 import { Organization } from '../shared/models/organization-models';
 import { DatePipe } from '@angular/common';
 import { AddOrganizationComponent } from '../add-organization/add-organization.component';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-manual-license-request',
@@ -36,11 +37,13 @@ export class ManualLicenseRequestComponent implements OnInit {
     private licenseService: LicenseService,
     private datePipe: DatePipe,
     public dialogService: DialogService,
+    private userService: UserService
   ) {
     this.minStartDate.setDate(this.minStartDate.getDate() + 1);
   }
 
   ngOnInit(): void {
+    this.userService.getLoggedInUserName();
     this.getLicenseDetails();
     this.getAllOrganizations();
 
@@ -91,8 +94,8 @@ export class ManualLicenseRequestComponent implements OnInit {
           (this.ManualRequestForm.value.endDate),
           'yyyy-MM-dd'
         ) || '',
-        licenseGeneratedBy: '',
-        licenseUpdatedBy: '',
+        licenseGeneratedBy: this.userService.getLoggedInUserName(),
+        licenseUpdatedBy: this.userService.getLoggedInUserName(),
         status: 2,
         ...this.licenseManualRequest2,
 
