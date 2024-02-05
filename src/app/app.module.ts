@@ -67,11 +67,17 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
 
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
+    // auth: {
+    //   clientId: 'edbf5f6e-919f-4706-8d0c-3f7ce8d9577a',
+    //   authority: 'https://login.microsoftonline.com/49eab8ca-0599-4af2-8e2b-5446d1d5843d',
+    //   redirectUri: 'http://localhost:4200/',
+      
+    // },
     auth: {
-      clientId: 'edbf5f6e-919f-4706-8d0c-3f7ce8d9577a',
+      clientId: 'c2759463-3916-4b99-b486-654fcddebb88',
       authority: 'https://login.microsoftonline.com/49eab8ca-0599-4af2-8e2b-5446d1d5843d',
-      redirectUri: 'http://localhost:4200/',
-
+      redirectUri: 'https://licenseapp-dev.azurewebsites.net/',
+      
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
