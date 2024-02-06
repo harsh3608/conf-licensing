@@ -79,7 +79,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     //   clientId: 'c2759463-3916-4b99-b486-654fcddebb88',
     //   authority: 'https://login.microsoftonline.com/49eab8ca-0599-4af2-8e2b-5446d1d5843d',
     //   redirectUri: 'https://licenseapp-dev.azurewebsites.net/',
-    // },
+    // }, 
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
       storeAuthStateInCookie: isIE, // set to true for IE 11
