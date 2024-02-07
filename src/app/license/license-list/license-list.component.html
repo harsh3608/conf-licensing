@@ -37,8 +37,7 @@
                 <th pSortableColumn="instanceURL">Instance URL<p-sortIcon field="instanceURL"></p-sortIcon>
                 </th>
                 <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
-                <th pSortableColumn="generatedByName">Request By <p-sortIcon
-                        field="generatedByName"></p-sortIcon>
+                <th pSortableColumn="generatedByName">Request By <p-sortIcon field="generatedByName"></p-sortIcon>
                 </th>
                 <th pSortableColumn="generatedByEmail">Request Generator Email <p-sortIcon
                         field="generatedByEmail"></p-sortIcon></th>
@@ -108,7 +107,10 @@
                     {{licenseRequest.organization}}
                 </td>
                 <td>
-                    <div class="{{licenseRequest.isCompleted ? 'pi pi-check':'pi pi-hourglass'}}"  pTooltip="{{licenseRequest.isCompleted ? 'Completed':'Pending'}}" tooltipPosition="bottom"></div>
+                    <p-button icon="{{licenseRequest.isCompleted ? 'pi pi-check':'pi pi-hourglass'}}"
+                        pTooltip="{{licenseRequest.isCompleted ? 'Completed':'Pending'}}" tooltipPosition="bottom"
+                        [rounded]="true" [text]="true" [raised]="true" severity="info ">
+                    </p-button>
                 </td>
                 <td>
                     <p-button label="Generate License" [disabled]="licenseRequest.isCompleted? true:false"
@@ -131,16 +133,14 @@
 
 
 
-<p-dialog header="Generated License Encrypted String" [modal]="true" [(visible)]="visible" [style]="{width: '50vw'}" >
-    
+<p-dialog header="Generated License Encrypted String" [modal]="true" [(visible)]="visible" [style]="{width: '50vw'}">
+
     <div class="flex justify-content-center">
-        <textarea pInputTextarea   cols="100" rows="10" [autoResize]="false"
-        [readonly]="true"
-        [value]="encryptedString">
-            
+        <textarea pInputTextarea cols="100" rows="10" [autoResize]="false" [readonly]="true" [value]="encryptedString">
+
         </textarea>
     </div>
-    
+
     <div class="field col-12 md:col-12 logic_buttons dialog_footer_buttons">
         <div class="flex justify-content-end">
             <div class="field mr-2 mb-0">
