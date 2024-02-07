@@ -78,7 +78,6 @@ export class ApprovedLicenseListComponent implements OnInit {
   }
 
   showLicenseKey(key: string) {
-    debugger;
     this.visible = true;
     this.encryptedString = key;
   }

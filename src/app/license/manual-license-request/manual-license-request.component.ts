@@ -145,7 +145,6 @@ export class ManualLicenseRequestComponent implements OnInit {
       if (res?.isSuccess) {
         this.organizationService.getAllOrganizations().subscribe((response) => {
           if (response?.isSuccess) {
-            debugger;
             this.organizations = response.response;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New Organization added successfully!' });
             this.ManualRequestForm.get('organization')?.setValue(res.response);
