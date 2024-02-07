@@ -17,6 +17,6 @@ export class OrganizationService {
   }
 
   createOrganization(addRequest:Organization): Observable<CreateOrganizationResponse> {
-    return this.http.post<OrganizationsResponse>(Constants.baseServerUrl + `Organization/CreateOrganization`,addRequest, { headers: this.headers });
+    return this.http.post<CreateOrganizationResponse>(Constants.baseServerUrl + `Organization/CreateOrganization`,addRequest, { headers: this.headers });
   }
 }

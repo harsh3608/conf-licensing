@@ -100,7 +100,7 @@ export class ManualLicenseRequestComponent implements OnInit {
         ...this.licenseManualRequest2,
 
       };
-      this.approveLicense.artifactId=0;
+      this.approveLicense.artifactId = 0;
       console.log('approveLicense', this.approveLicense);
       //this.dynamicDialogRef.close(true);
 
@@ -109,14 +109,10 @@ export class ManualLicenseRequestComponent implements OnInit {
           this.licenseService.generateLicense(this.approveLicense).subscribe((res) => {
             if (res.isSuccess) {
               this.dynamicDialogRef.close(res);
-    
             }
           });
         };
       });
-      
-
-
     };
   }
 
@@ -144,14 +140,15 @@ export class ManualLicenseRequestComponent implements OnInit {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
-
     });
     this.ref.onClose.subscribe((res: any) => {
       if (res?.isSuccess) {
-        this.organizationService.getAllOrganizations().subscribe((res) => {
-          if (res?.isSuccess) {
-            this.organizations = res.response;
+        this.organizationService.getAllOrganizations().subscribe((response) => {
+          if (response?.isSuccess) {
+            debugger;
+            this.organizations = response.response;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New Organization added successfully!' });
+            this.ManualRequestForm.get('organization')?.setValue(res.response);
           };
         })
       }
