@@ -12,6 +12,6 @@ export class UserService {
   getLoggedInUserName() :string{
     const token = sessionStorage.getItem('access-token') || '';
     const decodedToken: any = this.jwtHelperService.decodeToken(token);
-    return decodedToken.name;
+    return decodedToken?.name;
   }
 }
