@@ -17,20 +17,12 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem"></th>
+                <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
+                <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
                 <th pSortableColumn="instanceName">Instance Name<p-sortIcon field="instanceName"></p-sortIcon></th>
                 <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
-                        field="instanceNameFriendly"></p-sortIcon></th>
-                <th pSortableColumn="instanceURL">Instance URL<p-sortIcon field="instanceURL"></p-sortIcon>
+                        field="instanceNameFriendly"></p-sortIcon>
                 </th>
-                <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
-                <th pSortableColumn="generatedByName">Request Generator Name <p-sortIcon
-                        field="generatedByName"></p-sortIcon>
-                </th>
-                <th pSortableColumn="generatedByEmail">Request Generator Email <p-sortIcon
-                        field="generatedByEmail"></p-sortIcon></th>
-                <th pSortableColumn="generatedOnUtc">Request Creation Date<p-sortIcon
-                        field="generatedOnUtc"></p-sortIcon></th>
-                <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
                 <th pSortableColumn="endDate">Expiration Date<p-sortIcon field="endDate"></p-sortIcon>
                 </th>
                 <th>License</th>
@@ -39,28 +31,16 @@
             <tr>
                 <th></th>
                 <th>
-                    <p-columnFilter type="text" field="instanceName"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="instanceNameFriendly"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="instanceURL"></p-columnFilter>
+                    <p-columnFilter type="text" field="organization"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="text" field="productName"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="generatedByName"></p-columnFilter>
+                    <p-columnFilter type="text" field="instanceName"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="generatedByEmail"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="date" field="generatedOnUtc"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="organization"></p-columnFilter>
+                    <p-columnFilter type="text" field="instanceNameFriendly"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="date" field="endDate"></p-columnFilter>
@@ -73,34 +53,21 @@
             <tr class="p-selectable-row">
                 <td></td>
                 <td>
+                    {{licenseRequest.organization}}
+                </td>
+                <td>
+                    {{licenseRequest.productName}}
+                </td>
+                <td>
                     {{licenseRequest.instanceName}}
                 </td>
                 <td>
                     {{licenseRequest.instanceNameFriendly}}
                 </td>
                 <td>
-                    {{licenseRequest.instanceURL}}
-                </td>
-                <td>
-                    {{licenseRequest.productName}}
-                </td>
-                <td>
-                    {{licenseRequest.generatedByName}}
-                </td>
-                <td>
-                    {{licenseRequest.generatedByEmail}}
-                </td>
-                <td>
-                    {{licenseRequest.generatedOnUtc | date:'MM/dd/yyyy'}}
-                </td>
-                <td>
-                    {{licenseRequest.organization}}
-                </td>
-                <td>
                     {{licenseRequest.endDate | date:'MM/dd/yyyy'}}
                 </td>
                 <td>
-                    <!-- <div class="pi pi-key" style="scale: 1.5;"></div> -->
                     <p-button icon="pi pi-key" [rounded]="true" [text]="true" [raised]="true" severity="info "
                         (onClick)="showLicenseKey(licenseRequest.licenseKey)">
                     </p-button>
@@ -109,7 +76,6 @@
                     <p-button label="Edit" icon="pi pi-pencil"
                         (onClick)="updateApprovedLicense(licenseRequest.artifactId)"></p-button>
                 </td>
-
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

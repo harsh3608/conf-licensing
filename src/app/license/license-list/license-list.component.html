@@ -27,37 +27,22 @@
 
             </div>
         </ng-template>
-        <!-- <ng-template pTemplate="colgroup">
-            <colgroup>
-              <col [style.width]="'40px'"> 
-              <col [style.width]="'180px'">
-              <col [style.width]="'350px'">
-              <col [style.width]="'120px'">
-              <col [style.width]="'50px'">
-              <col [style.width]="'200px'">
-              <col [style.width]="'40px'">
-              <col [style.width]="'50px'">
-              <col [style.width]="'200px'">
-              <col [style.width]="'40px'">
-              <col [style.width]="'40px'">
-            </colgroup>
-          </ng-template> -->
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem"></th>
                 <th pSortableColumn="instanceName">Instance Name<p-sortIcon field="instanceName"></p-sortIcon></th>
                 <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
-                        field="instanceNameFriendly"></p-sortIcon></th>
-                <th pSortableColumn="instanceURL">Instance URL<p-sortIcon field="instanceURL"></p-sortIcon>
+                        field="instanceNameFriendly"></p-sortIcon>
                 </th>
                 <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
                 <th pSortableColumn="generatedByName">Request By <p-sortIcon field="generatedByName"></p-sortIcon>
                 </th>
-                <th pSortableColumn="generatedByEmail">Request Generator Email <p-sortIcon
-                        field="generatedByEmail"></p-sortIcon></th>
+                <th pSortableColumn="generatedByEmail">Request By Email <p-sortIcon
+                        field="generatedByEmail"></p-sortIcon>
+                </th>
                 <th pSortableColumn="generatedOnUtc">Request Creation Date<p-sortIcon
-                        field="generatedOnUtc"></p-sortIcon></th>
-                <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
+                        field="generatedOnUtc"></p-sortIcon>
+                </th>
                 <th>Status</th>
                 <th style="width: 8rem"></th>
             </tr>
@@ -68,9 +53,6 @@
                 </th>
                 <th>
                     <p-columnFilter type="text" field="instanceNameFriendly"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="instanceURL"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="text" field="productName"></p-columnFilter>
@@ -84,12 +66,7 @@
                 <th>
                     <p-columnFilter type="date" field="generatedOnUtc"></p-columnFilter>
                 </th>
-                <th>
-                    <p-columnFilter type="text" field="organization"></p-columnFilter>
-                </th>
-                <th>
-                    <!-- <p-columnFilter type="text" field="isCompleted"></p-columnFilter> -->
-                </th>
+                <th></th>
                 <th></th>
             </tr>
         </ng-template>
@@ -101,9 +78,6 @@
                 </td>
                 <td>
                     {{licenseRequest.instanceNameFriendly}}
-                </td>
-                <td>
-                    {{licenseRequest.instanceURL}}
                 </td>
                 <td>
                     {{licenseRequest.productName}}
@@ -118,9 +92,6 @@
                     {{licenseRequest.generatedOnUtc | date:'MM/dd/yyyy'}}
                 </td>
                 <td>
-                    {{licenseRequest.organization}}
-                </td>
-                <td>
                     <p-button icon="{{licenseRequest.isCompleted ? 'pi pi-check':'pi pi-hourglass'}}"
                         pTooltip="{{licenseRequest.isCompleted ? 'Completed':'Pending'}}" tooltipPosition="bottom"
                         [rounded]="true" [text]="true" [raised]="true" severity="info ">
@@ -130,7 +101,6 @@
                     <p-button label="Generate License" [disabled]="licenseRequest.isCompleted? true:false"
                         (onClick)="AddManualLicenseRequest(licenseRequest.artifactId)"></p-button>
                 </td>
-
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
