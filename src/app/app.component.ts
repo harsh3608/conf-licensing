@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
-import { AuthenticationResult, InteractionStatus, InteractionType, PopupRequest, RedirectRequest } from '@azure/msal-browser';
+import { AuthenticationResult, EventMessage, EventType, InteractionStatus, InteractionType, PopupRequest, RedirectRequest } from '@azure/msal-browser';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Subject, filter, takeUntil } from 'rxjs';
 import { UserService } from './shared/services/user.service';
@@ -34,6 +34,16 @@ export class AppComponent implements OnInit {
         takeUntil(this._destroying$)
       )
       .subscribe(() => {
+        this.setLoginDisplay();
+      });
+      this.msalBroadcastService.msalSubject$
+      .pipe(
+        filter((msg: EventMessage) => msg.eventType === EventType.LOGIN_SUCCESS),
+      )
+      .subscribe((result: EventMessage) => {
+        const payload = result.payload as AuthenticationResult;
+        sessionStorage.setItem('access-token',payload.accessToken)
+        this.authService.instance.setActiveAccount(payload.account);
         this.setLoginDisplay();
       });
 
