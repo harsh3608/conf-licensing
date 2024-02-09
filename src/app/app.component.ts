@@ -4,6 +4,7 @@ import { AuthenticationResult, EventMessage, EventType, InteractionStatus, Inter
 import { MenuItem, MessageService } from 'primeng/api';
 import { Subject, filter, takeUntil } from 'rxjs';
 import { UserService } from './shared/services/user.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
   private readonly _destroying$ = new Subject<void>();
   sidebarVisible: boolean = false;
   userName: string = "";
+  jwtHelperService = new JwtHelperService();
 
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
@@ -42,6 +44,8 @@ export class AppComponent implements OnInit {
       )
       .subscribe((result: EventMessage) => {
         const payload = result.payload as AuthenticationResult;
+        const decodedToken: any = this.jwtHelperService.decodeToken(payload.accessToken);
+        this.userName = decodedToken?.name;
         sessionStorage.setItem('access-token',payload.accessToken)
         this.authService.instance.setActiveAccount(payload.account);
         this.setLoginDisplay();
