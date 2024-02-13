@@ -64,7 +64,7 @@ export class LicenseListComponent {
       },
     });
     this.ref.onClose.subscribe((res: any) => {
-      if (res.isSuccess) {
+      if (res?.isSuccess) {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License generated successfully!' });
         this.getAllLicenseRequests();
         this.encryptedString = res.response;
