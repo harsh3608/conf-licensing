@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
       )
       .subscribe((result: EventMessage) => {
         const payload = result.payload as AuthenticationResult;
-        sessionStorage.setItem('access-token',payload.accessToken)
         this.authService.instance.setActiveAccount(payload.account);
         this.setLoginDisplay();
       });

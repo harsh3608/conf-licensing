@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
         const payload = result.payload as AuthenticationResult;
         const decodedToken: any = this.jwtHelperService.decodeToken(payload.accessToken);
         this.userName = decodedToken?.name;
-        sessionStorage.setItem('access-token',payload.accessToken)
+        sessionStorage.setItem('access-token',payload.accessToken);
         this.authService.instance.setActiveAccount(payload.account);
         this.setLoginDisplay();
       });
