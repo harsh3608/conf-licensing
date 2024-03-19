@@ -4,6 +4,7 @@ import { Organization } from '../shared/models/organization-models';
 import { Table } from 'primeng/table';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { OrganizationsAddComponent } from '../organizations-add/organizations-add.component';
 
 @Component({
   selector: 'app-organizations-list',
@@ -41,7 +42,25 @@ export class OrganizationsListComponent implements OnInit {
   }
 
   AddOrganization() {
-    
+    this.ref = this.dialogService.open(OrganizationsAddComponent, {
+      header: 'Add Organization',
+      width: '40%',
+      height: '50%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+    });
+    this.ref.onClose.subscribe((res: any) => {
+      if (res?.isSuccess) {
+        this.organizationsService.getAllOrganizations().subscribe((response) => {
+          if (response?.isSuccess) {
+            this.organizations = response.response;
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New Organization added successfully!' });
+            this.getAllOrganizations();
+          };
+        })
+      }
+    });
   }
 
   updateOrganization(organizationArtifactId: number) {

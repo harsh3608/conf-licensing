@@ -7,8 +7,8 @@ import { OrganizationService } from '../../organizations/shared/services/organiz
 import { LicenseService } from '../shared/services/license.service';
 import { Organization } from '../../organizations/shared/models/organization-models';
 import { DatePipe } from '@angular/common';
-import { AddOrganizationComponent } from '../add-organization/add-organization.component';
 import { UserService } from '../../shared/services/user.service';
+import { OrganizationsAddComponent } from '../../organizations/organizations-add/organizations-add.component';
 
 @Component({
   selector: 'app-manual-license-request',
@@ -133,7 +133,7 @@ export class ManualLicenseRequestComponent implements OnInit {
   }
 
   AddOrganization() {
-    this.ref = this.dialogService.open(AddOrganizationComponent, {
+    this.ref = this.dialogService.open(OrganizationsAddComponent, {
       header: 'Add Organization',
       width: '40%',
       height: '50%',

@@ -29,7 +29,7 @@ import { MessageService } from 'primeng/api';
 import { LicenseListComponent } from './license-list/license-list.component';
 import { ApprovedLicenseListComponent } from './approved-license-list/approved-license-list.component';
 import { UpdateApprovedLicenseComponent } from './update-approved-license/update-approved-license.component';
-import { AddOrganizationComponent } from './add-organization/add-organization.component';
+
 
 
 
@@ -39,8 +39,7 @@ import { AddOrganizationComponent } from './add-organization/add-organization.co
     AutomatedLicenseRequestComponent,
     LicenseListComponent,
     ApprovedLicenseListComponent,
-    UpdateApprovedLicenseComponent,
-    AddOrganizationComponent
+    UpdateApprovedLicenseComponent
   ],
   imports: [
     CommonModule,
