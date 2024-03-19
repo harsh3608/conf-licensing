@@ -23,7 +23,7 @@ export interface SingleOrganizationResponse {
 export interface CreateOrganizationResponse {
     statusCode: number
     isSuccess: boolean
-    response: number
+    response: any
     message: string
     exceptionMessage: string
 }

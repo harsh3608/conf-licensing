@@ -41,7 +41,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLicenseDetails();
-    this.getAllOrganizations();
+    this.getActiveOrganizations();
 
     this.ManualRequestForm = this.fb.group({
       instanceName: new FormControl({ value: '', disabled: true }, [Validators.required]),
@@ -101,8 +101,8 @@ export class UpdateApprovedLicenseComponent implements OnInit {
     this.dynamicDialogRef.close();
   }
 
-  getAllOrganizations() {
-    this.organizationService.getAllOrganizations().subscribe((res) => {
+  getActiveOrganizations() {
+    this.organizationService.getActiveOrganizations().subscribe((res) => {
       if (res.isSuccess) {
         this.organizations = res.response
       };

@@ -61,7 +61,7 @@ export class OrganizationsListComponent implements OnInit {
         this.organizationsService.getAllOrganizations().subscribe((response) => {
           if (response?.isSuccess) {
             this.organizations = response.response;
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New Organization added successfully!' });
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
             this.getAllOrganizations();
           };
         })
@@ -86,7 +86,7 @@ export class OrganizationsListComponent implements OnInit {
         this.organizationsService.getAllOrganizations().subscribe((response) => {
           if (response?.isSuccess) {
             this.organizations = response.response;
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New Organization added successfully!' });
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
             this.getAllOrganizations();
           };
         })

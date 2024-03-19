@@ -55,10 +55,12 @@
                     {{organization.name}}
                 </td>
                 <td>
-                    <p-button icon="{{organization.isActive ? 'pi pi-thumbs-up-fill':'pi pi-thumbs-down-fill'}}"
+                    <p-button  icon="{{organization.isActive ? 'pi pi-thumbs-up-fill':'pi pi-thumbs-down-fill'}}"
                         pTooltip="{{organization.isActive ? 'Active':'Inactive'}}" tooltipPosition="bottom"
-                        [rounded]="true" [text]="true" [raised]="true" severity="info ">
+                        [rounded]="true" [text]="true" [raised]="true" severity="{{organization.isActive ? 'info':'danger'}}">
                     </p-button>
+
+                    
                 </td>
                 <td> <p-button label="Edit" icon="pi pi-pencil"
                         (onClick)="updateOrganization(organization.artifactId)"></p-button></td>

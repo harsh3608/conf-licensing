@@ -45,7 +45,7 @@ export class ManualLicenseRequestComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getLoggedInUserName();
     this.getLicenseDetails();
-    this.getAllOrganizations();
+    this.getActiveOrganizations();
 
     this.ManualRequestForm = this.fb.group({
       instanceName: new FormControl({ value: '', disabled: true }, [Validators.required]),
@@ -120,8 +120,8 @@ export class ManualLicenseRequestComponent implements OnInit {
     this.dynamicDialogRef.close();
   }
 
-  getAllOrganizations() {
-    this.organizationService.getAllOrganizations().subscribe((res) => {
+  getActiveOrganizations() {
+    this.organizationService.getActiveOrganizations().subscribe((res) => {
       if (res.isSuccess) {
         this.organizations = res.response;
       };

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Organization } from '../shared/models/organization-models';
 import { OrganizationService } from '../shared/services/organization.service';
 
@@ -12,7 +12,8 @@ import { OrganizationService } from '../shared/services/organization.service';
 })
 export class OrganizationsUpdateComponent implements OnInit {
   updateForm!: FormGroup;
-  organizationArtifactId: number = 0;
+  organizationArtifactId: number = this.config.data.organizationArtifactId;
+  currentOrganization!: Organization;
 
 
   constructor(
@@ -20,6 +21,7 @@ export class OrganizationsUpdateComponent implements OnInit {
     public dynamicDialogRef: DynamicDialogRef,
     private messageService: MessageService,
     private organizationService: OrganizationService,
+    public config: DynamicDialogConfig,
   ) { }
 
   ngOnInit(): void {
@@ -28,17 +30,25 @@ export class OrganizationsUpdateComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       isActive: new FormControl(true, [Validators.required]),
     });
+    this.getOrganization();
   }
 
   getOrganization() {
-
+    this.organizationService.getOrganization(this.organizationArtifactId).subscribe((res) => {
+      if (res) {
+        if (res.isSuccess) {
+          this.currentOrganization = res.response;
+          this.updateForm.patchValue(this.currentOrganization);
+        };
+      };
+    })
   }
 
   onSubmit() {
     this.updateForm.markAllAsTouched();
     if (this.updateForm.valid) {
-      let AddRequest: Organization = this.updateForm.value;
-      this.organizationService.createOrganization(AddRequest).subscribe(
+      this.currentOrganization = this.updateForm.value;
+      this.organizationService.updateOrganization(this.currentOrganization).subscribe(
         (res) => {
           if (res.isSuccess) {
             this.dynamicDialogRef.close(res);
