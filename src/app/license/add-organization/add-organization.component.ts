@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { OrganizationService } from '../shared/services/organization.service';
-import { Organization } from '../shared/models/organization-models';
+import { OrganizationService } from '../../organizations/shared/services/organization.service';
+import { Organization } from '../../organizations/shared/models/organization-models';
 
 @Component({
   selector: 'app-add-organization',

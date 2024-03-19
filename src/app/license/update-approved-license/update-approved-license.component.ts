@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ApproveLicenseModel, LicenseManualRequest } from '../shared/models/license-models';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
-import { OrganizationService } from '../shared/services/organization.service';
+import { OrganizationService } from '../../organizations/shared/services/organization.service';
 import { LicenseService } from '../shared/services/license.service';
-import { Organization } from '../shared/models/organization-models';
+import { Organization } from '../../organizations/shared/models/organization-models';
 import { DatePipe } from '@angular/common';
 import { UserService } from '../../shared/services/user.service';
 
