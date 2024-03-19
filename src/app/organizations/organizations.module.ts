@@ -5,6 +5,28 @@ import { OrganizationsRoutingModule } from './organizations-routing.module';
 import { OrganizationsListComponent } from './organizations-list/organizations-list.component';
 import { OrganizationsAddComponent } from './organizations-add/organizations-add.component';
 import { OrganizationsUpdateComponent } from './organizations-update/organizations-update.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MenubarModule } from 'primeng/menubar';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { RippleModule } from 'primeng/ripple';
+import { SidebarModule } from 'primeng/sidebar';
+import { StyleClassModule } from 'primeng/styleclass';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -15,7 +37,32 @@ import { OrganizationsUpdateComponent } from './organizations-update/organizatio
   ],
   imports: [
     CommonModule,
-    OrganizationsRoutingModule
+    OrganizationsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+
+    StyleClassModule,
+    ButtonModule,
+    RippleModule,
+    InputTextModule,
+    SidebarModule,
+    BadgeModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    TooltipModule,
+    MenubarModule,
+    AvatarModule,
+    TableModule,
+    ProgressBarModule,
+    CalendarModule,
+    MultiSelectModule,
+    DropdownModule,
+    InputTextareaModule,
+    DynamicDialogModule,
+    InputNumberModule,
+    DialogModule,
+    ToastModule,
   ]
 })
 export class OrganizationsModule { }
