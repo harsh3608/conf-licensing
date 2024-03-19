@@ -1,1 +1,39 @@
-<p>organizations-update works!</p>
+<div>
+    <p-toast></p-toast>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <div class="card p-fluid ">
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">Organization Name:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="name"
+                        [class]="name.errors?.['required'] && (name.touched || name.dirty) ? 'ng-dirty ng-invalid ':''" />
+                    <div class="text-red-500" *ngIf="name.errors?.['required'] && (name.touched || name.dirty)">
+                        Organization Name is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4">Active:</label>
+                <div class="col-12 md:col-8">
+                    <p-inputSwitch formControlName="isActive"></p-inputSwitch>
+                    <div class="text-red-500" *ngIf="isActive.errors?.['required'] && (isActive.touched || isActive.dirty)">
+                        Organization Active Status is required!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="field col-12 md:col-12 logic_buttons dialog_footer_buttons">
+            <div class="flex justify-content-end">
+                <div class="field mr-2 mb-0">
+                    <button pButton pRipple label="Save" icon="pi pi-check" type="submit"></button>
+                </div>
+                <div class="field mb-0">
+                    <p-button label="Cancel" icon="pi pi-times" (onClick)="onCancel()"></p-button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -28,6 +28,8 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { MessageService } from 'primeng/api';
+import { TagModule } from 'primeng/tag';
+
 
 
 @NgModule({
@@ -41,8 +43,6 @@ import { MessageService } from 'primeng/api';
     OrganizationsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
-
     StyleClassModule,
     ButtonModule,
     RippleModule,
@@ -64,6 +64,10 @@ import { MessageService } from 'primeng/api';
     InputNumberModule,
     DialogModule,
     ToastModule,
+    TagModule,
+
+
+    
   ],
   providers: [
     MessageService,
