@@ -11,7 +11,7 @@ import { MessageService, PrimeNGConfig } from 'primeng/api';
   styleUrl: './organizations-list.component.css'
 })
 export class OrganizationsListComponent implements OnInit {
-  organizations:Organization[]=[];
+  organizations: Organization[] = [];
   loading: boolean = true;
   @ViewChild('dt') table!: Table;
   ref: DynamicDialogRef | undefined;
@@ -25,7 +25,29 @@ export class OrganizationsListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
+    this.getAllOrganizations();
+  }
+
+
+  getAllOrganizations() {
+    this.organizationsService.getAllOrganizations().subscribe((res) => {
+      if (res?.isSuccess) {
+        this.organizations = res.response;
+      };
+
+    });
+    this.loading = false;
+  }
+
+  AddOrganization() {
+    
+  }
+
+  updateOrganization(organizationArtifactId: number) {
 
   }
+
+
 
 }

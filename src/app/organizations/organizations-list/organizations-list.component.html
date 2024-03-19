@@ -9,7 +9,13 @@
         <ng-template pTemplate="caption">
             <div class="table-header flex flex-row justify-content-between">
                 <div>
-                    <h2>Approved Licenses</h2>
+                    <h2>Organizations</h2>
+                </div>
+                <div class="flex flex-row justify-content-between">
+                    <div class="mr-2">
+                        <p-button icon="pi pi-plus" (onClick)="AddOrganization()" label="Add Organization">
+                        </p-button>
+                    </div>
                 </div>
             </div>
         </ng-template>
@@ -19,7 +25,6 @@
                 <th style="width: 3rem"></th>
                 <th pSortableColumn="organization">Name<p-sortIcon field="organization"></p-sortIcon></th>
                 <th pSortableColumn="productName">Status <p-sortIcon field="productName"></p-sortIcon></th>
-                <th style="width: 8rem"></th>
                 <th style="width: 8rem"></th>
             </tr>
             <tr>
@@ -31,20 +36,22 @@
                     <p-columnFilter type="text" field="productName"></p-columnFilter>
                 </th>
                 <th></th>
-                <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-organization>
             <tr class="p-selectable-row">
                 <td></td>
                 <td>
-                    {{organization.organization}}
+                    {{organization.name}}
                 </td>
                 <td>
-                    {{organization.organization}}
+                    <p-button icon="{{organization.isActive ? 'pi pi-thumbs-up-fill':'pi pi-thumbs-down-fill'}}"
+                        pTooltip="{{organization.isActive ? 'Active':'Inactive'}}" tooltipPosition="bottom"
+                        [rounded]="true" [text]="true" [raised]="true" severity="info ">
+                    </p-button>
                 </td>
-                <td></td>
-                <td></td>
+                <td> <p-button label="Edit" icon="pi pi-pencil"
+                    (onClick)="updateOrganization(organization.artifactId)"></p-button></td>
                 
             </tr>
         </ng-template>

@@ -12,7 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
@@ -27,6 +27,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -63,6 +64,11 @@ import { TooltipModule } from 'primeng/tooltip';
     InputNumberModule,
     DialogModule,
     ToastModule,
+  ],
+  providers: [
+    MessageService,
+    DialogService,
+    DynamicDialogRef,
   ]
 })
 export class OrganizationsModule { }
