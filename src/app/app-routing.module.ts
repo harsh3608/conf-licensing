@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./license/license.module').then(m => m.LicenseModule)
   },
   {
+    path: 'organizations',
+    loadChildren: () => import('./organizations/organizations.module').then(m => m.OrganizationsModule)
+  },
+  {
     path: '',
     component: HomeComponent,
   },
