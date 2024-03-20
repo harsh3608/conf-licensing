@@ -9,6 +9,7 @@ import { InteractionType } from '@azure/msal-browser';
 export class AuthConfigInterceptor implements HttpInterceptor {
   constructor(
     private messageService: MessageService,
+    private authService: MsalService,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -16,8 +17,10 @@ export class AuthConfigInterceptor implements HttpInterceptor {
 
     if (accessToken) {
       if (this.isTokenExpired()) {
-        window.alert('Current session has been expired. Please,Sign Out and Sign In again.');
-
+        //window.alert('Current session has been expired. Please,Sign Out and Sign In again.');
+        this.authService.logoutRedirect({
+          postLogoutRedirectUri: "/",
+        });
         //this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Current session has been expired. Please, Sign In again.' });
       } else {
         const cloned = req.clone({

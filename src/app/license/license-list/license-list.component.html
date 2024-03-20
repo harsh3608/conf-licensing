@@ -35,6 +35,7 @@
                         field="instanceNameFriendly"></p-sortIcon>
                 </th>
                 <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
+                <th pSortableColumn="productName">Product Version <p-sortIcon field="productVersion"></p-sortIcon></th>
                 <th pSortableColumn="generatedByName">Request By <p-sortIcon field="generatedByName"></p-sortIcon>
                 </th>
                 <th pSortableColumn="generatedByEmail">Request By Email <p-sortIcon
@@ -56,6 +57,9 @@
                 </th>
                 <th>
                     <p-columnFilter type="text" field="productName"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="productVersion"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="text" field="generatedByName"></p-columnFilter>
@@ -81,6 +85,9 @@
                 </td>
                 <td>
                     {{licenseRequest.productName}}
+                </td>
+                <td>
+                    {{licenseRequest.productVersion}}
                 </td>
                 <td>
                     {{licenseRequest.generatedByName}}

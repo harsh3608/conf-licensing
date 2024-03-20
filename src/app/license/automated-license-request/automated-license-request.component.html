@@ -8,7 +8,7 @@
             formControlName="encryptedString"></textarea>
             <div class="text-red-500"
                 *ngIf="encryptedString.errors?.['required'] && (encryptedString.touched || encryptedString.dirty)">
-                Relativity Instance GUID is required!
+                Encrypted request is required!
             </div>
         </div>
 
