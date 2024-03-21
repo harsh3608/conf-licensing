@@ -78,7 +78,6 @@ export class ManualLicenseRequestComponent implements OnInit {
   onSubmit() {
     this.ManualRequestForm.markAllAsTouched();
     if (this.ManualRequestForm.valid) {
-      debugger;
       this.licenseManualRequest2.organizationArtifactId = this.ManualRequestForm.value.organization;
       this.licenseManualRequest2.isCompleted = true;
       this.licenseManualRequest2.organization = 'string'

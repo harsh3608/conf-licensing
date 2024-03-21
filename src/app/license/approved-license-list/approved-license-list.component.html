@@ -23,6 +23,8 @@
                 <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
                         field="instanceNameFriendly"></p-sortIcon>
                 </th>
+                <th pSortableColumn="approvedOnUtc">Approved On<p-sortIcon field="approvedOnUtc"></p-sortIcon>
+                </th>
                 <th pSortableColumn="endDate">Expiration Date<p-sortIcon field="endDate"></p-sortIcon>
                 </th>
                 <th>License</th>
@@ -41,6 +43,9 @@
                 </th>
                 <th>
                     <p-columnFilter type="text" field="instanceNameFriendly"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="date" field="approvedOnUtc"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="date" field="endDate"></p-columnFilter>
@@ -63,6 +68,11 @@
                 </td>
                 <td>
                     {{licenseRequest.instanceNameFriendly}}
+                </td>
+                <td>
+                    @if(licenseRequest.approvedOnUtc !=='0001-01-01T00:00:00'){
+                    {{licenseRequest.approvedOnUtc | date:'MM/dd/yyyy'}}
+                    }
                 </td>
                 <td>
                     {{licenseRequest.endDate | date:'MM/dd/yyyy'}}
