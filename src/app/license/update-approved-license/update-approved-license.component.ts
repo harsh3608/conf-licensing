@@ -47,6 +47,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
       instanceName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       instanceNameFriendly: new FormControl({ value: '', disabled: true }, [Validators.required]),
       instanceURL: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      workspaceArtifactID: new FormControl({ value: '', disabled: true }, [Validators.required]),
       productName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       generatedByName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       generatedByEmail: new FormControl({ value: '', disabled: true }, [Validators.required]),
@@ -59,6 +60,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
 
   getLicenseDetails() {
     this.licenseService.getApprovedLicense(this.licenseArtifactId).subscribe((res) => {
+      debugger;
       if (res.isSuccess) {
         this.licenseManualRequest = res.response;
         this.licenseManualRequest2 = res.response;
@@ -147,6 +149,10 @@ export class UpdateApprovedLicenseComponent implements OnInit {
 
   get generatedOnUtc(): FormControl {
     return this.ManualRequestForm.get('generatedOnUtc') as FormControl;
+  }
+
+  get workSpaceId(): FormControl {
+    return this.ManualRequestForm.get('workspaceArtifactID') as FormControl;
   }
 
   get organization(): FormControl {

@@ -17,6 +17,7 @@ export interface LicenseManualRequest {
     organizationArtifactId: number
     isCompleted: boolean
     organization: string
+    relativityVersion:string
 }
 
 export interface AllLicensesResponse {
@@ -69,6 +70,7 @@ export interface ApproveLicenseModel {
     status: number
     organization:string
     approvedOnUtc?:string
+    relativityVersion:string
 }
 
 export interface AllApprovedLicensesResponse {
@@ -98,6 +100,7 @@ export interface UpdateLicenseRequest {
     organizationArtifactId: number
     isCompleted: boolean
     organization: string
+    relativityVersion:string
   }
 
 export interface UpdateLicenseResponse {

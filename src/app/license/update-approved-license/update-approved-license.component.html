@@ -4,6 +4,18 @@
         <div class="card p-fluid dialog_scrollable_content">
 
             <div class="field grid col-12">
+                <label class="col-12  md:col-4">Product Name:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="productName"
+                        [class]="productName.errors?.['required'] && (productName.touched || productName.dirty) ? 'ng-dirty ng-invalid':''" />
+                    <div class="text-red-500"
+                        *ngIf="productName.errors?.['required'] && (productName.touched || productName.dirty)">
+                        Product Name is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="field grid col-12">
                 <label class="col-12  md:col-4">Instance Name:</label>
                 <div class="col-12 md:col-8">
                     <input pInputText formControlName="instanceName"
@@ -40,13 +52,13 @@
             </div>
 
             <div class="field grid col-12">
-                <label class="col-12  md:col-4">Product Name:</label>
+                <label class="col-12  md:col-4">Workspace ID:</label>
                 <div class="col-12 md:col-8">
-                    <input pInputText formControlName="productName"
-                        [class]="productName.errors?.['required'] && (productName.touched || productName.dirty) ? 'ng-dirty ng-invalid':''" />
+                    <input pInputText formControlName="workspaceArtifactID"
+                        [class]="workSpaceId.errors?.['required'] && (workSpaceId.touched || workSpaceId.dirty) ? 'ng-dirty ng-invalid':''" />
                     <div class="text-red-500"
-                        *ngIf="productName.errors?.['required'] && (productName.touched || productName.dirty)">
-                        Product Name is required!
+                        *ngIf="workSpaceId.errors?.['required'] && (workSpaceId.touched || workSpaceId.dirty)">
+                        Workspace Id is required!
                     </div>
                 </div>
             </div>
