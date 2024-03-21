@@ -17,12 +17,6 @@
                         <p-button icon="pi pi-plus" (onClick)="AddAutomatedLicenseRequest()" label="License Request">
                         </p-button>
                     </div>
-                    <!-- <div>
-                        <p-button icon="pi pi-plus" (onClick)="AddManualLicenseRequest()"
-                            label="Manual License Request">
-                        </p-button>
-                    </div> -->
-
                 </div>
 
             </div>
@@ -30,19 +24,21 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem"></th>
+                <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
                 <th pSortableColumn="instanceName">Instance Name<p-sortIcon field="instanceName"></p-sortIcon></th>
                 <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
                         field="instanceNameFriendly"></p-sortIcon>
                 </th>
-                <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
-                <th pSortableColumn="productName">Product Version <p-sortIcon field="productVersion"></p-sortIcon></th>
-                <th pSortableColumn="generatedByName">Request By <p-sortIcon field="generatedByName"></p-sortIcon>
+                <th pSortableColumn="relativityVersion">Relativity Version <p-sortIcon
+                        field="relativityVersion"></p-sortIcon></th>
+                <th pSortableColumn="workspaceArtifactID">Workspace ID<p-sortIcon
+                        field="workspaceArtifactID"></p-sortIcon></th>
+                <th pSortableColumn="generatedByName">Requestor <p-sortIcon field="generatedByName"></p-sortIcon>
                 </th>
-                <th pSortableColumn="generatedByEmail">Request By Email <p-sortIcon
+                <th pSortableColumn="generatedByEmail">Requestor Email <p-sortIcon
                         field="generatedByEmail"></p-sortIcon>
                 </th>
-                <th pSortableColumn="generatedOnUtc">Request Creation Date<p-sortIcon
-                        field="generatedOnUtc"></p-sortIcon>
+                <th pSortableColumn="generatedOnUtc">Request Date<p-sortIcon field="generatedOnUtc"></p-sortIcon>
                 </th>
                 <th>Status</th>
                 <th style="width: 8rem"></th>
@@ -50,16 +46,20 @@
             <tr>
                 <th></th>
                 <th>
+                    <p-columnFilter type="text" field="productName"></p-columnFilter>
+                </th>
+                <th>
                     <p-columnFilter type="text" field="instanceName"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="text" field="instanceNameFriendly"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="productName"></p-columnFilter>
+                    <p-columnFilter type="text" field="relativityVersion"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="productVersion"></p-columnFilter>
+                    <!-- <p-columnFilter type="numeric" field="workspaceArtifactID"></p-columnFilter> -->
+                    <p-columnFilter type="text" field="workspaceArtifactID"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="text" field="generatedByName"></p-columnFilter>
@@ -78,16 +78,19 @@
             <tr class="p-selectable-row">
                 <td></td>
                 <td>
+                    {{licenseRequest.productName}}
+                </td>
+                <td>
                     {{licenseRequest.instanceName}}
                 </td>
                 <td>
                     {{licenseRequest.instanceNameFriendly}}
                 </td>
                 <td>
-                    {{licenseRequest.productName}}
+                    {{licenseRequest.relativityVersion}}
                 </td>
                 <td>
-                    {{licenseRequest.productVersion}}
+                    {{licenseRequest.workspaceArtifactID}}
                 </td>
                 <td>
                     {{licenseRequest.generatedByName}}

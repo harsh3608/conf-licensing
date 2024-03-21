@@ -18,12 +18,15 @@
             <tr>
                 <th style="width: 3rem"></th>
                 <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
-                <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
                 <th pSortableColumn="instanceName">Instance Name<p-sortIcon field="instanceName"></p-sortIcon></th>
                 <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
                         field="instanceNameFriendly"></p-sortIcon>
                 </th>
-                <th pSortableColumn="approvedOnUtc">Approved On<p-sortIcon field="approvedOnUtc"></p-sortIcon>
+                <th pSortableColumn="relativityVersion">Relativity Version<p-sortIcon field="relativityVersion"></p-sortIcon>
+                </th>
+                <th pSortableColumn="workspaceArtifactID">Workspace ID<p-sortIcon field="workspaceArtifactID"></p-sortIcon>
+                </th>
+                <th pSortableColumn="startDate">Start Date<p-sortIcon field="startDate"></p-sortIcon>
                 </th>
                 <th pSortableColumn="endDate">Expiration Date<p-sortIcon field="endDate"></p-sortIcon>
                 </th>
@@ -36,16 +39,20 @@
                     <p-columnFilter type="text" field="organization"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="productName"></p-columnFilter>
-                </th>
-                <th>
                     <p-columnFilter type="text" field="instanceName"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="text" field="instanceNameFriendly"></p-columnFilter>
                 </th>
+                
                 <th>
-                    <p-columnFilter type="date" field="approvedOnUtc"></p-columnFilter>
+                    <p-columnFilter type="text" field="relativityVersion"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="workspaceArtifactID"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="date" field="startDate"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="date" field="endDate"></p-columnFilter>
@@ -61,18 +68,24 @@
                     {{licenseRequest.organization}}
                 </td>
                 <td>
-                    {{licenseRequest.productName}}
-                </td>
-                <td>
                     {{licenseRequest.instanceName}}
                 </td>
                 <td>
                     {{licenseRequest.instanceNameFriendly}}
                 </td>
                 <td>
+                    {{licenseRequest.relativityVersion}}
+                </td>
+                <td>
+                    {{licenseRequest.workspaceArtifactID}}
+                </td>
+                <!-- <td>
                     @if(licenseRequest.approvedOnUtc !=='0001-01-01T00:00:00'){
                     {{licenseRequest.approvedOnUtc | date:'MM/dd/yyyy'}}
                     }
+                </td> -->
+                <td>
+                    {{licenseRequest.startDate | date:'MM/dd/yyyy'}}
                 </td>
                 <td>
                     {{licenseRequest.endDate | date:'MM/dd/yyyy'}}
