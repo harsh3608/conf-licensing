@@ -83,6 +83,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
       this.licenseManualRequest.endDate = this.datePipe.transform((this.ManualRequestForm.value.endDate), 'yyyy-MM-dd') || '';
       this.licenseManualRequest.licenseGeneratedBy= this.userService.getLoggedInUserName(),
       this.licenseManualRequest.licenseUpdatedBy= this.userService.getLoggedInUserName(),
+      this.licenseManualRequest.organization = ' '
 
       console.log('licenseManualRequest', this.licenseManualRequest);
       this.licenseService.updateApprovedLicense(this.licenseManualRequest).subscribe(

@@ -67,6 +67,7 @@ export interface ApproveLicenseModel {
     licenseGeneratedBy: string
     licenseUpdatedBy: string
     status: number
+    organization:string
 }
 
 export interface AllApprovedLicensesResponse {
