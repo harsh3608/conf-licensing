@@ -60,7 +60,6 @@ export class UpdateApprovedLicenseComponent implements OnInit {
 
   getLicenseDetails() {
     this.licenseService.getApprovedLicense(this.licenseArtifactId).subscribe((res) => {
-      debugger;
       if (res.isSuccess) {
         this.licenseManualRequest = res.response;
         this.licenseManualRequest2 = res.response;
