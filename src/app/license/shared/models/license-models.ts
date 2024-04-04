@@ -17,7 +17,9 @@ export interface LicenseManualRequest {
     organizationArtifactId: number
     isCompleted: boolean
     organization: string
-    relativityVersion:string
+    relativityVersion: string
+    RelativityVersionCore: string
+    WorkspaceVersion: string
 }
 
 export interface AllLicensesResponse {
@@ -68,9 +70,11 @@ export interface ApproveLicenseModel {
     licenseGeneratedBy: string
     licenseUpdatedBy: string
     status: number
-    organization:string
-    approvedOnUtc?:string
-    relativityVersion:string
+    organization: string
+    approvedOnUtc?: string
+    relativityVersion: string
+    RelativityVersionCore: string
+    WorkspaceVersion: string
 }
 
 export interface AllApprovedLicensesResponse {
@@ -100,8 +104,10 @@ export interface UpdateLicenseRequest {
     organizationArtifactId: number
     isCompleted: boolean
     organization: string
-    relativityVersion:string
-  }
+    relativityVersion: string
+    RelativityVersionCore: string
+    WorkspaceVersion: string
+}
 
 export interface UpdateLicenseResponse {
     statusCode: number
