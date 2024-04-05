@@ -51,8 +51,9 @@ export class UpdateApprovedLicenseComponent implements OnInit {
       productName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       generatedByName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       generatedByEmail: new FormControl({ value: '', disabled: true }, [Validators.required]),
-      // generatedOnUtc: new FormControl({ value: '', disabled: true }, [Validators.required]),
-      organization: new FormControl('', [Validators.required]),
+      relativityVersion: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      relativityVersionCore: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      workspaceVersion: new FormControl({ value: '', disabled: true }, [Validators.required]),      organization: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
     });
@@ -77,14 +78,14 @@ export class UpdateApprovedLicenseComponent implements OnInit {
 
   onSubmit() {
     this.ManualRequestForm.markAllAsTouched();
-    
+
     if (this.ManualRequestForm.valid) {
       this.licenseManualRequest.organizationArtifactId = this.ManualRequestForm.value.organization;
       this.licenseManualRequest.startDate = this.datePipe.transform((this.ManualRequestForm.value.startDate), 'yyyy-MM-dd') || '';
       this.licenseManualRequest.endDate = this.datePipe.transform((this.ManualRequestForm.value.endDate), 'yyyy-MM-dd') || '';
-      this.licenseManualRequest.licenseGeneratedBy= this.userService.getLoggedInUserName(),
-      this.licenseManualRequest.licenseUpdatedBy= this.userService.getLoggedInUserName(),
-      this.licenseManualRequest.organization = ' '
+      this.licenseManualRequest.licenseGeneratedBy = this.userService.getLoggedInUserName(),
+        this.licenseManualRequest.licenseUpdatedBy = this.userService.getLoggedInUserName(),
+        this.licenseManualRequest.organization = ' '
 
       console.log('licenseManualRequest', this.licenseManualRequest);
       this.licenseService.updateApprovedLicense(this.licenseManualRequest).subscribe(
@@ -164,6 +165,18 @@ export class UpdateApprovedLicenseComponent implements OnInit {
 
   get endDate(): FormControl {
     return this.ManualRequestForm.get('endDate') as FormControl;
+  }
+
+  get relativityVersion(): FormControl {
+    return this.ManualRequestForm.get('relativityVersion') as FormControl;
+  }
+
+  get relativityVersionCore(): FormControl {
+    return this.ManualRequestForm.get('relativityVersionCore') as FormControl;
+  }
+
+  get workspaceVersion(): FormControl {
+    return this.ManualRequestForm.get('workspaceVersion') as FormControl;
   }
 
 }

@@ -87,17 +87,39 @@
                 </div>
             </div>
 
-            <!-- <div class="field grid col-12">
-                <label class="col-12  md:col-4">License Generation Date:</label>
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4 ">Relativity Version:</label>
                 <div class="col-12 md:col-8">
-                    <p-calendar formControlName="generatedOnUtc" [showIcon]="true"
-                        [class]="generatedOnUtc.errors?.['required'] && (generatedOnUtc.touched || generatedOnUtc.dirty) ? 'ng-dirty ng-invalid':''"></p-calendar>
+                    <input pInputText formControlName="relativityVersion"
+                        [class]="relativityVersion.errors?.['required'] && (relativityVersion.touched || relativityVersion.dirty) ? 'ng-dirty ng-invalid':''" />
                     <div class="text-red-500"
-                        *ngIf="generatedOnUtc.errors?.['required'] && (generatedOnUtc.touched || generatedOnUtc.dirty)">
-                        License Generation Date is required!
+                        *ngIf="relativityVersion.errors?.['required'] && (relativityVersion.touched || relativityVersion.dirty)">
+                        Relativity Version is required!
                     </div>
                 </div>
-            </div> -->
+            </div>
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4 ">Relativity Core Version:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="relativityVersionCore"
+                        [class]="generatedByEmail.errors?.['required'] && (relativityVersionCore.touched || relativityVersionCore.dirty) ? 'ng-dirty ng-invalid':''" />
+                    <div class="text-red-500"
+                        *ngIf="generatedByEmail.errors?.['required'] && (relativityVersionCore.touched || relativityVersionCore.dirty)">
+                        Relativity Core Version is required!
+                    </div>
+                </div>
+            </div>
+            <div class="field grid col-12">
+                <label class="col-12  md:col-4 ">Workspace Version:</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText formControlName="workspaceVersion"
+                        [class]="workspaceVersion.errors?.['required'] && (workspaceVersion.touched || workspaceVersion.dirty) ? 'ng-dirty ng-invalid':''" />
+                    <div class="text-red-500"
+                        *ngIf="workspaceVersion.errors?.['required'] && (workspaceVersion.touched || workspaceVersion.dirty)">
+                        Workspace Version is required!
+                    </div>
+                </div>
+            </div>
 
             <div class="field grid col-12">
                 <label class="col-12  md:col-4">Organization:</label>

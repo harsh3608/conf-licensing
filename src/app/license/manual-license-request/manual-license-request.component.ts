@@ -55,6 +55,9 @@ export class ManualLicenseRequestComponent implements OnInit {
       generatedByName: new FormControl({ value: '', disabled: true }, [Validators.required]),
       generatedByEmail: new FormControl({ value: '', disabled: true }, [Validators.required]),
       generatedOnUtc: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      relativityVersion: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      relativityVersionCore: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      workspaceVersion: new FormControl({ value: '', disabled: true }, [Validators.required]),
       organization: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
@@ -119,7 +122,7 @@ export class ManualLicenseRequestComponent implements OnInit {
     this.dynamicDialogRef.close();
   }
 
-  
+
   getActiveOrganizations() {
     this.organizationService.getActiveOrganizations().subscribe((res) => {
       if (res.isSuccess) {
@@ -197,6 +200,18 @@ export class ManualLicenseRequestComponent implements OnInit {
 
   get endDate(): FormControl {
     return this.ManualRequestForm.get('endDate') as FormControl;
+  }
+
+  get relativityVersion(): FormControl {
+    return this.ManualRequestForm.get('relativityVersion') as FormControl;
+  }
+
+  get relativityVersionCore(): FormControl {
+    return this.ManualRequestForm.get('relativityVersionCore') as FormControl;
+  }
+
+  get workspaceVersion(): FormControl {
+    return this.ManualRequestForm.get('workspaceVersion') as FormControl;
   }
 
 }
