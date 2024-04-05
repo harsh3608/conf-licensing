@@ -23,8 +23,8 @@ export class ManualLicenseRequestComponent implements OnInit {
   organizations: Organization[] = [];
   licenseArtifactId: number = this.config.data.licenseArtifactId;
   approveLicense!: ApproveLicenseModel;
-  minStartDate: Date = new Date();
-  minEndDate: Date = new Date();
+  // minStartDate: Date = new Date();
+  // minEndDate: Date = new Date();
   ref: DynamicDialogRef | undefined;
 
 
@@ -39,7 +39,7 @@ export class ManualLicenseRequestComponent implements OnInit {
     public dialogService: DialogService,
     private userService: UserService
   ) {
-    this.minStartDate.setDate(this.minStartDate.getDate() + 1);
+    //this.minStartDate.setDate(this.minStartDate.getDate() + 1);
   }
 
   ngOnInit(): void {
@@ -131,9 +131,9 @@ export class ManualLicenseRequestComponent implements OnInit {
     });
   }
 
-  setMinEndDate(event: any) {
-    this.minEndDate.setDate(event.getDate() + 1);
-  }
+  // setMinEndDate(event: any) {
+  //   this.minEndDate.setDate(event.getDate() + 1);
+  // }
 
   AddOrganization() {
     this.ref = this.dialogService.open(OrganizationsAddComponent, {

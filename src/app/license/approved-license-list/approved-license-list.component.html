@@ -17,6 +17,7 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem"></th>
+                <th pSortableColumn="productName">Product<p-sortIcon field="productName"></p-sortIcon></th>
                 <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
                 <th pSortableColumn="instanceName">Instance Name<p-sortIcon field="instanceName"></p-sortIcon></th>
                 <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
@@ -25,6 +26,8 @@
                 <th pSortableColumn="relativityVersion">Relativity Version<p-sortIcon field="relativityVersion"></p-sortIcon>
                 </th>
                 <th pSortableColumn="workspaceArtifactID">Workspace ID<p-sortIcon field="workspaceArtifactID"></p-sortIcon>
+                </th>
+                <th pSortableColumn="approvedOnUtc">Approved Date<p-sortIcon field="approvedOnUtc"></p-sortIcon>
                 </th>
                 <th pSortableColumn="startDate">Start Date<p-sortIcon field="startDate"></p-sortIcon>
                 </th>
@@ -35,6 +38,9 @@
             </tr>
             <tr>
                 <th></th>
+                <th>
+                    <p-columnFilter type="text" field="productName"></p-columnFilter>
+                </th>
                 <th>
                     <p-columnFilter type="text" field="organization"></p-columnFilter>
                 </th>
@@ -52,6 +58,9 @@
                     <p-columnFilter type="text" field="workspaceArtifactID"></p-columnFilter>
                 </th>
                 <th>
+                    <p-columnFilter type="date" field="approvedOnUtc"></p-columnFilter>
+                </th>
+                <th>
                     <p-columnFilter type="date" field="startDate"></p-columnFilter>
                 </th>
                 <th>
@@ -64,6 +73,9 @@
         <ng-template pTemplate="body" let-licenseRequest>
             <tr class="p-selectable-row">
                 <td></td>
+                <td>
+                    {{licenseRequest.productName}}
+                </td>
                 <td>
                     {{licenseRequest.organization}}
                 </td>
@@ -79,11 +91,11 @@
                 <td>
                     {{licenseRequest.workspaceArtifactID}}
                 </td>
-                <!-- <td>
+                <td>
                     @if(licenseRequest.approvedOnUtc !=='0001-01-01T00:00:00'){
                     {{licenseRequest.approvedOnUtc | date:'MM/dd/yyyy'}}
                     }
-                </td> -->
+                </td>
                 <td>
                     {{licenseRequest.startDate | date:'MM/dd/yyyy'}}
                 </td>

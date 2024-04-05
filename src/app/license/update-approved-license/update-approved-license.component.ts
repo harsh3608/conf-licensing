@@ -22,8 +22,8 @@ export class UpdateApprovedLicenseComponent implements OnInit {
   organizations: Organization[] = [];
   licenseArtifactId: number = this.config.data.licenseArtifactId;
   approveLicense!: ApproveLicenseModel;
-  minStartDate: Date = new Date();
-  minEndDate: Date = new Date();
+  //minStartDate: Date = new Date();
+  //minEndDate: Date = new Date();
 
 
   constructor(
@@ -36,7 +36,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
     private datePipe: DatePipe,
     private userService: UserService,
   ) {
-    this.minStartDate.setDate(this.minStartDate.getDate() + 1);
+    //this.minStartDate.setDate(this.minStartDate.getDate() + 1);
   }
 
   ngOnInit(): void {
@@ -112,9 +112,9 @@ export class UpdateApprovedLicenseComponent implements OnInit {
     })
   }
 
-  setMinEndDate(event: any) {
-    this.minEndDate.setDate(event.getDate() + 1);
-  }
+  // setMinEndDate(event: any) {
+  //   this.minEndDate.setDate(event.getDate() + 1);
+  // }
 
 
 
