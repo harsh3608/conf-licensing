@@ -53,7 +53,7 @@ export class UpdateApprovedLicenseComponent implements OnInit {
       generatedByEmail: new FormControl({ value: '', disabled: true }, [Validators.required]),
       relativityVersion: new FormControl({ value: '', disabled: true }, [Validators.required]),
       relativityVersionCore: new FormControl({ value: '', disabled: true }, [Validators.required]),
-      workspaceVersion: new FormControl({ value: '', disabled: true }, [Validators.required]),      organization: new FormControl('', [Validators.required]),
+      workspaceVersion: new FormControl({ value: '', disabled: true }, [Validators.required]), organization: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
     });
@@ -115,13 +115,6 @@ export class UpdateApprovedLicenseComponent implements OnInit {
   // setMinEndDate(event: any) {
   //   this.minEndDate.setDate(event.getDate() + 1);
   // }
-
-
-
-
-
-
-
 
   get instanceName(): FormControl {
     return this.ManualRequestForm.get('instanceName') as FormControl;
