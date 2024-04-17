@@ -28,7 +28,7 @@ export class OrganizationsUpdateComponent implements OnInit {
     this.updateForm = this.fb.group({
       artifactId: new FormControl(0),
       name: new FormControl('', [Validators.required]),
-      isActive: new FormControl(true, [Validators.required]),
+      isActive: new FormControl('', [Validators.required]),
     });
     this.getOrganization();
   }
