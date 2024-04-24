@@ -122,6 +122,8 @@ export class LicenseListComponent {
       rejectButtonStyleClass: "p-button-text p-button-text",
       acceptIcon: "none",
       rejectIcon: "none",
+      acceptLabel: "Delete",
+      rejectLabel: "Cancel",
 
       accept: () => {
         this.licenseService.deleteLicenseRequest(requestId).subscribe(
