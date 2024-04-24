@@ -30,6 +30,9 @@ export class LicenseService {
     return this.http.put<UpdateLicenseResponse>(Constants.baseServerUrl + `LicenseRequest/UpdateLicenseRequest`, request, { headers: this.headers });
   }
 
+  deleteLicenseRequest(requestId:number) : Observable<UpdateLicenseResponse>{
+    return this.http.delete<UpdateLicenseResponse>(Constants.baseServerUrl + `LicenseRequest/DeleteLicenseRequest?artifactId=${requestId}`, { headers: this.headers });
+  }
 
   //Approved Licenses
   getAllApprovedLicenses(): Observable<AllApprovedLicensesResponse> {

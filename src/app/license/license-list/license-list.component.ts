@@ -109,33 +109,35 @@ export class LicenseListComponent {
     });
   }
 
-  deleteRequest(){
-
-  }
 
 
-  onCancelConfirm() {
-    this.visibleConfirmation = false;
-  }
 
-
-  openConfirmation(event: Event) {
+  openConfirmation(event: Event, requestId: any) {
     this.confirmationService.confirm({
-        target: event.target as EventTarget,
-        message: 'Do you want to delete this request?',
-        header: 'Delete Confirmation',
-        icon: 'pi pi-info-circle',
-        acceptButtonStyleClass:"p-button-danger p-button-text",
-        rejectButtonStyleClass:"p-button-text p-button-text",
-        acceptIcon:"none",
-        rejectIcon:"none",
+      target: event.target as EventTarget,
+      message: 'Do you want to delete this request?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: "p-button-danger p-button-text",
+      rejectButtonStyleClass: "p-button-text p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
 
-        accept: () => {
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
-        },
-        reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
-        }
+      accept: () => {
+        this.licenseService.deleteLicenseRequest(requestId).subscribe(
+          (res) => {
+            if (res.isSuccess) {
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
+              this.getAllLicenseRequests();
+            } else {
+              this.messageService.add({ severity: 'warn', summary: 'Success', detail: res.message });
+            }
+          }
+        )
+      },
+      reject: () => {
+
+      }
     });
-}
+  }
 }

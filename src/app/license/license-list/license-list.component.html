@@ -119,7 +119,7 @@
                 </td>
                 <td>
                     <p-button icon="pi pi-trash" [rounded]="true" severity="danger"
-                    pTooltip="Delete request" tooltipPosition="bottom" (onClick)="openConfirmation($event)"
+                    pTooltip="Delete request" tooltipPosition="bottom" (onClick)="openConfirmation($event,licenseRequest.artifactId)"
                         [disabled]="licenseRequest.isCompleted? true:false">
                     </p-button>
                 </td>
