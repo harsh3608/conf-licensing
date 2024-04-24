@@ -25,11 +25,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { LicenseListComponent } from './license-list/license-list.component';
 import { ApprovedLicenseListComponent } from './approved-license-list/approved-license-list.component';
 import { UpdateApprovedLicenseComponent } from './update-approved-license/update-approved-license.component';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 
@@ -69,7 +69,7 @@ import { UpdateApprovedLicenseComponent } from './update-approved-license/update
     InputNumberModule,
     DialogModule,
     ToastModule,
-
+    ConfirmDialogModule
 
 
 
@@ -78,6 +78,7 @@ import { UpdateApprovedLicenseComponent } from './update-approved-license/update
     MessageService,
     DialogService,
     DynamicDialogRef,
+    ConfirmationService
   ]
 })
 export class LicenseModule { }

@@ -41,6 +41,7 @@
                 <th pSortableColumn="generatedOnUtc">Request Date<p-sortIcon field="generatedOnUtc"></p-sortIcon>
                 </th>
                 <th>Status</th>
+                <th></th>
                 <th style="width: 8rem"></th>
             </tr>
             <tr>
@@ -70,6 +71,7 @@
                 <th>
                     <p-columnFilter type="date" field="generatedOnUtc"></p-columnFilter>
                 </th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -108,8 +110,18 @@
                     </p-button>
                 </td>
                 <td>
-                    <p-button label="Generate License" [disabled]="licenseRequest.isCompleted? true:false"
+                    <p-button icon="pi pi-verified" [rounded]="true" severity="success"
+                        [disabled]="licenseRequest.isCompleted? true:false"
+                        pTooltip="Generate License" tooltipPosition="bottom"
                         (onClick)="AddManualLicenseRequest(licenseRequest.artifactId)"></p-button>
+                    <!-- <p-button label="Generate License" [disabled]="licenseRequest.isCompleted? true:false"
+                        (onClick)="AddManualLicenseRequest(licenseRequest.artifactId)"></p-button> -->
+                </td>
+                <td>
+                    <p-button icon="pi pi-trash" [rounded]="true" severity="danger"
+                    pTooltip="Delete request" tooltipPosition="bottom" (onClick)="openConfirmation($event)"
+                        [disabled]="licenseRequest.isCompleted? true:false">
+                    </p-button>
                 </td>
             </tr>
         </ng-template>
@@ -147,3 +159,21 @@
     </div>
 
 </p-dialog>
+
+<!-- <p-dialog header="Confirmation" [(visible)]="visibleConfirmation" [style]="{width: '350px'}" [modal]="true">
+    <p class="">Are you sure you want to delete this License Request?</p>
+    
+    <div class="field col-12 md:col-12 logic_buttons dialog_footer_buttons">
+       
+        <div class="flex justify-content-end">
+            <div class="field mr-2 mb-0">
+                <button pButton pRipple label="Delete" icon="pi pi-trash" (click)="deleteRequest()"></button>
+            </div>
+            <div class="field mb-0">
+                <p-button label="Cancel" icon="pi pi-times" (onClick)="onCancelConfirm()"></p-button>
+            </div>
+        </div>
+    </div>
+</p-dialog> -->
+
+<p-confirmDialog></p-confirmDialog>

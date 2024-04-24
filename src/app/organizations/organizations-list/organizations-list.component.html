@@ -32,7 +32,7 @@
                 <th>
                     <p-columnFilter type="text" field="name"></p-columnFilter>
                 </th>
-                <th>
+                <th> 
                     <p-columnFilter field="isActive" matchMode="equals" [showMenu]="false">
                         <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                             <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"

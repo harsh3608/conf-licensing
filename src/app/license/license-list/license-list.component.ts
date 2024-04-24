@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { ManualLicenseRequestComponent } from '../manual-license-request/manual-license-request.component';
@@ -19,6 +19,7 @@ export class LicenseListComponent {
   @ViewChild('dt') table!: Table;
   ref: DynamicDialogRef | undefined;
   visible: boolean = false;
+  visibleConfirmation: boolean = false;
   encryptedString: string = '';
 
   constructor(
@@ -26,7 +27,7 @@ export class LicenseListComponent {
     public dialogService: DialogService,
     private messageService: MessageService,
     private licenseService: LicenseService,
-
+    private confirmationService: ConfirmationService
 
   ) { }
 
@@ -108,4 +109,33 @@ export class LicenseListComponent {
     });
   }
 
+  deleteRequest(){
+
+  }
+
+
+  onCancelConfirm() {
+    this.visibleConfirmation = false;
+  }
+
+
+  openConfirmation(event: Event) {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Do you want to delete this request?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        acceptButtonStyleClass:"p-button-danger p-button-text",
+        rejectButtonStyleClass:"p-button-text p-button-text",
+        acceptIcon:"none",
+        rejectIcon:"none",
+
+        accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+        },
+        reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+        }
+    });
+}
 }
