@@ -4,6 +4,7 @@ import { MsalGuard } from '@azure/msal-angular';
 import { BrowserUtils } from '@azure/msal-browser';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
+import { LicenseListComponent } from './license/license-list/license-list.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
+  
   {
     // Needed for Error routing
     path: 'error',

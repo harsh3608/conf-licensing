@@ -3,6 +3,7 @@ import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { AuthenticationResult, EventMessage, EventType } from '@azure/msal-browser';
 import { Subscription, filter } from 'rxjs';
 import { Constants } from '../shared/Constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +15,13 @@ export class HomeComponent implements OnInit {
   overlayMenuOpenSubscription: Subscription | undefined;
   menuOutsideClickListener: any;
   menuScrollListener: any;
-  
+
 
   constructor(
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService,
-
-  ) {  }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.msalBroadcastService.msalSubject$
@@ -31,15 +32,17 @@ export class HomeComponent implements OnInit {
         const payload = result.payload as AuthenticationResult;
         this.authService.instance.setActiveAccount(payload.account);
         this.setLoginDisplay();
+        this.router.navigate(['/license/list']);
       });
     this.setLoginDisplay();
+
   }
 
   setLoginDisplay() {
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
 
-  
-  
+
+
 
 }

@@ -52,7 +52,8 @@ import {
 
 import { AuthConfigInterceptor } from './shared/interceptors/auth-config.interceptor';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
@@ -174,7 +175,10 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MsalService,
     MsalGuard,
     MsalBroadcastService,
-    MessageService
+    MessageService,
+    DialogService,
+    DynamicDialogRef,
+    ConfirmationService
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
 })
