@@ -32,7 +32,7 @@
                 <th>
                     <p-columnFilter type="text" field="name"></p-columnFilter>
                 </th>
-                <th> 
+                <th>
                     <p-columnFilter field="isActive" matchMode="equals" [showMenu]="false">
                         <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                             <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
@@ -55,16 +55,17 @@
                     {{organization.name}}
                 </td>
                 <td>
-                    <p-button  icon="{{organization.isActive ? 'pi pi-thumbs-up-fill':'pi pi-thumbs-down-fill'}}"
+                    <p-button icon="{{organization.isActive ? 'pi pi-thumbs-up-fill':'pi pi-thumbs-down-fill'}}"
                         pTooltip="{{organization.isActive ? 'Active':'Inactive'}}" tooltipPosition="bottom"
-                        [rounded]="true" [text]="true" [raised]="true" severity="{{organization.isActive ? 'info':'danger'}}">
+                        [rounded]="true" [text]="true" [raised]="true"
+                        severity="{{organization.isActive ? 'info':'danger'}}">
                     </p-button>
-
-                    
                 </td>
-                <td> <p-button label="Edit" icon="pi pi-pencil"
-                        (onClick)="updateOrganization(organization.artifactId)"></p-button></td>
-
+                <td>
+                    <p-button icon="pi pi-pencil" [rounded]="true" severity="primary" pTooltip="Edit organization"
+                        tooltipPosition="bottom" (onClick)="updateOrganization(organization.artifactId)">
+                    </p-button>
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
@@ -78,21 +79,3 @@
         </ng-template>
     </p-table>
 </div>
-
-
-<!-- <p-dialog header="License Key" [modal]="true" [(visible)]="visible" [style]="{width: '50vw'}">
-    <div class="flex justify-content-center">
-        <textarea pInputTextarea cols="100" rows="10" [autoResize]="false" [readonly]="true" [value]="encryptedString">
-        </textarea>
-    </div>
-    <div class="field col-12 md:col-12 logic_buttons dialog_footer_buttons">
-        <div class="flex justify-content-end">
-            <div class="field mr-2 mb-0">
-                <button pButton pRipple label="Copy" icon="pi pi-copy" (click)="CopyToClipboard()"></button>
-            </div>
-            <div class="field mb-0">
-                <p-button label="Cancel" icon="pi pi-times" (onClick)="onCancel()"></p-button>
-            </div>
-        </div>
-    </div>
-</p-dialog> -->

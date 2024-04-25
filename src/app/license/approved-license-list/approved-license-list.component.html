@@ -23,9 +23,11 @@
                 <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
                         field="instanceNameFriendly"></p-sortIcon>
                 </th>
-                <th pSortableColumn="relativityVersion">Relativity Version<p-sortIcon field="relativityVersion"></p-sortIcon>
+                <th pSortableColumn="relativityVersion">Relativity Version<p-sortIcon
+                        field="relativityVersion"></p-sortIcon>
                 </th>
-                <th pSortableColumn="workspaceArtifactID">Workspace ID<p-sortIcon field="workspaceArtifactID"></p-sortIcon>
+                <th pSortableColumn="workspaceArtifactID">Workspace ID<p-sortIcon
+                        field="workspaceArtifactID"></p-sortIcon>
                 </th>
                 <th pSortableColumn="approvedOnUtc">Approved Date<p-sortIcon field="approvedOnUtc"></p-sortIcon>
                 </th>
@@ -50,7 +52,7 @@
                 <th>
                     <p-columnFilter type="text" field="instanceNameFriendly"></p-columnFilter>
                 </th>
-                
+
                 <th>
                     <p-columnFilter type="text" field="relativityVersion"></p-columnFilter>
                 </th>
@@ -104,12 +106,14 @@
                 </td>
                 <td>
                     <p-button icon="pi pi-key" [rounded]="true" [text]="true" [raised]="true" severity="info "
-                        (onClick)="showLicenseKey(licenseRequest.licenseKey)">
+                        (onClick)="showLicenseKey(licenseRequest.licenseKey)" pTooltip="View license key"
+                        tooltipPosition="bottom">
                     </p-button>
                 </td>
                 <td>
-                    <p-button label="Edit" icon="pi pi-pencil"
-                        (onClick)="updateApprovedLicense(licenseRequest.artifactId)"></p-button>
+                    <p-button icon="pi pi-pencil" [rounded]="true" severity="primary" pTooltip="Edit license"
+                        tooltipPosition="bottom" (onClick)="updateApprovedLicense(licenseRequest.artifactId)">
+                    </p-button>
                 </td>
             </tr>
         </ng-template>
