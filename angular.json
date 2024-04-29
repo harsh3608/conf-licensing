@@ -40,7 +40,7 @@
               "src/assets/layout/styles/theme/theme-light/conformity/theme.css"
             ],
             "scripts": []
-          },
+          }, 
           "configurations": {
             "production": {
               "budgets": [
