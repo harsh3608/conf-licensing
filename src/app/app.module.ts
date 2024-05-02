@@ -6,11 +6,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RouterModule } from '@angular/router';
-
-
 import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
-
 import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
@@ -26,9 +23,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
-
-import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
   IPublicClientApplication,
   PublicClientApplication,
@@ -49,11 +44,9 @@ import {
   MsalModule,
   MsalInterceptor,
 } from '@azure/msal-angular';
-
 import { AuthConfigInterceptor } from './shared/interceptors/auth-config.interceptor';
 import { ToastModule } from 'primeng/toast';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
@@ -92,7 +85,6 @@ export function MSALInstanceFactory(): IPublicClientApplication {
         piiLoggingEnabled: false,
       },
     },
-
   });
 }
 
@@ -176,9 +168,6 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MsalGuard,
     MsalBroadcastService,
     MessageService,
-    DialogService,
-    DynamicDialogRef,
-    ConfirmationService
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
 })
