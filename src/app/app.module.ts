@@ -62,17 +62,17 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     /*Development Credentials*/
-    // auth: {
-    //   clientId: 'edbf5f6e-919f-4706-8d0c-3f7ce8d9577a',
-    //   authority: 'https://login.microsoftonline.com/49eab8ca-0599-4af2-8e2b-5446d1d5843d',
-    //   redirectUri: 'http://localhost:4200/',
-    // },
-    /*Development Credentials*/
     auth: {
       clientId: '650dd4c0-f9cb-475f-a482-c972642c2e2a',
       authority: 'https://login.microsoftonline.com/697a8202-c8a7-486b-81c7-807fd60306e1',
-      redirectUri: 'http://licensehubapp.azurewebsites.net/',
+      redirectUri: 'http://localhost:4200/',
     },
+    /*Development Credentials*/
+    // auth: {
+    //   clientId: '650dd4c0-f9cb-475f-a482-c972642c2e2a',
+    //   authority: 'https://login.microsoftonline.com/697a8202-c8a7-486b-81c7-807fd60306e1',
+    //   redirectUri: 'https://licensehubapp.azurewebsites.net/',
+    // },
 
     /*Production Credentials*/
     // auth: {
@@ -96,7 +96,6 @@ export function MSALInstanceFactory(): IPublicClientApplication {
 
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   const protectedResourceMap = new Map<string, Array<string>>();
-  // protectedResourceMap.set('api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae', ['f4b2cc27-c70a-40c5-b7a3-a499f12241ae/default'])
   protectedResourceMap.set('api://b1776e15-97e1-4c21-852a-317f06ef5aac', ['b1776e15-97e1-4c21-852a-317f06ef5aac/default'])
 
   return {
@@ -109,7 +108,6 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   return {
     interactionType: InteractionType.Redirect,
     authRequest: {
-      // scopes: ['api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae/License.Read', 'api://f4b2cc27-c70a-40c5-b7a3-a499f12241ae/License.Write'],
       scopes: ['api://b1776e15-97e1-4c21-852a-317f06ef5aac/License.Read', 'api://b1776e15-97e1-4c21-852a-317f06ef5aac/License.Write'],
     },
   };
