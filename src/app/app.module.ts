@@ -62,17 +62,18 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     /*Development Credentials*/
-    auth: {
-      clientId: '650dd4c0-f9cb-475f-a482-c972642c2e2a',
-      authority: 'https://login.microsoftonline.com/697a8202-c8a7-486b-81c7-807fd60306e1',
-      redirectUri: 'http://localhost:4200/',
-    },
-    /*Development Credentials*/
     // auth: {
     //   clientId: '650dd4c0-f9cb-475f-a482-c972642c2e2a',
     //   authority: 'https://login.microsoftonline.com/697a8202-c8a7-486b-81c7-807fd60306e1',
-    //   redirectUri: 'https://licensehubapp.azurewebsites.net/',
+    //   redirectUri: 'http://localhost:4200/',
     // },
+    
+    /*Development Credentials*/
+    auth: {
+      clientId: '650dd4c0-f9cb-475f-a482-c972642c2e2a',
+      authority: 'https://login.microsoftonline.com/697a8202-c8a7-486b-81c7-807fd60306e1',
+      redirectUri: 'https://licensehubapp.azurewebsites.net/',
+    },
 
     /*Production Credentials*/
     // auth: {
