@@ -134,6 +134,14 @@ export interface SingleApprovedLicenseResponse {
 }
 
 
-
+export interface LicenseApprovalEmailRequest {
+    email: string
+    licenseKey: string
+    productName: string
+    instanceName: string
+    workspaceID: number
+    generatedByName: string
+    generatedOnUtc: any
+}
 
 

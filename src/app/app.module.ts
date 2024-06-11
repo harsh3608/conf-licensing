@@ -68,19 +68,13 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     //   redirectUri: 'http://localhost:4200/',
     // },
     
-    /*Development Credentials*/
+    /*Production Credentials*/
     auth: {
       clientId: '650dd4c0-f9cb-475f-a482-c972642c2e2a',
       authority: 'https://login.microsoftonline.com/697a8202-c8a7-486b-81c7-807fd60306e1',
       redirectUri: 'https://licensehubapp.azurewebsites.net/',
     },
-
-    /*Production Credentials*/
-    // auth: {
-    //   clientId: 'c2759463-3916-4b99-b486-654fcddebb88',
-    //   authority: 'https://login.microsoftonline.com/49eab8ca-0599-4af2-8e2b-5446d1d5843d',
-    //   redirectUri: 'https://licenseapp-dev.azurewebsites.net/',
-    // }, 
+    
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
       storeAuthStateInCookie: isIE, // set to true for IE 11

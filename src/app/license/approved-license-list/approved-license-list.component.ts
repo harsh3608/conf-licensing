@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApproveLicenseModel } from '../shared/models/license-models';
+import { ApproveLicenseModel, LicenseApprovalEmailRequest } from '../shared/models/license-models';
 import { Table } from 'primeng/table';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
@@ -81,5 +81,24 @@ export class ApprovedLicenseListComponent implements OnInit {
     this.visible = true;
     this.encryptedString = key;
   }
+
+  sendEmail(licenseRequest:ApproveLicenseModel) {
+    const mailRequest: LicenseApprovalEmailRequest = {
+      email: licenseRequest.generatedByEmail,
+      licenseKey: licenseRequest.licenseKey,
+      productName: licenseRequest.productName,
+      instanceName: licenseRequest.instanceName,
+      workspaceID: licenseRequest.workspaceArtifactID,
+      generatedByName: licenseRequest.generatedByName,
+      generatedOnUtc: licenseRequest.generatedOnUtc
+    };
+    this.licenseService.sendLicenseApprovalEmail(mailRequest).subscribe((res)=> {
+      if(res.isSuccess) {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
+      }else{
+        this.messageService.add({ severity: 'warn', summary: 'Failure', detail: res.message });
+      }
+    })
+}
 
 }

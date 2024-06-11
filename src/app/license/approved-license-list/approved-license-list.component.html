@@ -36,7 +36,9 @@
                 <th pSortableColumn="endDate">Expiration Date<p-sortIcon field="endDate"></p-sortIcon>
                 </th>
                 <th>License</th>
+                <th></th>
                 <th style="width: 8rem"></th>
+                
             </tr>
             <tr>
                 <th></th>
@@ -68,6 +70,7 @@
                 <th>
                     <p-columnFilter type="date" field="endDate"></p-columnFilter>
                 </th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -113,6 +116,12 @@
                 <td>
                     <p-button icon="pi pi-pencil" [rounded]="true" severity="primary" pTooltip="Edit license"
                         tooltipPosition="bottom" (onClick)="updateApprovedLicense(licenseRequest.artifactId)">
+                    </p-button>
+                </td>
+                <td>
+                    <p-button icon="pi pi-envelope" [rounded]="true" [text]="true" [raised]="true" severity="info "
+                        (onClick)="sendEmail(licenseRequest)" pTooltip="Send license via email"
+                        tooltipPosition="bottom">
                     </p-button>
                 </td>
             </tr>

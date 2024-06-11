@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApproveLicenseModel, LicenseManualRequest } from '../shared/models/license-models';
+import { ApproveLicenseModel, LicenseApprovalEmailRequest, LicenseManualRequest } from '../shared/models/license-models';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { OrganizationService } from '../../organizations/shared/services/organization.service';
@@ -61,6 +61,7 @@ export class ManualLicenseRequestComponent implements OnInit {
       organization: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
+      isMailToBeSend: new FormControl(false)
     });
   }
 
@@ -106,12 +107,41 @@ export class ManualLicenseRequestComponent implements OnInit {
       console.log('approveLicense', this.approveLicense);
       //this.dynamicDialogRef.close(true);
 
-      this.licenseService.updateLicenseRequest(this.licenseManualRequest2).subscribe((res) => {
-        if (res.isSuccess) {
+      this.licenseService.updateLicenseRequest(this.licenseManualRequest2).subscribe((response) => {
+        if (response.isSuccess) {
           this.licenseService.generateLicense(this.approveLicense).subscribe((res) => {
             if (res.isSuccess) {
-              this.dynamicDialogRef.close(res);
-            }
+              // let combinedResponse:any={
+              //   sendMailResponse:this.isMailToBeSend,
+              //   generateLicenseResponse:res
+              // }
+              // this.dynamicDialogRef.close(combinedResponse);
+              if (this.ManualRequestForm.get('isMailToBeSend')?.value) {
+                const mailRequest: LicenseApprovalEmailRequest = {
+                  email: this.approveLicense.generatedByEmail,
+                  licenseKey: res.response,
+                  productName: this.approveLicense.productName,
+                  instanceName: this.approveLicense.instanceName,
+                  workspaceID: this.approveLicense.workspaceArtifactID,
+                  generatedByName: this.approveLicense.generatedByName,
+                  generatedOnUtc: this.approveLicense.generatedOnUtc
+                };
+                this.licenseService.sendLicenseApprovalEmail(mailRequest).subscribe((mailResponse) => {
+                  let combinedResponse: any = {
+                    sendMailResponse: mailResponse,
+                    generateLicenseResponse: res
+                  }
+                  this.dynamicDialogRef.close(combinedResponse);
+                })
+              } else {
+                let combinedResponse: any = {
+                  sendMailResponse: null,
+                  generateLicenseResponse: res
+                }
+                this.dynamicDialogRef.close(combinedResponse);
+              }
+
+            };
           });
         };
       });

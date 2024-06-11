@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Constants } from '../../../shared/Constants';
-import { AllApprovedLicensesResponse, AllLicensesResponse, ApproveLicenseModel, CreateLicenseResponse, GenerateLicenseResponse, SingleApprovedLicenseResponse, SingleLicenseResponse, UpdateLicenseRequest, UpdateLicenseResponse } from '../models/license-models';
+import { AllApprovedLicensesResponse, AllLicensesResponse, ApproveLicenseModel, CreateLicenseResponse, GenerateLicenseResponse, LicenseApprovalEmailRequest, SingleApprovedLicenseResponse, SingleLicenseResponse, UpdateLicenseRequest, UpdateLicenseResponse } from '../models/license-models';
 
 
 @Injectable({
@@ -30,7 +30,7 @@ export class LicenseService {
     return this.http.put<UpdateLicenseResponse>(Constants.baseServerUrl + `LicenseRequest/UpdateLicenseRequest`, request, { headers: this.headers });
   }
 
-  deleteLicenseRequest(requestId:number) : Observable<UpdateLicenseResponse>{
+  deleteLicenseRequest(requestId: number): Observable<UpdateLicenseResponse> {
     return this.http.delete<UpdateLicenseResponse>(Constants.baseServerUrl + `LicenseRequest/DeleteLicenseRequest?artifactId=${requestId}`, { headers: this.headers });
   }
 
@@ -55,6 +55,9 @@ export class LicenseService {
     return this.http.post<GenerateLicenseResponse>(Constants.baseServerUrl + `ApprovedLicense/ValidateLicense`, request, { headers: this.headers });
   }
 
+  sendLicenseApprovalEmail(request: LicenseApprovalEmailRequest): Observable<GenerateLicenseResponse> {
+    return this.http.post<GenerateLicenseResponse>(Constants.baseServerUrl + `ApprovedLicense/SendLicenseApprovalEmail`, request, { headers: this.headers });
+  }
 
 
 

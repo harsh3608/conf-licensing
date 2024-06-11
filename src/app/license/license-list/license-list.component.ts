@@ -64,12 +64,15 @@ export class LicenseListComponent {
         licenseArtifactId: licenseArtifactId
       },
     });
-    this.ref.onClose.subscribe((res: any) => {
-      if (res?.isSuccess) {
+    this.ref.onClose.subscribe((combinedResponse: any) => {
+      if (combinedResponse?.generateLicenseResponse?.isSuccess) {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'License generated successfully!' });
         this.getAllLicenseRequests();
-        this.encryptedString = res.response;
+        this.encryptedString = combinedResponse?.generateLicenseResponse?.response;
         this.visible = true;
+      };
+      if (combinedResponse?.sendMailResponse) {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: combinedResponse?.sendMailResponse.message });
       }
     });
   }
