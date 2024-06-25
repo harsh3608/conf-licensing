@@ -1,7 +1,7 @@
 <div>
     <p-toast></p-toast>
 
-    <p-table #dt [value]="approvedLicenses" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+    <p-table #dt [value]="approvedLicenses" dataKey="id" responsiveLayout="scroll" styleClass="p-datatable-customers" [rowHover]="true"
         [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
         [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']">
@@ -13,14 +13,15 @@
                 </div>
             </div>
         </ng-template>
-
+        
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem"></th>
+                <th style="width: 8rem" pSortableColumn="artifactId">Id<p-sortIcon field="artifactId"></p-sortIcon></th>
                 <th pSortableColumn="productName">Product<p-sortIcon field="productName"></p-sortIcon></th>
                 <th pSortableColumn="organization">Organization<p-sortIcon field="organization"></p-sortIcon></th>
                 <th pSortableColumn="instanceName">Instance Name<p-sortIcon field="instanceName"></p-sortIcon></th>
-                <th pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
+                <th style="width: 8rem" pSortableColumn="instanceNameFriendly">Friendly Instance Name<p-sortIcon
                         field="instanceNameFriendly"></p-sortIcon>
                 </th>
                 <th pSortableColumn="relativityVersion">Relativity Version<p-sortIcon
@@ -35,12 +36,13 @@
                 </th>
                 <th pSortableColumn="endDate">Expiration Date<p-sortIcon field="endDate"></p-sortIcon>
                 </th>
-                <th>License</th>
+                <th >License</th>
                 <th></th>
                 <th style="width: 8rem"></th>
                 
             </tr>
             <tr>
+                <th></th>
                 <th></th>
                 <th>
                     <p-columnFilter type="text" field="productName"></p-columnFilter>
@@ -75,9 +77,13 @@
                 <th></th>
             </tr>
         </ng-template>
+
+        
+
         <ng-template pTemplate="body" let-licenseRequest>
             <tr class="p-selectable-row">
                 <td></td>
+                <td>{{licenseRequest.artifactId}}</td>
                 <td>
                     {{licenseRequest.productName}}
                 </td>
